@@ -168,9 +168,9 @@ input[type="number"] {
 
         <div class="section">
             <label>Data</label>
-            <input type="date" name="data">
+            <input type="date" name="data" data-label="Data">
             <label>Orario valutazione</label>
-            <input type="time" name="orario">
+            <input type="time" name="orario" data-label="Ora">
         </div>
 
         <div class="section">
@@ -200,38 +200,38 @@ input[type="number"] {
 
             <label>Coscienza</label>
 <div class="checkbox-group exclusive-group">
-  <label><input type="checkbox" name="coscienza" value="Sì"> Sì</label>
+  <label><input type="checkbox" name="coscienza" value="Sì" data-label="Cosciente"> Sì</label>
   <label><input type="checkbox" name="coscienza" value="No"> No</label>
 </div>
 
 
             <label>Respira</label>
 <div class="checkbox-group exclusive-group">
-  <label><input type="checkbox" name="respira" value="Sì"> Sì</label>
-  <label><input type="checkbox" name="respira" value="No"> No</label>
+  <label><input type="checkbox" name="respira" value="Sì" data-label="Respira"> Sì</label>
+  <label><input type="checkbox" name="respira" value="No" data-label="Respira"> No</label>
 </div>
 
 
             <label>Vie aeree</label>
 <div class="checkbox-group exclusive-group">
-  <label><input type="checkbox" name="vie_aeree" value="Pervie"> Pervie</label>
-  <label><input type="checkbox" name="vie_aeree" value="Ostruite"> Ostruite</label>
+  <label><input type="checkbox" name="vie_aeree" value="Pervie" data-label="Vie aeree"> Pervie</label>
+  <label><input type="checkbox" name="vie_aeree" value="Ostruite" data-label="Vie aeree"> Ostruite</label>
 </div>
 
 
             <label>Immobilizzazione manuale rachide cervicale</label>
 <div class="checkbox-group exclusive-group">
-  <label><input type="checkbox" name="immobilizzazione" value="Sì"> Sì</label>
-  <label><input type="checkbox" name="immobilizzazione" value="No"> No</label>
+  <label><input type="checkbox" name="immobilizzazione" value="Sì" data-label="Immobilizzazione manuale rachide cervicale"> Sì</label>
+  <label><input type="checkbox" name="immobilizzazione" value="No" data-label="Immobilizzazione manuale rachide cervicale"> No</label>
 </div>
 
 
             <label>Presidi e valutazione</label>
             <div class="checkbox-group">
-                <label><input type="checkbox" name="a_presidi" value="Collare"> Collare cervicale</label>
-                <label><input type="checkbox" name="a_presidi" value="Disostruzione"> Disostruzione/aspirazione</label>
-                <label><input type="checkbox" name="a_presidi" value="Cannula"> Cann. orofaringea/nasofaringea</label>
-                <label><input type="checkbox" name="a_presidi" value="Ventilazione"> Ventila con pallone</label>
+                <label><input type="checkbox" name="a_presidi" value="Collare" data-label="Presidi e valutazione B"> Collare cervicale</label>
+                <label><input type="checkbox" name="a_presidi" value="Disostruzione" data-label="Presidi e valutazione B"> Disostruzione/aspirazione</label>
+                <label><input type="checkbox" name="a_presidi" value="Cannula" data-label="Presidi e valutazione B"> Cann. orofaringea/nasofaringea</label>
+                <label><input type="checkbox" name="a_presidi" value="Ventilazione" data-label="Presidi e valutazione B"> Ventila con pallone</label>
             </div>
         </div>
 
@@ -239,23 +239,23 @@ input[type="number"] {
             <h2>Sezione B - Qualità Respiro</h2>
             <label>Difficoltà respiratoria</label>
             <div class="radio-group">
-                <label><input type="radio" name="difficolta_respiratoria" value="Sì"> Sì</label>
-                <label><input type="radio" name="difficolta_respiratoria" value="No"> No</label>
+                <label><input type="radio" name="difficolta_respiratoria" value="Sì" data-label="Difficoltà respiratoria"> Sì</label>
+                <label><input type="radio" name="difficolta_respiratoria" value="No" data-label="Difficoltà respiratoria"> No</label>
             </div>
 
             <label>OPACS</label>
             <div class="checkbox-group">
-                <label><input type="checkbox" name="opacs" value="O_simmetrico">O - espande simmetrico</label>
-                <label><input type="checkbox" name="opacs" value="P_enfisema">P - enfisema sottocute/dolore/ferite</label>
-                <label><input type="checkbox" name="opacs" value="A_rumori">A - rumori respiratori anomali</label>
+                <label><input type="checkbox" name="opacs" value="O_simmetrico" data-label="OPACS">O - espande simmetrico</label>
+                <label><input type="checkbox" name="opacs" value="P_enfisema" data-label="OPACS">P - enfisema sottocute/dolore/ferite</label>
+                <label><input type="checkbox" name="opacs" value="A_rumori" data-label="OPACS">A - rumori respiratori anomali</label>
             </div>
 
             <label>Frequenza respiratoria</label>
-            <input type="number" name="frequenza_respiratoria" min="0" max="200" inputmode="numeric" pattern="[0-9]*">
+            <input type="number" name="frequenza_respiratoria" min="0" max="200" inputmode="numeric" pattern="[0-9]*" data-label="Frequenza respiratoria">
             <p class="note">Valori normali 12-20 atti al minuto</p>
 
             <label>Saturimetria</label>
-            <input type="number" name="saturimetria" min="0" max="100" inputmode="numeric" pattern="[0-9]*">
+            <input type="number" name="saturimetria" min="0" max="100" inputmode="numeric" pattern="[0-9]*" data-label="Saturimetria">
             <p class="note">Valori normali >94%</p>
         </div>
 
@@ -266,51 +266,51 @@ input[type="number"] {
                 <tr><td>Polso periferico</td>
 <td>
   <div class="checkbox-group exclusive-group">
-    <label><input type="checkbox" name="polso_periferico" value="Sì"> Sì</label>
-    <label><input type="checkbox" name="polso_periferico" value="No"> No</label>
+    <label><input type="checkbox" name="polso_periferico" value="Sì" data-label="Polso periferico"> Sì</label>
+    <label><input type="checkbox" name="polso_periferico" value="No" data-label="Polso periferico"> No</label>
   </div>
 </td></tr>
 
                 <tr><td>Polso centrale (solo se assente il periferico)</td>
 <td>
   <div class="checkbox-group exclusive-group">
-    <label><input type="checkbox" name="polso_centrale" value="Sì"> Sì</label>
-    <label><input type="checkbox" name="polso_centrale" value="No"> No</label>
+    <label><input type="checkbox" name="polso_centrale" value="Sì" data-label="Polso centrale"> Sì</label>
+    <label><input type="checkbox" name="polso_centrale" value="No" data-label="Polso centrale"> No</label>
   </div>
 </td></tr>
 
                <tr><td>Ferite esterne</td>
 <td>
   <div class="checkbox-group exclusive-group">
-    <label><input type="checkbox" name="ferite_esterne" value="Sì"> Sì</label>
-    <label><input type="checkbox" name="ferite_esterne" value="No"> No</label>
+    <label><input type="checkbox" name="ferite_esterne" value="Sì" data-label="Ferite esterne"> Sì</label>
+    <label><input type="checkbox" name="ferite_esterne" value="No" data-label="Ferite esterne"> No</label>
   </div>
 </td></tr>
 
             </table>
 
             <label>Frequenza cardiaca</label>
-<input type="number" name="frequenza_cardiaca" min="0" max="200" inputmode="numeric" pattern="[0-9]*">
+<input type="number" name="frequenza_cardiaca" min="0" max="200" inputmode="numeric" pattern="[0-9]*" data-label="Frequenza cardiaca">
 
             <p class="note">Valori normali 60 - 100 atti al minuto</p>
 
             <label>Note</label>
             <div class="checkbox-group">
-                <label><input type="checkbox"> Polso forte</label>
-                <label><input type="checkbox"> Polso debole</label>
-                <label><input type="checkbox"> Polso irregolare</label>
-                <label><input type="checkbox"> Cute sudata</label>
-                <label><input type="checkbox"> Cute fredda</label>
-                <label><input type="checkbox"> Cute pallida</label>
-                <label><input type="checkbox"> Cute cianotica</label>
-                <label><input type="checkbox"> Medicazione ferite</label>
+                <label><input type="checkbox" data-label="Note"> Polso forte</label>
+                <label><input type="checkbox" data-label="Note"> Polso debole</label>
+                <label><input type="checkbox" data-label="Note"> Polso irregolare</label>
+                <label><input type="checkbox" data-label="Note"> Cute sudata</label>
+                <label><input type="checkbox" data-label="Note"> Cute fredda</label>
+                <label><input type="checkbox" data-label="Note"> Cute pallida</label>
+                <label><input type="checkbox" data-label="Note"> Cute cianotica</label>
+                <label><input type="checkbox" data-label="Note"> Medicazione ferite</label>
             </div>
 
             <label>Bacino</label>
             <div class="checkbox-group">
-                <label><input type="checkbox"> Deformato</label>
-                <label><input type="checkbox"> Dolore</label>
-                <label><input type="checkbox"> Fascia pelvica</label>
+                <label><input type="checkbox" data-label="Bacino"> Deformato</label>
+                <label><input type="checkbox" data-label="Bacino"> Dolore</label>
+                <label><input type="checkbox" data-label="Bacino"> Fascia pelvica</label>
             </div>
         </div>
 
@@ -319,19 +319,19 @@ input[type="number"] {
             <label>AVPU</label>
 <div class="radio-group">
     <label>
-        <input type="radio" name="avpu" value="A - Sveglio, risponde a tono e collabora">
+        <input type="radio" name="avpu" value="A - Sveglio, risponde a tono e collabora" data-label="AVPU">
         A - Sveglio, risponde a tono e collabora
     </label>
     <label>
-        <input type="radio" name="avpu" value="V - Risponde se chiamato, confuso, poco collaborante">
+        <input type="radio" name="avpu" value="V - Risponde se chiamato, confuso, poco collaborante" data-label="AVPU">
         V - Risponde se chiamato, confuso, poco collaborante
     </label>
     <label>
-        <input type="radio" name="avpu" value="P - Soporoso, non risponde, reagisce solo al dolore">
+        <input type="radio" name="avpu" value="P - Soporoso, non risponde, reagisce solo al dolore" data-label="AVPU">
         P - Soporoso, non risponde, reagisce solo al dolore
     </label>
     <label>
-        <input type="radio" name="avpu" value="U - Non reagisce a nessuno stimolo">
+        <input type="radio" name="avpu" value="U - Non reagisce a nessuno stimolo" data-label="AVPU">
         U - Non reagisce a nessuno stimolo
     </label>
 </div>
