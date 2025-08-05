@@ -391,9 +391,10 @@ input[type="number"] {
         </div>
     </form>
 
-    <div style="display: flex; justify-content: center; margin-top: 20px;" class="no-print">
-    <button onclick="window.print()">Salva in PDF</button>
-    </div>
+    <div style="text-align:center; margin: 20px 0;">
+  <button type="button" id="printBtn">Stampa in PDF</button>
+</div>
+
 
     <script>
   document.getElementById('printBtn').addEventListener('click', function() {
