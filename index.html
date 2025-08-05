@@ -392,7 +392,7 @@ input[type="number"] {
     </form>
 
     <div style="text-align: center; margin-top: 30px;">
-  <button type="button" onclick="generaPDF()">Stampa in PDF</button>
+  <button type="button" onclick="generaPDF()">Salva in PDF</button>
 </div>
 
 
@@ -414,12 +414,19 @@ input[type="number"] {
 
     inputs.forEach((input) => {
       let value = "";
-      const labelEl = input.closest("label") || form.querySelector(`label[for="${input.name}"]`);
-      const labelText = labelEl ? labelEl.textContent.trim() : input.name;
+      let labelText = "";
 
+      // Trova la label associata (quella precedente nel DOM)
+      const prev = input.previousElementSibling;
+      if (prev && prev.tagName === "LABEL") {
+        labelText = prev.textContent.trim();
+      }
+
+      // Se checkbox con testo accanto
       if (input.type === "checkbox") {
         if (input.checked) {
           value = input.nextSibling.textContent.trim();
+          labelText = labelText || value; // evita duplicazione se label è vuota
         }
       } else if (input.type === "radio") {
         if (input.checked) {
@@ -436,7 +443,13 @@ input[type="number"] {
           doc.addPage();
           y = 20;
         }
-        doc.text(`${labelText}: ${value}`, 20, y);
+
+        // Se la label è uguale alla risposta, stampa solo una volta
+        if (labelText && labelText !== value) {
+          doc.text(`${labelText}: ${value}`, 20, y);
+        } else {
+          doc.text(`${value}`, 20, y);
+        }
         y += 8;
       }
     });
@@ -445,6 +458,7 @@ input[type="number"] {
     window.open(pdfBlobUrl, "_blank");
   }
 </script>
+
 
 
     <script>
