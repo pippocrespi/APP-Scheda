@@ -392,41 +392,59 @@ input[type="number"] {
     </form>
 
     <div style="text-align: center; margin-top: 30px;">
-    <button type="button" onclick="generatePDF()">Salva in PDF</button>
+  <button type="button" onclick="generaPDF()">Stampa in PDF</button>
 </div>
 
 
-    <script>
-function generatePDF() {
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+  async function generaPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    let y = 20;
+    doc.setFontSize(16);
+    doc.text('Riepilogo Scheda Valutazione', 20, y);
+    y += 10;
+
     const form = document.querySelector("form");
     const inputs = form.querySelectorAll("input, select, textarea");
-    let content = "";
 
-    inputs.forEach(input => {
-        const label = input.closest('label') || form.querySelector(`label[for='${input.name}']`);
-        const labelText = label ? label.textContent.trim() : input.name;
+    doc.setFontSize(12);
 
-        let value = "";
-        if (input.type === "checkbox" || input.type === "radio") {
-            if (input.checked) {
-                value = input.nextSibling.textContent.trim();
-            }
-        } else if (input.value && input.value.trim() !== "") {
-            value = input.value.trim();
+    inputs.forEach((input) => {
+      let value = "";
+      const labelEl = input.closest("label") || form.querySelector(`label[for="${input.name}"]`);
+      const labelText = labelEl ? labelEl.textContent.trim() : input.name;
+
+      if (input.type === "checkbox") {
+        if (input.checked) {
+          value = input.nextSibling.textContent.trim();
         }
-
-        if (value) {
-            content += `${labelText}: ${value}\n`;
+      } else if (input.type === "radio") {
+        if (input.checked) {
+          value = input.value;
         }
+      } else {
+        if (input.value && input.value.trim() !== "") {
+          value = input.value.trim();
+        }
+      }
+
+      if (value) {
+        if (y > 280) {
+          doc.addPage();
+          y = 20;
+        }
+        doc.text(`${labelText}: ${value}`, 20, y);
+        y += 8;
+      }
     });
 
-    const win = window.open('', '_blank');
-    win.document.write('<pre>' + content + '</pre>');
-    win.document.close();
-    win.print();
-}
+    const pdfBlobUrl = doc.output("bloburl");
+    window.open(pdfBlobUrl, "_blank");
+  }
 </script>
-
 
 
     <script>
