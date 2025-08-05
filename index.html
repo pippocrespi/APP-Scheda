@@ -397,7 +397,6 @@ input[type="number"] {
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
   async function generaPDF() {
     const { jsPDF } = window.jspdf;
@@ -408,7 +407,7 @@ input[type="number"] {
     const pageHeight = doc.internal.pageSize.height;
 
     doc.setFontSize(16);
-    doc.text('Riepilogo Questionario', 20, y);
+    doc.text('Riepilogo Valutazione X-A-B-C-D-E', 20, y);
     y += lineHeight * 2;
 
     doc.setFontSize(12);
