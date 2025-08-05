@@ -68,10 +68,11 @@
         <div class="section">
             <h2>Sezione X - Emorragia Massiva</h2>
             <label>Emorragia massiva</label>
-            <select name="emorragia_x">
-                <option value="Sì">Sì</option>
-                <option value="No">No</option>
-            </select>
+<div class="checkbox-group exclusive-group">
+  <label><input type="checkbox" name="emorragia_x" value="Sì"> Sì</label>
+  <label><input type="checkbox" name="emorragia_x" value="No"> No</label>
+</div>
+
 
             <label>Presidi e valutazione X</label>
             <div class="checkbox-group">
@@ -90,28 +91,32 @@
             DAE</p>
 
             <label>Coscienza</label>
-            <select name="coscienza">
-                <option value="Sì">Sì</option>
-                <option value="No">No</option>
-            </select>
+<div class="checkbox-group exclusive-group">
+  <label><input type="checkbox" name="coscienza" value="Sì"> Sì</label>
+  <label><input type="checkbox" name="coscienza" value="No"> No</label>
+</div>
+
 
             <label>Respira</label>
-            <select name="respira">
-                <option value="Sì">Sì</option>
-                <option value="No">No</option>
-            </select>
+<div class="checkbox-group exclusive-group">
+  <label><input type="checkbox" name="respira" value="Sì"> Sì</label>
+  <label><input type="checkbox" name="respira" value="No"> No</label>
+</div>
+
 
             <label>Vie aeree</label>
-            <select name="vie_aeree">
-                <option value="pervie">Pervie</option>
-                <option value="ostruite">Ostruite</option>
-            </select>
+<div class="checkbox-group exclusive-group">
+  <label><input type="checkbox" name="vie_aeree" value="Pervie"> Pervie</label>
+  <label><input type="checkbox" name="vie_aeree" value="Ostruite"> Ostruite</label>
+</div>
+
 
             <label>Immobilizzazione manuale rachide cervicale</label>
-            <select name="immobilizzazione">
-                <option value="Sì">Sì</option>
-                <option value="No">No</option>
-            </select>
+<div class="checkbox-group exclusive-group">
+  <label><input type="checkbox" name="immobilizzazione" value="Sì"> Sì</label>
+  <label><input type="checkbox" name="immobilizzazione" value="No"> No</label>
+</div>
+
 
             <label>Presidi e valutazione</label>
             <div class="checkbox-group">
@@ -150,9 +155,30 @@
             <h2>Sezione C - Qualità del circolo</h2>
             <label>Valutazioni circolatorie</label>
             <table>
-                <tr><td>Polso periferico</td><td><select><option>Sì</option><option>No</option></select></td></tr>
-                <tr><td>Polso centrale (solo se assente il periferico)</td><td><select><option>Sì</option><option>No</option></select></td></tr>
-                <tr><td>Ferite esterne</td><td><select><option>Sì</option><option>No</option></select></td></tr>
+                <tr><td>Polso periferico</td>
+<td>
+  <div class="checkbox-group exclusive-group">
+    <label><input type="checkbox" name="polso_periferico" value="Sì"> Sì</label>
+    <label><input type="checkbox" name="polso_periferico" value="No"> No</label>
+  </div>
+</td></tr>
+
+                <tr><td>Polso centrale (solo se assente il periferico)</td>
+<td>
+  <div class="checkbox-group exclusive-group">
+    <label><input type="checkbox" name="polso_centrale" value="Sì"> Sì</label>
+    <label><input type="checkbox" name="polso_centrale" value="No"> No</label>
+  </div>
+</td></tr>
+
+               <tr><td>Ferite esterne</td>
+<td>
+  <div class="checkbox-group exclusive-group">
+    <label><input type="checkbox" name="ferite_esterne" value="Sì"> Sì</label>
+    <label><input type="checkbox" name="ferite_esterne" value="No"> No</label>
+  </div>
+</td></tr>
+
             </table>
 
             <label>Frequenza cardiaca</label>
@@ -242,5 +268,20 @@
             <input type="text" name="altro">
         </div>
     </form>
+    <script>
+  // Checkbox mutuamente esclusivi (gruppi Sì/No e simili)
+  document.querySelectorAll('.exclusive-group').forEach(group => {
+    const checkboxes = group.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', () => {
+        if (checkbox.checked) {
+          checkboxes.forEach(other => {
+            if (other !== checkbox) other.checked = false;
+          });
+        }
+      });
+    });
+  });
+</script>
 </body>
 </html>
