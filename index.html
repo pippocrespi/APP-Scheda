@@ -177,17 +177,17 @@ input[type="number"] {
             <h2>Sezione X - Emorragia Massiva</h2>
             <label>Emorragia massiva</label>
 <div class="checkbox-group exclusive-group">
-  <label><input type="checkbox" name="emorragia_x" value="Sì"> Sì</label>
-  <label><input type="checkbox" name="emorragia_x" value="No"> No</label>
+  <label><input type="checkbox" name="emorragia_x" value="Sì" data-label="Emorragia massiva"> Sì</label>
+  <label><input type="checkbox" name="emorragia_x" value="No" data-label="Emorragia massiva"> No</label>
 </div>
 
 
             <label>Presidi e valutazione X</label>
             <div class="checkbox-group">
-                <label><input type="checkbox" name="x_presidi" value="Compressione"> Compressione manuale dell'emorragia</label>
-                <label><input type="checkbox" name="x_presidi" value="Medicazione"> Medicazione compressiva</label>
-                <label><input type="checkbox" name="x_presidi" value="Israele"> Benda israeliana</label>
-                <label><input type="checkbox" name="x_presidi" value="Tourniquet"> Tourniquet</label>
+                <label><input type="checkbox" name="x_presidi" value="Compressione" data-label="Presidi e valutazione X"> Compressione manuale dell'emorragia</label>
+                <label><input type="checkbox" name="x_presidi" value="Medicazione" data-label="Presidi e valutazione X"> Medicazione compressiva</label>
+                <label><input type="checkbox" name="x_presidi" value="Israele" data-label="Presidi e valutazione X"> Benda israeliana</label>
+                <label><input type="checkbox" name="x_presidi" value="Tourniquet" data-label="Presidi e valutazione X"> Tourniquet</label>
             </div>
         </div>
 
@@ -392,7 +392,7 @@ input[type="number"] {
     </form>
 
     <div style="text-align: center; margin-top: 30px;">
-  <button type="button" onclick="generaPDF()">Salva in PDF</button>
+  <button type="button" onclick="generaPDF()">Stampa in PDF</button>
 </div>
 
 
@@ -413,29 +413,15 @@ input[type="number"] {
     doc.setFontSize(12);
 
     inputs.forEach((input) => {
+      const label = input.dataset.label || "";
       let value = "";
-      let labelText = "";
 
-      // Trova la label associata (quella precedente nel DOM)
-      const prev = input.previousElementSibling;
-      if (prev && prev.tagName === "LABEL") {
-        labelText = prev.textContent.trim();
-      }
-
-      // Se checkbox con testo accanto
-      if (input.type === "checkbox") {
-        if (input.checked) {
-          value = input.nextSibling.textContent.trim();
-          labelText = labelText || value; // evita duplicazione se label è vuota
-        }
-      } else if (input.type === "radio") {
-        if (input.checked) {
-          value = input.value;
-        }
-      } else {
-        if (input.value && input.value.trim() !== "") {
-          value = input.value.trim();
-        }
+      if (input.type === "checkbox" && input.checked) {
+        value = input.value;
+      } else if (input.type === "radio" && input.checked) {
+        value = input.value;
+      } else if (input.type !== "checkbox" && input.type !== "radio" && input.value.trim() !== "") {
+        value = input.value.trim();
       }
 
       if (value) {
@@ -444,12 +430,12 @@ input[type="number"] {
           y = 20;
         }
 
-        // Se la label è uguale alla risposta, stampa solo una volta
-        if (labelText && labelText !== value) {
-          doc.text(`${labelText}: ${value}`, 20, y);
+        if (label && label !== value) {
+          doc.text(`${label}: ${value}`, 20, y);
         } else {
           doc.text(`${value}`, 20, y);
         }
+
         y += 8;
       }
     });
@@ -458,6 +444,7 @@ input[type="number"] {
     window.open(pdfBlobUrl, "_blank");
   }
 </script>
+
 
 
 
