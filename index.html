@@ -6,51 +6,92 @@
     <title>Scheda Valutazione X-A-B-C-D-E</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            background-color: #f7f7f7;
-            line-height: 1.6;
-        }
-        h1, h2 {
-            color: #333;
-        }
-        label {
-            font-weight: bold;
-            display: block;
-            margin-top: 15px;
-        }
-        input, select, textarea {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            font-size: 1rem;
-        }
-        .section {
-            background-color: #fff;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .checkbox-group label, .radio-group label {
-            font-weight: normal;
-            display: block;
-            margin-left: 20px;
-        }
-        .note {
-            font-style: italic;
-            font-size: 0.9rem;
-            color: #555;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-        th, td {
-            text-align: left;
-            padding: 6px;
-        }
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+    background: linear-gradient(to right, #f0f4f8, #d9e2ec);
+    line-height: 1.6;
+    color: #333;
+}
+
+h1 {
+    color: #1f2937;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: #1f2937;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 5px;
+    margin-top: 20px;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 15px;
+    display: block;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-top: 5px;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    width: auto;
+    margin-right: 8px;
+}
+
+.checkbox-group label, .radio-group label {
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    margin: 6px 0;
+}
+
+.section {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.note {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-top: 4px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
     </style>
 </head>
 <body>
