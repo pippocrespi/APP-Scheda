@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionario Web App</title>
+    <link rel="manifest" href="manifest.json">
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+        label { display: block; margin-top: 15px; }
+        button { margin-top: 20px; padding: 10px 20px; }
+        .note { margin-top: 20px; font-size: 0.9em; color: #666; }
+    </style>
+</head>
+<body>
+    <h1>Questionario di Esempio (Web App)</h1>
+    <form id="quizForm">
+        <label>
+            1. Come ti chiami?
+            <input type="text" name="nome" required>
+        </label>
+        <label>
+            2. Qual è il tuo colore preferito?
+            <select name="colore">
+                <option value="Rosso">Rosso</option>
+                <option value="Blu">Blu</option>
+                <option value="Verde">Verde</option>
+                <option value="Giallo">Giallo</option>
+            </select>
+        </label>
+        <label>
+            3. Quali sport ti piacciono? (puoi selezionare più opzioni)
+            <br>
+            <input type="checkbox" name="sport" value="Calcio"> Calcio<br>
+            <input type="checkbox" name="sport" value="Basket"> Basket<br>
+            <input type="checkbox" name="sport" value="Nuoto"> Nuoto<br>
+            <input type="checkbox" name="sport" value="Tennis"> Tennis<br>
+        </label>
+        <button type="button" onclick="generaPDF()">Genera PDF</button>
+    </form>
+
+    <p class="note">
+        📱 Questa è una web app. Puoi aggiungerla alla schermata Home per usarla offline.<br>
+        iOS: Tocca <strong>Condividi → Aggiungi a Home</strong>.<br>
+        Android: Tocca <strong>⋮ → Aggiungi a schermata Home</strong>.
+    </p>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+            .then(() => console.log('Service Worker registrato'));
+    }
+
+    async function generaPDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        const nome = document.querySelector('[name="nome"]').value;
+        const colore = document.querySelector('[name="colore"]').value;
+        const sportNodes = document.querySelectorAll('[name="sport"]:checked');
+        const sport = Array.from(sportNodes).map(el => el.value).join(", ");
+
+        doc.setFontSize(16);
+        doc.text("Riepilogo Questionario", 20, 20);
+
+        doc.setFontSize(12);
+        doc.text("1. Nome: " + nome, 20, 40);
+        doc.text("2. Colore preferito: " + colore, 20, 50);
+        doc.text("3. Sport preferiti: " + (sport || "Nessuno selezionato"), 20, 60);
+
+        const pdfBlobUrl = doc.output("bloburl");
+        window.open(pdfBlobUrl, '_blank');
+    }
+    </script>
+</body>
+</html>
