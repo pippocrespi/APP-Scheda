@@ -391,36 +391,42 @@ input[type="number"] {
         </div>
     </form>
 
-    <div style="text-align: center; margin-top: 20px;">
-          <button type="button" onclick="generaPDF()">Stampa in PDF</button>
-    </div>
+    <div style="text-align: center; margin-top: 30px;">
+    <button type="button" onclick="generatePDF()">Stampa in PDF</button>
+</div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script>
-  async function generaPDF() {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    let y = 10;
 
-    const inputs = document.querySelectorAll('input, select, textarea');
+    <script>
+function generatePDF() {
+    const form = document.querySelector("form");
+    const inputs = form.querySelectorAll("input, select, textarea");
+    let content = "";
 
     inputs.forEach(input => {
-      let label = input.closest('label');
-      let question = '';
-      let answer = '';
+        const label = input.closest('label') || form.querySelector(`label[for='${input.name}']`);
+        const labelText = label ? label.textContent.trim() : input.name;
 
-      if (label) {
-        question = label.textContent.trim();
-      } else {
-        const prev = input.previousElementSibling;
-        if (prev && prev.tagName === 'LABEL') {
-          question = prev.textContent.trim();
-        } else if (input.name) {
-          question = input.name;
+        let value = "";
+        if (input.type === "checkbox" || input.type === "radio") {
+            if (input.checked) {
+                value = input.nextSibling.textContent.trim();
+            }
+        } else if (input.value && input.value.trim() !== "") {
+            value = input.value.trim();
         }
-      }
 
-      if ((input.type === 'checkbox' || input
+        if (value) {
+            content += `${labelText}: ${value}\n`;
+        }
+    });
+
+    const win = window.open('', '_blank');
+    win.document.write('<pre>' + content + '</pre>');
+    win.document.close();
+    win.print();
+}
+</script>
+
 
 
     <script>
