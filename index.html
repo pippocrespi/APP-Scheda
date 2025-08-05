@@ -339,32 +339,32 @@ input[type="number"] {
 
             <label>Neurologico</label>
             <div class="checkbox-group">
-                <label><input type="checkbox"> Trauma cranico</label>
-                <label><input type="checkbox"> Agitazione psicomotoria</label>
-                <label><input type="checkbox"> Convulsioni</label>
+                <label><input type="checkbox" data-label="Neurologico"> Trauma cranico</label>
+                <label><input type="checkbox" data-label="Neurologico"> Agitazione psicomotoria</label>
+                <label><input type="checkbox" data-label="Neurologico"> Convulsioni</label>
             </div>
 
             <label>Deficit forza arto</label>
             <div class="checkbox-group">
-                <label><input type="checkbox"> Sup. DX</label>
-                <label><input type="checkbox"> Sup. SX</label>
-                <label><input type="checkbox"> Inf. DX</label>
-                <label><input type="checkbox"> Inf. SX</label>
+                <label><input type="checkbox" data-label="Deficit forza arto"> Sup. DX</label>
+                <label><input type="checkbox" data-label="Deficit forza arto"> Sup. SX</label>
+                <label><input type="checkbox" data-label="Deficit forza arto"> Inf. DX</label>
+                <label><input type="checkbox" data-label="Deficit forza arto"> Inf. SX</label>
             </div>
 
             <label>Deficit sensibilità arto</label>
             <div class="checkbox-group">
-                <label><input type="checkbox"> Sup. DX</label>
-                <label><input type="checkbox"> Sup. SX</label>
-                <label><input type="checkbox"> Inf. DX</label>
-                <label><input type="checkbox"> Inf. SX</label>
+                <label><input type="checkbox" data-label="Deficit sensibilità arto"> Sup. DX</label>
+                <label><input type="checkbox" data-label="Deficit sensibilità arto"> Sup. SX</label>
+                <label><input type="checkbox" data-label="Deficit sensibilità arto"> Inf. DX</label>
+                <label><input type="checkbox" data-label="Deficit sensibilità arto"> Inf. SX</label>
             </div>
 
             <label>Non muove</label>
-            <input type="text" name="non_muove">
+            <input type="text" name="non_muove" data-label="Non muove">
 
             <label>Non sente toccare</label>
-            <input type="text" name="non_sente">
+            <input type="text" name="non_sente" data-label="Non sente toccare">
         </div>
 
         <div class="section">
@@ -372,22 +372,22 @@ input[type="number"] {
             <p><strong>Esegui testa piedi</strong></p>
 
             <label>Dolore (1-10)</label>
-            <input type="number" name="dolore" min="1" max="10" inputmode="numeric" pattern="[0-9]*">
+            <input type="number" name="dolore" min="1" max="10" inputmode="numeric" pattern="[0-9]*" data-label="Dolore (1-10)">
 
             <label>Allergie</label>
-            <input type="text" name="allergie">
+            <input type="text" name="allergie" data-label="Allergie">
 
             <label>Medicinali</label>
-            <input type="text" name="medicinali">
+            <input type="text" name="medicinali" data-label="Medicinali">
 
             <label>Patologie</label>
-            <input type="text" name="patologie">
+            <input type="text" name="patologie" data-label="Patologie">
 
             <label>Ultimo pasto</label>
-            <input type="text" name="ultimo_pasto">
+            <input type="text" name="ultimo_pasto" data-label="Ultimo pasto">
 
             <label>Altro</label>
-            <input type="text" name="altro">
+            <input type="text" name="altro" data-label="Altro">
         </div>
     </form>
 
