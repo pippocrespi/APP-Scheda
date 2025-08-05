@@ -2,149 +2,112 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <base href="./" />
-  <title>Questionario Web App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scheda Valutazione X-a-b-c-d-e</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      margin: 0 auto;
-      max-width: 600px;
-      background: #f9f9f9;
-      color: #333;
+      font-family: sans-serif;
+      margin: 20px;
+      padding: 0;
+      background: #f8f8f8;
     }
     h1 {
       text-align: center;
-      color: #222;
+    }
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 500px;
+      margin: auto;
     }
     label {
       display: block;
       margin-top: 15px;
-      font-size: 1rem;
+      font-weight: bold;
     }
-    input[type="text"],
-    select {
+    input, select {
       width: 100%;
       padding: 8px;
       margin-top: 5px;
-      box-sizing: border-box;
       font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      background: #fff;
     }
-    input[type="checkbox"] {
-      margin-right: 8px;
-      transform: scale(1.2);
-      vertical-align: middle;
+    .checkbox-group label {
+      font-weight: normal;
+      display: block;
+      margin-left: 20px;
     }
     button {
-      margin-top: 20px;
-      padding: 12px 24px;
-      font-size: 1.1rem;
+      display: block;
+      margin: 20px auto 0;
+      padding: 10px 20px;
+      font-size: 1rem;
       background-color: #007bff;
       color: white;
       border: none;
       border-radius: 5px;
-      cursor: pointer;
-      width: auto;
-      transition: background-color 0.3s ease;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-    .note {
-      margin-top: 25px;
-      font-size: 0.9rem;
-      color: #666;
-      text-align: center;
-    }
-    @media (max-width: 400px) {
-      body {
-        padding: 10px;
-      }
-      button {
-        width: 100%;
-        padding: 14px;
-      }
     }
   </style>
 </head>
 <body>
-  <script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('service-worker.js')
-        .then(reg => {
-          console.log('Service Worker registrato con successo:', reg.scope);
-        })
-        .catch(err => {
-          console.warn('Registrazione Service Worker fallita:', err);
-        });
-    });
-  }
-</script>
+  <h1>Scheda Valutazione X-a-b-c-d-e</h1>
 
-  <h1>Questionario di Esempio (Web App)</h1>
-  <form id="quizForm">
-    <label>
-      1. Come ti chiami?
-      <input type="text" name="nome" required />
-    </label>
-    <label>
-      2. Qual è il tuo colore preferito?
-      <select name="colore">
-        <option value="Rosso">Rosso</option>
-        <option value="Blu">Blu</option>
-        <option value="Verde">Verde</option>
-        <option value="Giallo">Giallo</option>
-      </select>
-    </label>
-    <label>
-      3. Quali sport ti piacciono? (puoi selezionare più opzioni)
-      <br />
-      <input type="checkbox" name="sport" value="Calcio" /> Calcio<br />
-      <input type="checkbox" name="sport" value="Basket" /> Basket<br />
-      <input type="checkbox" name="sport" value="Nuoto" /> Nuoto<br />
-      <input type="checkbox" name="sport" value="Tennis" /> Tennis<br />
-    </label>
-    <button type="button" onclick="generaPDF()">Genera PDF</button>
+  <form id="form">
+    <label for="data">1. Data</label>
+    <input type="date" id="data" name="data" required />
+
+    <label for="ora">2. Ora</label>
+    <input type="time" id="ora" name="ora" required />
+
+    <label>3. X-emorragia massiva</label>
+    <label><input type="radio" name="emorragia" value="Sì" required /> Sì</label>
+    <label><input type="radio" name="emorragia" value="No" /> No</label>
+
+    <label>4. Seleziona presidi:</label>
+    <div class="checkbox-group">
+      <label><input type="checkbox" name="presidi" value="A" /> A</label>
+      <label><input type="checkbox" name="presidi" value="B" /> B</label>
+      <label><input type="checkbox" name="presidi" value="C" /> C</label>
+      <label><input type="checkbox" name="presidi" value="D" /> D</label>
+    </div>
+
+    <button type="button" onclick="generaPDF()">Scarica PDF</button>
   </form>
 
-  <p class="note">
-    📱 Questa è una web app. Puoi aggiungerla alla schermata Home per usarla offline.<br />
-    iOS: Tocca <strong>Condividi → Aggiungi a Home</strong>.<br />
-    Android: Tocca <strong>⋮ → Aggiungi a schermata Home</strong>.
-  </p>
-
-  <!-- Libreria jsPDF inclusa tramite CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
-    // Se vuoi aggiungere il service worker, fallo separatamente e con i percorsi corretti
-
     async function generaPDF() {
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
 
-      const nome = document.querySelector('[name="nome"]').value;
-      const colore = document.querySelector('[name="colore"]').value;
-      const sportNodes = document.querySelectorAll('[name="sport"]:checked');
-      const sport = Array.from(sportNodes).map(el => el.value).join(', ');
+      const data = document.getElementById('data').value;
+      const ora = document.getElementById('ora').value;
+      const emorragia = document.querySelector('input[name="emorragia"]:checked')?.value || 'N/D';
 
-      doc.setFontSize(16);
-      doc.text('Riepilogo Questionario', 20, 20);
+      const presidi = Array.from(document.querySelectorAll('input[name="presidi"]:checked'))
+        .map(el => el.value)
+        .join(', ') || 'Nessuno selezionato';
 
-      doc.setFontSize(12);
-      doc.text('1. Nome: ' + nome, 20, 40);
-      doc.text('2. Colore preferito: ' + colore, 20, 50);
-      doc.text('3. Sport preferiti: ' + (sport || 'Nessuno selezionato'), 20, 60);
+      let y = 20;
+      doc.text("Scheda Valutazione X-a-b-c-d-e", 20, y);
+      y += 10;
+      doc.text("1. Data: " + data, 20, y);
+      y += 10;
+      doc.text("2. Ora: " + ora, 20, y);
+      y += 10;
+      doc.text("3. X-emorragia massiva: " + emorragia, 20, y);
+      y += 10;
+      doc.text("4. Presidi selezionati: " + presidi, 20, y);
 
-      const pdfBlobUrl = doc.output('bloburl');
-      window.open(pdfBlobUrl, '_blank');
+      doc.save("scheda-valutazione.pdf");
+    }
+  </script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('✅ Service Worker registrato'))
+        .catch(e => console.warn('❌ Service Worker fallito:', e));
     }
   </script>
 </body>
