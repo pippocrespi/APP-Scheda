@@ -1,24 +1,24 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Scheda Valutazione X-A-B-C-D-E</title>
+  <title>Scheda Valutazione X-a-b-c-d-e</title>
   <style>
     body {
       font-family: sans-serif;
       margin: 20px;
-      padding: 0;
-      background: #f8f8f8;
+      background: #f4f4f4;
     }
     h1 {
       text-align: center;
     }
     form {
-      background: #fff;
+      background: white;
       padding: 20px;
       border-radius: 8px;
-      max-width: 500px;
+      max-width: 700px;
       margin: auto;
     }
     label {
@@ -26,23 +26,22 @@
       margin-top: 15px;
       font-weight: bold;
     }
-    input, select {
+    input, select, textarea {
       width: 100%;
       padding: 8px;
       margin-top: 5px;
       font-size: 1rem;
     }
-    .checkbox-group label {
+    .checkbox-group label,
+    .radio-group label {
       font-weight: normal;
-      display: block;
       margin-left: 20px;
     }
     button {
-      display: block;
-      margin: 20px auto 0;
+      margin-top: 20px;
       padding: 10px 20px;
       font-size: 1rem;
-      background-color: #007bff;
+      background: #007bff;
       color: white;
       border: none;
       border-radius: 5px;
@@ -51,24 +50,65 @@
 </head>
 <body>
   <h1>Scheda Valutazione X-a-b-c-d-e</h1>
-
   <form id="form">
-    <label for="data">1. Data</label>
-    <input type="date" id="data" name="data" required />
+    <label>Data</label>
+    <input type="date" name="data" required />
 
-    <label for="ora">2. Ora</label>
-    <input type="time" id="ora" name="ora" required />
+    <label>Orario valutazione</label>
+    <input type="time" name="ora" required />
 
-    <label>3. X-emorragia massiva</label>
-    <label><input type="radio" name="emorragia" value="Sì" required /> Sì</label>
-    <label><input type="radio" name="emorragia" value="No" /> No</label>
+    <label>Sezione X - Emorragia Massiva</label>
+    <div class="radio-group">
+      <label><input type="radio" name="emorragia" value="Sì" required /> Sì</label>
+      <label><input type="radio" name="emorragia" value="No" /> No</label>
+    </div>
 
-    <label>4. Seleziona presidi:</label>
+    <label>Presidi e valutazione X</label>
     <div class="checkbox-group">
-      <label><input type="checkbox" name="presidi" value="A" /> A</label>
-      <label><input type="checkbox" name="presidi" value="B" /> B</label>
-      <label><input type="checkbox" name="presidi" value="C" /> C</label>
-      <label><input type="checkbox" name="presidi" value="D" /> D</label>
+      <label><input type="checkbox" name="presidiX" value="Compressione manuale dell'emorragia" /> 1 Compressione manuale dell'emorragia</label>
+      <label><input type="checkbox" name="presidiX" value="Medicazione compressiva" /> 2 Medicazione compressiva</label>
+      <label><input type="checkbox" name="presidiX" value="Benda israeliana" /> 3 Benda israeliana</label>
+      <label><input type="checkbox" name="presidiX" value="Tourniquet" /> 4 Tourniquet</label>
+    </div>
+
+    <label>Sezione A - Vie aeree e rachide cervicale</label>
+    <textarea readonly rows="4">
+Se paziente non respira:
+Massaggio cardiaco esterno
+Ventila pallone autoespandibie + filtro Hepa (30:2)
+DAE
+    </textarea>
+
+    <label>Coscienza</label>
+    <div class="radio-group">
+      <label><input type="radio" name="coscienza" value="Sì" required /> Sì</label>
+      <label><input type="radio" name="coscienza" value="No" /> No</label>
+    </div>
+
+    <label>Respira</label>
+    <div class="radio-group">
+      <label><input type="radio" name="respira" value="Sì" required /> Sì</label>
+      <label><input type="radio" name="respira" value="No" /> No</label>
+    </div>
+
+    <label>Vie aeree</label>
+    <div class="radio-group">
+      <label><input type="radio" name="vieaeree" value="Pervie" required /> Pervie</label>
+      <label><input type="radio" name="vieaeree" value="Ostruite" /> Ostruite</label>
+    </div>
+
+    <label>Immobilizzazione manuale rachide cervicale</label>
+    <div class="radio-group">
+      <label><input type="radio" name="immobilizzazione" value="Sì" required /> Sì</label>
+      <label><input type="radio" name="immobilizzazione" value="No" /> No</label>
+    </div>
+
+    <label>Presidi e valutazione A</label>
+    <div class="checkbox-group">
+      <label><input type="checkbox" name="presidiA" value="Collare cervicale" /> 1 Collare cervicale</label>
+      <label><input type="checkbox" name="presidiA" value="Disostruzione/aspirazione" /> 2 Disostruzione/aspirazione</label>
+      <label><input type="checkbox" name="presidiA" value="Cann. orofaringea/nasofaringea" /> 3 Cann. orofaringea/nasofaringea</label>
+      <label><input type="checkbox" name="presidiA" value="Ventila con pallone" /> 4 Ventila con pallone</label>
     </div>
 
     <button type="button" onclick="generaPDF()">Scarica PDF</button>
@@ -79,25 +119,31 @@
     async function generaPDF() {
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
+      let y = 10;
 
-      const data = document.getElementById('data').value;
-      const ora = document.getElementById('ora').value;
-      const emorragia = document.querySelector('input[name="emorragia"]:checked')?.value || 'N/D';
+      function getVal(name) {
+        const el = document.querySelector(`[name="${name}"]:checked`);
+        return el ? el.value : "N/D";
+      }
 
-      const presidi = Array.from(document.querySelectorAll('input[name="presidi"]:checked'))
-        .map(el => el.value)
-        .join(', ') || 'Nessuno selezionato';
+      function getChecks(name) {
+        return Array.from(document.querySelectorAll(`[name="${name}"]:checked`))
+          .map(e => e.value).join(", ") || "Nessuno";
+      }
 
-      let y = 20;
-      doc.text("Scheda Valutazione X-a-b-c-d-e", 20, y);
-      y += 10;
-      doc.text("1. Data: " + data, 20, y);
-      y += 10;
-      doc.text("2. Ora: " + ora, 20, y);
-      y += 10;
-      doc.text("3. X-emorragia massiva: " + emorragia, 20, y);
-      y += 10;
-      doc.text("4. Presidi selezionati: " + presidi, 20, y);
+      doc.text("Scheda Valutazione X-a-b-c-d-e", 10, y); y += 10;
+      doc.text("Data: " + document.querySelector('[name="data"]').value, 10, y); y += 10;
+      doc.text("Ora: " + document.querySelector('[name="ora"]').value, 10, y); y += 10;
+
+      doc.text("Sezione X - Emorragia Massiva: " + getVal("emorragia"), 10, y); y += 10;
+      doc.text("Presidi X: " + getChecks("presidiX"), 10, y); y += 10;
+
+      doc.text("Sezione A - Vie aeree e rachide cervicale", 10, y); y += 10;
+      doc.text("Coscienza: " + getVal("coscienza"), 10, y); y += 10;
+      doc.text("Respira: " + getVal("respira"), 10, y); y += 10;
+      doc.text("Vie aeree: " + getVal("vieaeree"), 10, y); y += 10;
+      doc.text("Immobilizzazione rachide: " + getVal("immobilizzazione"), 10, y); y += 10;
+      doc.text("Presidi A: " + getChecks("presidiA"), 10, y); y += 10;
 
       doc.save("scheda-valutazione.pdf");
     }
