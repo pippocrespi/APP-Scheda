@@ -392,7 +392,7 @@ input[type="number"] {
     </form>
 
     <div style="text-align: center; margin-top: 30px;">
-  <button type="button" onclick="generaPDF()">Stampa in PDF</button>
+  <button type="button" onclick="generaPDF()">Salva in PDF</button>
 </div>
 
 
@@ -411,34 +411,61 @@ input[type="number"] {
     const inputs = form.querySelectorAll("input, select, textarea");
 
     doc.setFontSize(12);
+    const groupedCheckboxes = {};
 
     inputs.forEach((input) => {
-      const label = input.dataset.label || "";
-      let value = "";
+      const labelText = input.dataset.label || "";
+      let valueText = "";
 
+      // Checkbox
       if (input.type === "checkbox" && input.checked) {
-        value = input.value;
-      } else if (input.type === "radio" && input.checked) {
-        value = input.value;
-      } else if (input.type !== "checkbox" && input.type !== "radio" && input.value.trim() !== "") {
-        value = input.value.trim();
+        // Trova il testo accanto alla checkbox
+        const parentLabel = input.closest("label");
+        if (parentLabel) {
+          valueText = parentLabel.innerText.trim();
+        }
+
+        if (!groupedCheckboxes[labelText]) {
+          groupedCheckboxes[labelText] = [];
+        }
+        groupedCheckboxes[labelText].push(valueText);
       }
 
-      if (value) {
-        if (y > 280) {
-          doc.addPage();
-          y = 20;
-        }
-
-        if (label && label !== value) {
-          doc.text(`${label}: ${value}`, 20, y);
+      // Radio
+      else if (input.type === "radio" && input.checked) {
+        const parentLabel = input.closest("label");
+        if (parentLabel) {
+          valueText = parentLabel.innerText.trim();
         } else {
-          doc.text(`${value}`, 20, y);
+          valueText = input.value.trim();
         }
 
-        y += 8;
+        if (valueText) {
+          doc.text(`${labelText}: ${valueText}`, 20, y);
+          y += 8;
+        }
+      }
+
+      // Altri campi (select, text, textarea)
+      else if (input.type !== "checkbox" && input.type !== "radio" && input.value.trim() !== "") {
+        valueText = input.value.trim();
+
+        if (valueText) {
+          doc.text(`${labelText}: ${valueText}`, 20, y);
+          y += 8;
+        }
       }
     });
+
+    // Stampa gruppi checkbox
+    for (const label in groupedCheckboxes) {
+      doc.text(`${label}:`, 20, y);
+      y += 8;
+      groupedCheckboxes[label].forEach(val => {
+        doc.text(`- ${val}`, 25, y);
+        y += 8;
+      });
+    }
 
     const pdfBlobUrl = doc.output("bloburl");
     window.open(pdfBlobUrl, "_blank");
