@@ -10,6 +10,17 @@
         display: none;
     }
 }
+        button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
         body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding: 20px;
@@ -379,11 +390,11 @@ input[type="number"] {
             <input type="text" name="altro">
         </div>
     </form>
-<centering>
-    <button onclick="window.print()" style="margin-top: 30px; padding: 12px 24px; font-size: 1rem; background-color: #2563eb; color: white; border: none; border-radius: 6px; cursor: pointer;">
-    📄 Stampa in PDF
-</button>
-</centering>
+
+    <div style="display: flex; justify-content: center; margin-top: 20px;" class="no-print">
+    <button onclick="window.print()">Stampa in PDF</button>
+    </div>
+
 
     
     <script>
