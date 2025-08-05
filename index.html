@@ -395,6 +395,83 @@ input[type="number"] {
     <button onclick="window.print()">Salva in PDF</button>
     </div>
 
+    <script>
+  document.getElementById('printBtn').addEventListener('click', function() {
+    // Raccogli tutte le domande e risposte compilate
+    const form = document.querySelector('form');
+    const elements = form.elements;
+
+    // Creiamo il contenuto per la stampa
+    let printContent = '<html><head><title>Stampa Scheda</title>';
+    printContent += '<style>';
+    printContent += `
+      body { font-family: Arial, sans-serif; padding: 20px; }
+      .row { display: flex; justify-content: space-between; margin-bottom: 10px; }
+      .question { font-weight: bold; }
+      .answer { margin-left: 20px; }
+    `;
+    printContent += '</style></head><body><h1>Risposte Scheda</h1>';
+
+    // Loop su tutti gli input/select/textarea
+    for (let el of elements) {
+      if ((el.tagName === 'INPUT' || el.tagName === 'SELECT' || el.tagName === 'TEXTAREA') 
+          && el.name && el.type !== 'button' && el.type !== 'submit') {
+        
+        let value = '';
+        if (el.type === 'checkbox') {
+          if (el.checked) value = el.value || 'Sì';
+          else continue; // salto checkbox non selezionate
+        } else if (el.type === 'radio') {
+          if (!el.checked) continue;
+          value = el.value;
+        } else {
+          if (!el.value) continue; // salto campi vuoti
+          value = el.value;
+        }
+
+        // Prendo la label associata (se c'è)
+        let labelText = '';
+        // cerca label collegata tramite id
+        if (el.id) {
+          const label = form.querySelector('label[for="' + el.id + '"]');
+          if (label) labelText = label.innerText.trim();
+        }
+
+        // Se non trovata la label con for, prova a prendere il label padre se è dentro un label
+        if (!labelText) {
+          if (el.closest('label')) labelText = el.closest('label').innerText.trim();
+        }
+
+        // Se ancora vuota, usa il name come fallback
+        if (!labelText) labelText = el.name;
+
+        // Per checkbox/radio togli la risposta dentro il label se già c'è (tipo " Compressione manuale dell'emorragia")
+        if (el.type === 'checkbox' || el.type === 'radio') {
+          // Rimuovo la parte relativa al valore per evitare ripetizioni (esempio: "Compressione manuale dell'emorragia" + "Compressione manuale dell'emorragia")
+          if (labelText.toLowerCase().includes(value.toLowerCase())) {
+            labelText = labelText.replace(value, '').trim();
+          }
+        }
+
+        printContent += `<div class="row"><div class="question">${labelText}:</div><div class="answer">${value}</div></div>`;
+      }
+    }
+
+    printContent += '</body></html>';
+
+    // Apro una nuova finestra per stampare
+    const printWindow = window.open('', '', 'height=600,width=800');
+    printWindow.document.write(printContent);
+    printWindow.document.close();
+    printWindow.focus();
+
+    // Attendi un attimo e stampa
+    setTimeout(() => {
+      printWindow.print();
+      printWindow.close();
+    }, 300);
+  });
+</script>
 
     
     <script>
