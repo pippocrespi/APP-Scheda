@@ -477,5 +477,13 @@ input[type="number"] {
     });
   });
 </script>
+    <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/APP-Scheda/service-worker.js')
+      .then(reg => console.log('Service Worker registrato:', reg))
+      .catch(err => console.error('Errore registrazione Service Worker:', err));
+  }
+</script>
+
 </body>
 </html>
