@@ -1,6 +1,6 @@
 {
-  "name": "Valutazione X-A-B-C-D-E",
-  "short_name": "Valutazione X-A-B-C-D-E",
+  "name": "Scheda Valutazione X-A-B-C-D-E",
+  "short_name": "Scheda",
   "start_url": "/APP-Scheda/index.html",
   "scope": "/APP-Scheda/",
   "display": "standalone",
