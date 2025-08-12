@@ -191,13 +191,13 @@ input[type="number"] {
     <input type="text" name="luogo_nasc__paziente" data-label="Nato a">
 
     <label>Età</label>
-    <input type="date" name="eta_paziente" data-label="Età">
+    <input type="number" name="eta_paziente" data-label="Età">
 
     <label>Nazionalità</label>
-    <input type="date" name="nazionalita_paziente" data-label="Nazionalità">
+    <input type="text" name="nazionalita_paziente" data-label="Nazionalità">
 
     <label>Luogo incidente</label>
-    <input type="date" name="luogo_incidente" data-label="Luogo incidente">
+    <input type="text" name="luogo_incidente" data-label="Luogo incidente">
       
   </div>
 </div>
@@ -298,7 +298,7 @@ input[type="number"] {
             <p class="note">Valori normali 12-20 atti al minuto</p>
 
             <label>Saturimetria</label>
-            <input type="number" name="saturimetria" data-min="0" data-max="100" inputmode="numeric" pattern="[0-9]*" data-label="Saturimetria" data-type="hard" required>
+            <input type="number" name="saturimetria" data-min="50" data-max="100" inputmode="numeric" pattern="[0-9]*" data-label="Saturimetria" data-type="hard" required>
             <p class="note">Valori normali >94%</p>
         </div>
 
@@ -414,7 +414,7 @@ input[type="number"] {
             <h2>Sezione E - Testa piedi ed AMPIA</h2>
             <label><strong>Esegui testa-piedi</strong></label>
             <div class="checkbox-group">
-                <label><input type="checkbox" data-label="Deficit forza arto" id="testaPiedi" required> Fatto</label>
+                <label><input type="checkbox" data-label="Esegui testa-piedi" id="testaPiedi" required> Fatto</label>
             </div>
 
             <label>Dolore (1-10)</label>
