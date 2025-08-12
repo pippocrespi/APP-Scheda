@@ -167,15 +167,19 @@ input[type="number"] {
 </head>
 <body>
     <h1>Scheda Valutazione X-A-B-C-D-E</h1>
-
-    <!-- Checkbox per mostrare/nascondere la scheda dati paziente -->
 <div class="section">
-  <label>
+  <label class="switch">
     <input type="checkbox" id="toggleDati">
-    Inserisci dati paziente
+    <span class="slider"></span>
   </label>
+  <span class="switch-label">Inserisci dati paziente</span>
 
   <!-- Scheda paziente nascosta di default -->
+  <div id="schedaPaziente" style="display:none; margin-top:10px;">
+    <h2>Dati Paziente</h2>
+    <!-- campi paziente qui -->
+
+    <!-- Scheda paziente nascosta di default -->
   <div id="schedaPaziente" style="display:none; margin-top:10px;">
     <h2>Dati Paziente</h2>
     <label>Nome</label>
@@ -200,6 +204,10 @@ input[type="number"] {
     <input type="text" name="luogo_incidente" data-label="Luogo incidente">
       
   </div>
+      
+  </div>
+</div>
+
 </div>
 <script>
   document.getElementById('toggleDati').addEventListener('change', function() {
