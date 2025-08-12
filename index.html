@@ -255,11 +255,11 @@ input[type="number"] {
             </div>
 
             <label>Frequenza respiratoria</label>
-            <input type="number" name="frequenza_respiratoria" data-min="5" data-max="50" inputmode="numeric" pattern="[0-9]*" data-label="Frequenza respiratoria">
+            <input type="number" name="frequenza_respiratoria" data-min="1" data-max="60" inputmode="numeric" pattern="[0-9]*" data-label="Frequenza respiratoria" data-type="soft">
             <p class="note">Valori normali 12-20 atti al minuto</p>
 
             <label>Saturimetria</label>
-            <input type="number" name="saturimetria" data-min="0" data-max="100" inputmode="numeric" pattern="[0-9]*" data-label="Saturimetria">
+            <input type="number" name="saturimetria" data-min="0" data-max="100" inputmode="numeric" pattern="[0-9]*" data-label="Saturimetria" data-type="hard" required>
             <p class="note">Valori normali >94%</p>
         </div>
 
@@ -294,7 +294,7 @@ input[type="number"] {
             </table>
 
             <label>Frequenza cardiaca</label>
-<input type="number" name="frequenza_cardiaca" data-min="0" data-max="200" inputmode="numeric" pattern="[0-9]*" data-label="Frequenza cardiaca">
+<input type="number" name="frequenza_cardiaca" data-min="1" data-max="200" inputmode="numeric" pattern="[0-9]*" data-label="Frequenza cardiaca" data-type="soft">
 
             <p class="note">Valori normali 60 - 100 atti al minuto</p>
 
@@ -376,7 +376,7 @@ input[type="number"] {
             <p><strong>Esegui testa piedi</strong></p>
 
             <label>Dolore (1-10)</label>
-            <input type="number" name="dolore" min="1" max="10" inputmode="numeric" pattern="[0-9]*" data-label="Dolore (1-10)">
+            <input type="number" name="dolore" data-min="1" data-max="10" inputmode="numeric" pattern="[0-9]*" data-label="Dolore (1-10)" data-type="hard" required>
 
             <label>Allergie</label>
             <input type="text" name="allergie" data-label="Allergie">
@@ -488,22 +488,34 @@ input[type="number"] {
       .catch(err => console.error('❌ Errore Service Worker:', err));
   }
 </script>
-    <script>
-  // Seleziona tutti gli input numerici con limiti definiti
-  const campiControllati = document.querySelectorAll('input[type="number"][data-min][data-max]');
 
-  campiControllati.forEach(campo => {
+    <!-- script per la verifica dei campi -->
+    <script>
+  const campi = document.querySelectorAll('input[type="number"][data-min][data-max][data-type]');
+
+  campi.forEach(campo => {
     campo.addEventListener('change', function () {
       const valore = parseFloat(this.value);
       const min = parseFloat(this.dataset.min);
       const max = parseFloat(this.dataset.max);
+      const tipo = this.dataset.type;
 
-      if (!isNaN(valore) && (valore < min || valore > max)) {
-        alert(`Sei sicuro?`);
+      if (isNaN(valore)) return; // Se vuoto, esci
+
+      if (tipo === "soft") {
+        if (valore < min || valore > max) {
+          alert(`Sei sicuro? Il valore tipico è tra ${min} e ${max}.`);
+        }
+      }
+
+      if (tipo === "hard") {
+        if (valore < min || valore > max) {
+          alert(`Il valore deve essere tra ${min} e ${max}.`);
+          this.value = ""; // Svuota il campo
+        }
       }
     });
   });
 </script>
-
 </body>
 </html>
