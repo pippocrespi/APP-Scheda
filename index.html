@@ -458,31 +458,32 @@ async function generaPDF() {
 
   doc.setFontSize(12);
 
-  // 1️⃣ Raccolta dati paziente (solo se scheda visibile)
+  // 1️⃣ RACCOLTA DATI PAZIENTE (solo se scheda visibile)
   const schedaInputs = document.querySelectorAll('#schedaPaziente input');
   let haDatiPaziente = false;
 
   schedaInputs.forEach(input => {
-    if (input.value.trim()) {
+    // Considera solo campi compilati e non checkbox/radio
+    if (!['checkbox', 'radio'].includes(input.type) && input.value.trim()) {
       haDatiPaziente = true;
       doc.text(`${input.dataset.label}: ${input.value}`, 20, y);
       y += lineHeight;
     }
   });
 
-  // Se ci sono dati paziente, aggiungi una linea di separazione
+  // Se ci sono dati paziente → linea separatrice
   if (haDatiPaziente) {
     doc.setLineWidth(0.5);
     doc.line(20, y, 190, y);
     y += lineHeight;
   }
 
-  // 2️⃣ Raccolta degli altri dati
+  // 2️⃣ RACCOLTA ALTRI DATI
   const inputs = document.querySelectorAll('input, textarea, select');
   const grouped = {};
 
   inputs.forEach(input => {
-    // Salta i campi della scheda paziente (già stampati)
+    // Salta i campi della scheda paziente
     if (input.closest('#schedaPaziente')) return;
 
     const label = input.dataset.label || input.name || '';
@@ -490,7 +491,8 @@ async function generaPDF() {
 
     if ((input.type === 'checkbox' || input.type === 'radio') && input.checked) {
       value = input.nextSibling?.textContent?.trim() || input.value;
-    } else if (['select', 'text', 'number', 'time', 'date'].includes(input.type) || input.tagName === 'TEXTAREA') {
+    } 
+    else if (['text', 'number', 'time', 'date'].includes(input.type) || input.tagName === 'TEXTAREA' || input.tagName === 'SELECT') {
       if (input.value.trim()) value = input.value;
     }
 
@@ -500,6 +502,7 @@ async function generaPDF() {
     }
   });
 
+  // 3️⃣ SCRITTURA DATI RAGGRUPPATI
   for (const [label, answers] of Object.entries(grouped)) {
     const line = `${label}: ${answers.join(', ')}`;
     if (y + lineHeight > pageHeight - 10) {
