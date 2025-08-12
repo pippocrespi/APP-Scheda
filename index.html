@@ -505,11 +505,13 @@ input[type="number"] {
       const max = parseFloat(this.dataset.max);
       const tipo = this.dataset.type;
 
-      if (isNaN(valore)) return; // Se vuoto, esci
+      if (isNaN(valore)) return; // Campo vuoto → nessun controllo
 
       if (tipo === "soft") {
-        if (valore < min || valore > max) {
-          alert(`Sei sicuro? Il valore tipico è tra ${min} e ${max}.`);
+        if (valore < min) {
+          alert(`Sei sicuro? Il valore è insolitamente basso`);
+        } else if (valore > max) {
+          alert(`Sei sicuro? Il valore è insolitamente alto`);
         }
       }
 
@@ -522,5 +524,6 @@ input[type="number"] {
     });
   });
 </script>
+
 </body>
 </html>
