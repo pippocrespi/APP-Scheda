@@ -197,7 +197,7 @@ input[type="number"] {
 
         <div class="section">
             <h2>Sezione A - Vie aeree e rachide cervicale</h2>
-            <p>Se paziente non respira:<br>
+            <p>Se paziente <b> non respira</b>:<br>
             <ul>
                 <li>Massaggio cardiaco esterno</li>
                 <li>Ventila pallone autoespandibie + filtro Hepa (30:2)</li>
@@ -255,11 +255,27 @@ input[type="number"] {
             </div>
 
             <label>Frequenza respiratoria</label>
-            <input type="number" name="frequenza_respiratoria" min="0" max="200" inputmode="numeric" pattern="[0-9]*" data-label="Frequenza respiratoria">
+            <input type="number" name="frequenza_respiratoria" data-min="5" data-max="50" inputmode="numeric" pattern="[0-9]*" data-label="Frequenza respiratoria">
             <p class="note">Valori normali 12-20 atti al minuto</p>
+            <script>
+  // Seleziona tutti gli input numerici con limiti definiti
+  const campiControllati = document.querySelectorAll('input[type="number"][data-min][data-max]');
+
+  campiControllati.forEach(campo => {
+    campo.addEventListener('change', function () {
+      const valore = parseFloat(this.value);
+      const min = parseFloat(this.dataset.min);
+      const max = parseFloat(this.dataset.max);
+
+      if (!isNaN(valore) && (valore < min || valore > max)) {
+        alert(`Sei sicuro?`);
+      }
+    });
+  });
+</script>
 
             <label>Saturimetria</label>
-            <input type="number" name="saturimetria" min="0" max="100" inputmode="numeric" pattern="[0-9]*" data-label="Saturimetria">
+            <input type="number" name="saturimetria" data-min="0" data-max="100" inputmode="numeric" pattern="[0-9]*" data-label="Saturimetria">
             <p class="note">Valori normali >94%</p>
         </div>
 
