@@ -257,22 +257,6 @@ input[type="number"] {
             <label>Frequenza respiratoria</label>
             <input type="number" name="frequenza_respiratoria" data-min="5" data-max="50" inputmode="numeric" pattern="[0-9]*" data-label="Frequenza respiratoria">
             <p class="note">Valori normali 12-20 atti al minuto</p>
-            <script>
-  // Seleziona tutti gli input numerici con limiti definiti
-  const campiControllati = document.querySelectorAll('input[type="number"][data-min][data-max]');
-
-  campiControllati.forEach(campo => {
-    campo.addEventListener('change', function () {
-      const valore = parseFloat(this.value);
-      const min = parseFloat(this.dataset.min);
-      const max = parseFloat(this.dataset.max);
-
-      if (!isNaN(valore) && (valore < min || valore > max)) {
-        alert(`Sei sicuro?`);
-      }
-    });
-  });
-</script>
 
             <label>Saturimetria</label>
             <input type="number" name="saturimetria" data-min="0" data-max="100" inputmode="numeric" pattern="[0-9]*" data-label="Saturimetria">
@@ -310,7 +294,7 @@ input[type="number"] {
             </table>
 
             <label>Frequenza cardiaca</label>
-<input type="number" name="frequenza_cardiaca" min="0" max="200" inputmode="numeric" pattern="[0-9]*" data-label="Frequenza cardiaca">
+<input type="number" name="frequenza_cardiaca" data-min="0" data-max="200" inputmode="numeric" pattern="[0-9]*" data-label="Frequenza cardiaca">
 
             <p class="note">Valori normali 60 - 100 atti al minuto</p>
 
@@ -503,6 +487,22 @@ input[type="number"] {
       .then(reg => console.log('✅ Service Worker registrato'))
       .catch(err => console.error('❌ Errore Service Worker:', err));
   }
+</script>
+    <script>
+  // Seleziona tutti gli input numerici con limiti definiti
+  const campiControllati = document.querySelectorAll('input[type="number"][data-min][data-max]');
+
+  campiControllati.forEach(campo => {
+    campo.addEventListener('change', function () {
+      const valore = parseFloat(this.value);
+      const min = parseFloat(this.dataset.min);
+      const max = parseFloat(this.dataset.max);
+
+      if (!isNaN(valore) && (valore < min || valore > max)) {
+        alert(`Sei sicuro?`);
+      }
+    });
+  });
 </script>
 
 </body>
