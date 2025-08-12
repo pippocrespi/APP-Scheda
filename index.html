@@ -168,6 +168,35 @@ input[type="number"] {
 <body>
     <h1>Scheda Valutazione X-A-B-C-D-E</h1>
 
+    <!-- Checkbox per mostrare/nascondere la scheda dati paziente -->
+<div class="section">
+  <label>
+    <input type="checkbox" id="toggleDati">
+    Inserisci dati paziente
+  </label>
+
+  <!-- Scheda paziente nascosta di default -->
+  <div id="schedaPaziente" style="display:none; margin-top:10px;">
+    <h2>Dati Paziente</h2>
+    <label>Nome</label>
+    <input type="text" name="nome_paziente" data-label="Nome Paziente">
+
+    <label>Cognome</label>
+    <input type="text" name="cognome_paziente" data-label="Cognome Paziente">
+
+    <label>Data di nascita</label>
+    <input type="date" name="nascita_paziente" data-label="Data di nascita">
+
+    <label>Codice fiscale</label>
+    <input type="text" name="cf_paziente" data-label="Codice Fiscale">
+  </div>
+</div>
+<script>
+  document.getElementById('toggleDati').addEventListener('change', function() {
+    document.getElementById('schedaPaziente').style.display = this.checked ? 'block' : 'none';
+  });
+</script>
+    
     <form>
 
         <div class="section">
@@ -407,67 +436,75 @@ input[type="number"] {
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
-  async function generaPDF() {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+async function generaPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
 
-    let y = 20; // posizione iniziale verticale
-    const lineHeight = 10;
-    const pageHeight = doc.internal.pageSize.height;
+  let y = 20;
+  const lineHeight = 10;
+  const pageHeight = doc.internal.pageSize.height;
 
-    doc.setFontSize(16);
-    doc.text('Riepilogo Valutazione X-A-B-C-D-E', 20, y);
-    y += lineHeight * 2;
+  doc.setFontSize(16);
+  doc.text('Riepilogo Valutazione X-A-B-C-D-E', 20, y);
+  y += lineHeight * 2;
 
-    doc.setFontSize(12);
+  doc.setFontSize(12);
 
-    // Prendi tutte le risposte utente
-    const inputs = document.querySelectorAll('input, textarea, select');
-    const grouped = {};
+  // 1️⃣ Raccolta dati paziente (solo se scheda visibile)
+  const schedaInputs = document.querySelectorAll('#schedaPaziente input');
+  let haDatiPaziente = false;
 
-    inputs.forEach(input => {
-      const label = input.dataset.label || input.name || '';
-      let value = '';
-
-      if (
-        (input.type === 'checkbox' || input.type === 'radio') &&
-        input.checked
-      ) {
-        value = input.nextSibling?.textContent?.trim() || input.value;
-      } else if (
-        input.tagName === 'SELECT' ||
-        input.type === 'text' ||
-        input.type === 'number' ||
-        input.type === 'time' ||
-        input.type === 'date'
-      ) {
-        value = input.value;
-      }
-
-      if (value) {
-        if (!grouped[label]) grouped[label] = [];
-        grouped[label].push(value);
-      }
-    });
-
-    // Stampa ogni campo con gestione del cambio pagina
-    for (const [label, answers] of Object.entries(grouped)) {
-      const line = `${label}: ${answers.join(', ')}`;
-
-      // Se si supera la fine della pagina, aggiungi nuova pagina
-      if (y + lineHeight > pageHeight - 10) {
-        doc.addPage();
-        y = 20;
-      }
-
-      doc.text(line, 20, y);
+  schedaInputs.forEach(input => {
+    if (input.value.trim()) {
+      haDatiPaziente = true;
+      doc.text(`${input.dataset.label}: ${input.value}`, 20, y);
       y += lineHeight;
     }
+  });
 
-    // Mostra il PDF
-    const blobUrl = doc.output('bloburl');
-    window.open(blobUrl, '_blank');
+  // Se ci sono dati paziente, aggiungi una linea di separazione
+  if (haDatiPaziente) {
+    doc.setLineWidth(0.5);
+    doc.line(20, y, 190, y);
+    y += lineHeight;
   }
+
+  // 2️⃣ Raccolta degli altri dati
+  const inputs = document.querySelectorAll('input, textarea, select');
+  const grouped = {};
+
+  inputs.forEach(input => {
+    // Salta i campi della scheda paziente (già stampati)
+    if (input.closest('#schedaPaziente')) return;
+
+    const label = input.dataset.label || input.name || '';
+    let value = '';
+
+    if ((input.type === 'checkbox' || input.type === 'radio') && input.checked) {
+      value = input.nextSibling?.textContent?.trim() || input.value;
+    } else if (['select', 'text', 'number', 'time', 'date'].includes(input.type) || input.tagName === 'TEXTAREA') {
+      if (input.value.trim()) value = input.value;
+    }
+
+    if (value) {
+      if (!grouped[label]) grouped[label] = [];
+      grouped[label].push(value);
+    }
+  });
+
+  for (const [label, answers] of Object.entries(grouped)) {
+    const line = `${label}: ${answers.join(', ')}`;
+    if (y + lineHeight > pageHeight - 10) {
+      doc.addPage();
+      y = 20;
+    }
+    doc.text(line, 20, y);
+    y += lineHeight;
+  }
+
+  doc.save("scheda_valutazione.pdf");
+}
+
 </script>
 
 
