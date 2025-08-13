@@ -301,7 +301,7 @@
   <!--Libreria-->
   <script src="libs/jspdf.umd.min.js"></script>
   <script src="libs/jspdf.plugin.autotable.min.js"></script>
-  
+
   <!--Esporta in pdf-->
   <script src="js/pdf.js"></script>
 
@@ -310,7 +310,7 @@
   <script src="js/incrementButton.js"></script>
   <script src="js/exclusiveCheckbox.js"></script>
   <script src="js/checkValue.js"></script>
-  
+
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/APP-Scheda/service-worker.js')
@@ -318,6 +318,26 @@
         .catch(err => console.error('❌ Errore Service Worker:', err));
     }
   </script>
+
+
+  <script>
+    // Blocca il pinch-to-zoom e doppio tap su iOS e Android
+    document.addEventListener('touchstart', function (e) {
+      if (e.touches.length > 1) {
+        e.preventDefault(); // blocca multitouch
+      }
+    }, { passive: false });
+
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function (e) {
+      const now = (new Date()).getTime();
+      if (now - lastTouchEnd <= 300) {
+        e.preventDefault(); // blocca doppio tap
+      }
+      lastTouchEnd = now;
+    }, false);
+  </script>
+
 
 
 </body>
