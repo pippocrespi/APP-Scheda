@@ -1,542 +1,628 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="/APP-Scheda/manifest.json">
-    <meta name="theme-color" content="#0d6efd">
-    <link rel="icon" href="/APP-Scheda/icon-192.png" type="image/png">
-    <link rel="apple-touch-icon" href="/APP-Scheda/icon-192.png">
-    <title>Scheda Valutazione X-A-B-C-D-E</title>
-    <style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="/APP-Scheda/manifest.json">
+  <meta name="theme-color" content="#0d6efd">
+  <link rel="icon" href="/APP-Scheda/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="/APP-Scheda/icon-192.png">
+  <title>Scheda Valutazione X-A-B-C-D-E</title>
+  <style>
     @media print {
-        button {
-            display: none;
-        }
+      button {
+        display: none;
+      }
     }
-        button {
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
 
-        body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 20px;
-    background: linear-gradient(to bottom right, #f4f9ff, #ffffff);
-    line-height: 1.6;
-    color: #333;
-}
+    button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
 
-h1 {
-    color: #1f2937;
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-h2 {
-    color: #1f2937;
-    border-bottom: 2px solid #ccc;
-    padding-bottom: 5px;
-    margin-top: 20px;
-}
-
-label {
-    font-weight: bold;
-    margin-top: 15px;
-    display: block;
-}
-
-input, select, textarea {
-    width: 100%;
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    margin-top: 5px;
-    background-color: #fff;
-    box-sizing: border-box;
-}
-
-input[type="checkbox"],
-input[type="radio"] {
-    width: auto;
-    margin-right: 8px;
-}
-
-.checkbox-group label, .radio-group label {
-    font-weight: normal;
-    display: flex;
-    align-items: center;
-    margin: 6px 0;
-}
-
-.section {
-    background-color: #ffffff;
-    padding: 20px;
-    margin-bottom: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-}
-
-.note {
-    font-style: italic;
-    font-size: 0.9rem;
-    color: #6b7280;
-    margin-top: 4px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
-th, td {
-    text-align: left;
-    padding: 8px;
-}
-
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-input[type="number"] {
-    -moz-appearance: textfield;
-}
-
-    </style>
-    <style media="print">
     body {
-        background: white !important;
-        color: black !important;
-        font-size: 12px !important;
-        margin: 0;
-        padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+      background: linear-gradient(to bottom right, #f4f9ff, #ffffff);
+      line-height: 1.6;
+      color: #333;
     }
 
-    .section {
-        box-shadow: none !important;
-        border: none !important;
-        padding: 5px !important;
-        margin: 0 0 10px 0 !important;
-        background: white !important;
+    h1 {
+      color: #1f2937;
+      text-align: center;
+      margin-bottom: 30px;
     }
 
-    h1, h2 {
-        font-size: 14px !important;
-        margin-bottom: 6px;
+    h2 {
+      color: #1f2937;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 5px;
+      margin-top: 20px;
     }
 
     label {
-        font-weight: bold;
-        margin-top: 5px;
+      font-weight: bold;
+      margin-top: 15px;
+      display: block;
     }
 
-    input, select, textarea {
-        font-size: 12px !important;
-        padding: 4px !important;
-        margin-top: 2px !important;
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-top: 5px;
+      background-color: #fff;
+      box-sizing: border-box;
     }
 
-    .checkbox-group label, .radio-group label {
-        margin-left: 10px !important;
-        margin-bottom: 2px;
+    input[type="checkbox"],
+    input[type="radio"] {
+      width: auto;
+      margin-right: 8px;
     }
 
-    button, nav, .no-print {
-        display: none !important;
+    .checkbox-group label,
+    .radio-group label {
+      font-weight: normal;
+      display: flex;
+      align-items: center;
+      margin: 6px 0;
     }
 
-    table {
-        font-size: 12px;
+    .section {
+      background-color: #ffffff;
+      padding: 20px;
+      margin-bottom: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     }
 
     .note {
-        display: none !important;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: #6b7280;
+      margin-top: 4px;
     }
-</style>
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 8px;
+    }
+
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type="number"] {
+      appearance: none;
+      -moz-appearance: textfield;
+    }
+  </style>
+  <style media="print">
+    body {
+      background: white !important;
+      color: black !important;
+      font-size: 12px !important;
+      margin: 0;
+      padding: 0;
+    }
+
+    .section {
+      box-shadow: none !important;
+      border: none !important;
+      padding: 5px !important;
+      margin: 0 0 10px 0 !important;
+      background: white !important;
+    }
+
+    h1,
+    h2 {
+      font-size: 14px !important;
+      margin-bottom: 6px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 5px;
+    }
+
+    input,
+    select,
+    textarea {
+      font-size: 12px !important;
+      padding: 4px !important;
+      margin-top: 2px !important;
+    }
+
+    .checkbox-group label,
+    .radio-group label {
+      margin-left: 10px !important;
+      margin-bottom: 2px;
+    }
+
+    button,
+    nav,
+    .no-print {
+      display: none !important;
+    }
+
+    table {
+      font-size: 12px;
+    }
+
+    .note {
+      display: none !important;
+    }
+  </style>
 
 </head>
+
 <body>
-    <h1>Scheda Valutazione X-A-B-C-D-E</h1>
-
-    
-    <form>
-
-        <div class="section">
-            <label>Data</label>
-            <input type="date" name="data" data-label="Data">
-            <label>Orario valutazione</label>
-            <input type="time" name="orario" data-label="Ora">
-        </div>
-
-        <div class="section">
-            <h2>Sezione X - Emorragia Massiva</h2>
-            <label>Emorragia massiva</label>
-<div class="checkbox-group exclusive-group">
-  <label><input type="checkbox" name="emorragia_x" value="Sì" data-label="Emorragia massiva"> Sì</label>
-  <label><input type="checkbox" name="emorragia_x" value="No" data-label="Emorragia massiva"> No</label>
-</div>
+  <h1>Scheda Valutazione X-A-B-C-D-E</h1>
 
 
-            <label>Presidi e valutazione X</label>
-            <div class="checkbox-group">
-                <label><input type="checkbox" name="x_presidi" value="Compressione" data-label="Presidi e valutazione X"> Compressione manuale dell'emorragia</label>
-                <label><input type="checkbox" name="x_presidi" value="Medicazione" data-label="Presidi e valutazione X"> Medicazione compressiva</label>
-                <label><input type="checkbox" name="x_presidi" value="Israele" data-label="Presidi e valutazione X"> Benda israeliana</label>
-                <label><input type="checkbox" name="x_presidi" value="Tourniquet" data-label="Presidi e valutazione X"> Tourniquet</label>
+  <form>
+
+    <div class="section">
+      <label>Data</label>
+      <input type="date" name="data" data-label="Data">
+      <label>Orario valutazione</label>
+      <input type="time" name="orario" data-label="Ora">
+    </div>
+
+    <div class="section">
+      <h2>Sezione X - Emorragia Massiva</h2>
+      <label>Emorragia massiva</label>
+      <div class="checkbox-group exclusive-group">
+        <label><input type="checkbox" name="emorragia_x" value="Sì" data-label="Emorragia massiva"> Sì</label>
+        <label><input type="checkbox" name="emorragia_x" value="No" data-label="Emorragia massiva"> No</label>
+      </div>
+
+
+      <label>Presidi e valutazione X</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="x_presidi" value="Compressione" data-label="Presidi e valutazione X">
+          Compressione manuale dell'emorragia</label>
+        <label><input type="checkbox" name="x_presidi" value="Medicazione" data-label="Presidi e valutazione X">
+          Medicazione compressiva</label>
+        <label><input type="checkbox" name="x_presidi" value="Israele" data-label="Presidi e valutazione X"> Benda
+          israeliana</label>
+        <label><input type="checkbox" name="x_presidi" value="Tourniquet" data-label="Presidi e valutazione X">
+          Tourniquet</label>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Sezione A - Vie aeree e rachide cervicale</h2>
+      <p>Se paziente <b> non respira</b>:<br>
+      <ul>
+        <li>Massaggio cardiaco esterno</li>
+        <li>Ventila pallone autoespandibie + filtro Hepa (30:2)</li>
+        <li>DAE</li>
+      </ul>
+      <label>Coscienza</label>
+      <div class="checkbox-group exclusive-group">
+        <label><input type="checkbox" name="coscienza" value="Sì" data-label="Cosciente"> Sì</label>
+        <label><input type="checkbox" name="coscienza" value="No"> No</label>
+      </div>
+
+      <label>Respira</label>
+      <div class="checkbox-group exclusive-group">
+        <label><input type="checkbox" name="respira" value="Sì" data-label="Respira"> Sì</label>
+        <label><input type="checkbox" name="respira" value="No" data-label="Respira"> No</label>
+      </div>
+
+
+      <label>Vie aeree</label>
+      <div class="checkbox-group exclusive-group">
+        <label><input type="checkbox" name="vie_aeree" value="Pervie" data-label="Vie aeree"> Pervie</label>
+        <label><input type="checkbox" name="vie_aeree" value="Ostruite" data-label="Vie aeree"> Ostruite</label>
+      </div>
+
+
+      <label>Immobilizzazione manuale rachide cervicale</label>
+      <div class="checkbox-group exclusive-group">
+        <label><input type="checkbox" name="immobilizzazione" value="Sì"
+            data-label="Immobilizzazione manuale rachide cervicale"> Sì</label>
+        <label><input type="checkbox" name="immobilizzazione" value="No"
+            data-label="Immobilizzazione manuale rachide cervicale"> No</label>
+      </div>
+
+
+      <label>Presidi e valutazione</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="a_presidi" value="Collare" data-label="Presidi e valutazione B"> Collare
+          cervicale</label>
+        <label><input type="checkbox" name="a_presidi" value="Disostruzione" data-label="Presidi e valutazione B">
+          Disostruzione/aspirazione</label>
+        <label><input type="checkbox" name="a_presidi" value="Cannula" data-label="Presidi e valutazione B"> Cann.
+          orofaringea/nasofaringea</label>
+        <label><input type="checkbox" name="a_presidi" value="Ventilazione" data-label="Presidi e valutazione B">
+          Ventila con pallone</label>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Sezione B - Qualità Respiro</h2>
+      <label>Difficoltà respiratoria</label>
+      <div class="radio-group">
+        <label><input type="radio" name="difficolta_respiratoria" value="Sì" data-label="Difficoltà respiratoria">
+          Sì</label>
+        <label><input type="radio" name="difficolta_respiratoria" value="No" data-label="Difficoltà respiratoria">
+          No</label>
+      </div>
+
+      <label>OPACS</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="opacs" value="O_simmetrico" data-label="OPACS">O - espande
+          simmetrico</label>
+        <label><input type="checkbox" name="opacs" value="P_enfisema" data-label="OPACS">P - enfisema
+          sottocute/dolore/ferite</label>
+        <label><input type="checkbox" name="opacs" value="A_rumori" data-label="OPACS">A - rumori respiratori
+          anomali</label>
+      </div>
+
+      <label>Frequenza respiratoria</label>
+      <input type="number" name="frequenza_respiratoria" data-min="1" data-max="60" inputmode="numeric" pattern="[0-9]*"
+        data-label="Frequenza respiratoria" data-type="soft">
+      <p class="note">Valori normali 12-20 atti al minuto</p>
+
+      <label>Saturimetria</label>
+      <input type="number" name="saturimetria" data-min="50" data-max="100" inputmode="numeric" pattern="[0-9]*"
+        data-label="Saturimetria" data-type="hard" required>
+      <p class="note">Valori normali >94%</p>
+    </div>
+
+    <div class="section">
+      <h2>Sezione C - Qualità del circolo</h2>
+      <label>Valutazioni circolatorie</label>
+      <table>
+        <tr>
+          <td>Polso periferico</td>
+          <td>
+            <div class="checkbox-group exclusive-group">
+              <label><input type="checkbox" name="polso_periferico" value="Sì" data-label="Polso periferico"> Sì</label>
+              <label><input type="checkbox" name="polso_periferico" value="No" data-label="Polso periferico"> No</label>
             </div>
-        </div>
+          </td>
+        </tr>
 
-        <div class="section">
-            <h2>Sezione A - Vie aeree e rachide cervicale</h2>
-            <p>Se paziente <b> non respira</b>:<br>
-            <ul>
-                <li>Massaggio cardiaco esterno</li>
-                <li>Ventila pallone autoespandibie + filtro Hepa (30:2)</li>
-                <li>DAE</li>
-            </ul>    
-            <label>Coscienza</label>
-<div class="checkbox-group exclusive-group">
-  <label><input type="checkbox" name="coscienza" value="Sì" data-label="Cosciente"> Sì</label>
-  <label><input type="checkbox" name="coscienza" value="No"> No</label>
-</div>
-
-            <label>Respira</label>
-<div class="checkbox-group exclusive-group">
-  <label><input type="checkbox" name="respira" value="Sì" data-label="Respira"> Sì</label>
-  <label><input type="checkbox" name="respira" value="No" data-label="Respira"> No</label>
-</div>
-
-
-            <label>Vie aeree</label>
-<div class="checkbox-group exclusive-group">
-  <label><input type="checkbox" name="vie_aeree" value="Pervie" data-label="Vie aeree"> Pervie</label>
-  <label><input type="checkbox" name="vie_aeree" value="Ostruite" data-label="Vie aeree"> Ostruite</label>
-</div>
-
-
-            <label>Immobilizzazione manuale rachide cervicale</label>
-<div class="checkbox-group exclusive-group">
-  <label><input type="checkbox" name="immobilizzazione" value="Sì" data-label="Immobilizzazione manuale rachide cervicale"> Sì</label>
-  <label><input type="checkbox" name="immobilizzazione" value="No" data-label="Immobilizzazione manuale rachide cervicale"> No</label>
-</div>
-
-
-            <label>Presidi e valutazione</label>
-            <div class="checkbox-group">
-                <label><input type="checkbox" name="a_presidi" value="Collare" data-label="Presidi e valutazione B"> Collare cervicale</label>
-                <label><input type="checkbox" name="a_presidi" value="Disostruzione" data-label="Presidi e valutazione B"> Disostruzione/aspirazione</label>
-                <label><input type="checkbox" name="a_presidi" value="Cannula" data-label="Presidi e valutazione B"> Cann. orofaringea/nasofaringea</label>
-                <label><input type="checkbox" name="a_presidi" value="Ventilazione" data-label="Presidi e valutazione B"> Ventila con pallone</label>
+        <tr>
+          <td>Polso centrale (solo se assente il periferico)</td>
+          <td>
+            <div class="checkbox-group exclusive-group">
+              <label><input type="checkbox" name="polso_centrale" value="Sì" data-label="Polso centrale"> Sì</label>
+              <label><input type="checkbox" name="polso_centrale" value="No" data-label="Polso centrale"> No</label>
             </div>
-        </div>
+          </td>
+        </tr>
 
-        <div class="section">
-            <h2>Sezione B - Qualità Respiro</h2>
-            <label>Difficoltà respiratoria</label>
-            <div class="radio-group">
-                <label><input type="radio" name="difficolta_respiratoria" value="Sì" data-label="Difficoltà respiratoria"> Sì</label>
-                <label><input type="radio" name="difficolta_respiratoria" value="No" data-label="Difficoltà respiratoria"> No</label>
+        <tr>
+          <td>Ferite esterne</td>
+          <td>
+            <div class="checkbox-group exclusive-group">
+              <label><input type="checkbox" name="ferite_esterne" value="Sì" data-label="Ferite esterne"> Sì</label>
+              <label><input type="checkbox" name="ferite_esterne" value="No" data-label="Ferite esterne"> No</label>
             </div>
+          </td>
+        </tr>
 
-            <label>OPACS</label>
-            <div class="checkbox-group">
-                <label><input type="checkbox" name="opacs" value="O_simmetrico" data-label="OPACS">O - espande simmetrico</label>
-                <label><input type="checkbox" name="opacs" value="P_enfisema" data-label="OPACS">P - enfisema sottocute/dolore/ferite</label>
-                <label><input type="checkbox" name="opacs" value="A_rumori" data-label="OPACS">A - rumori respiratori anomali</label>
-            </div>
+      </table>
 
-            <label>Frequenza respiratoria</label>
-            <input type="number" name="frequenza_respiratoria" data-min="1" data-max="60" inputmode="numeric" pattern="[0-9]*" data-label="Frequenza respiratoria" data-type="soft">
-            <p class="note">Valori normali 12-20 atti al minuto</p>
+      <label>Frequenza cardiaca</label>
+      <div style="display:flex; align-items:center; gap:5px;">
+        <button type="button" onclick="modificaFC(-10)">-</button>
+        <input type="number" name="frequenza_cardiaca" data-min="0" data-max="200" inputmode="numeric" pattern="[0-9]*"
+          data-label="Frequenza cardiaca" data-type="soft" value="0" id="frequenza_cardiaca">
+        <button type="button" onclick="modificaFC(10)">+</button>
+      </div>
 
-            <label>Saturimetria</label>
-            <input type="number" name="saturimetria" data-min="50" data-max="100" inputmode="numeric" pattern="[0-9]*" data-label="Saturimetria" data-type="hard" required>
-            <p class="note">Valori normali >94%</p>
-        </div>
 
-        <div class="section">
-            <h2>Sezione C - Qualità del circolo</h2>
-            <label>Valutazioni circolatorie</label>
-            <table>
-                <tr><td>Polso periferico</td>
-<td>
-  <div class="checkbox-group exclusive-group">
-    <label><input type="checkbox" name="polso_periferico" value="Sì" data-label="Polso periferico"> Sì</label>
-    <label><input type="checkbox" name="polso_periferico" value="No" data-label="Polso periferico"> No</label>
+
+
+      <p class="note">Valori normali 60 - 100 atti al minuto</p>
+
+      <label>Note</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" data-label="Note"> Polso forte</label>
+        <label><input type="checkbox" data-label="Note"> Polso debole</label>
+        <label><input type="checkbox" data-label="Note"> Polso irregolare</label>
+        <label><input type="checkbox" data-label="Note"> Cute sudata</label>
+        <label><input type="checkbox" data-label="Note"> Cute fredda</label>
+        <label><input type="checkbox" data-label="Note"> Cute pallida</label>
+        <label><input type="checkbox" data-label="Note"> Cute cianotica</label>
+        <label><input type="checkbox" data-label="Note"> Medicazione ferite</label>
+      </div>
+
+      <label>Bacino</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" data-label="Bacino"> Deformato</label>
+        <label><input type="checkbox" data-label="Bacino"> Dolore</label>
+        <label><input type="checkbox" data-label="Bacino"> Fascia pelvica</label>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Sezione D - Neurologico</h2>
+      <label>AVPU</label>
+      <div class="radio-group">
+        <label>
+          <input type="radio" name="avpu" value="A - Sveglio, risponde a tono e collabora" data-label="AVPU">
+          A - Sveglio, risponde a tono e collabora
+        </label>
+        <label>
+          <input type="radio" name="avpu" value="V - Risponde se chiamato, confuso, poco collaborante"
+            data-label="AVPU">
+          V - Risponde se chiamato, confuso, poco collaborante
+        </label>
+        <label>
+          <input type="radio" name="avpu" value="P - Soporoso, non risponde, reagisce solo al dolore" data-label="AVPU">
+          P - Soporoso, non risponde, reagisce solo al dolore
+        </label>
+        <label>
+          <input type="radio" name="avpu" value="U - Non reagisce a nessuno stimolo" data-label="AVPU">
+          U - Non reagisce a nessuno stimolo
+        </label>
+      </div>
+
+
+      <label>Neurologico</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" data-label="Neurologico"> Trauma cranico</label>
+        <label><input type="checkbox" data-label="Neurologico"> Agitazione psicomotoria</label>
+        <label><input type="checkbox" data-label="Neurologico"> Convulsioni</label>
+      </div>
+
+      <label>Deficit forza arto</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" data-label="Deficit forza arto"> Sup. DX</label>
+        <label><input type="checkbox" data-label="Deficit forza arto"> Sup. SX</label>
+        <label><input type="checkbox" data-label="Deficit forza arto"> Inf. DX</label>
+        <label><input type="checkbox" data-label="Deficit forza arto"> Inf. SX</label>
+      </div>
+
+      <label>Deficit sensibilità arto</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" data-label="Deficit sensibilità arto"> Sup. DX</label>
+        <label><input type="checkbox" data-label="Deficit sensibilità arto"> Sup. SX</label>
+        <label><input type="checkbox" data-label="Deficit sensibilità arto"> Inf. DX</label>
+        <label><input type="checkbox" data-label="Deficit sensibilità arto"> Inf. SX</label>
+      </div>
+
+      <label>Non muove</label>
+      <input type="text" name="non_muove" data-label="Non muove">
+
+      <label>Non sente toccare</label>
+      <input type="text" name="non_sente" data-label="Non sente toccare">
+    </div>
+
+    <div class="section">
+      <h2>Sezione E - Testa piedi ed AMPIA</h2>
+      <label><strong>Esegui testa-piedi</strong></label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" data-label="Esegui testa-piedi" id="testaPiedi" required> Fatto</label>
+      </div>
+
+      <label>Dolore (1-10)</label>
+      <input type="number" name="dolore" data-min="1" data-max="10" inputmode="numeric" pattern="[0-9]*"
+        data-label="Dolore (1-10)" data-type="hard" required>
+
+      <label>Allergie</label>
+      <input type="text" name="allergie" data-label="Allergie">
+
+      <label>Medicinali</label>
+      <input type="text" name="medicinali" data-label="Medicinali">
+
+      <label>Patologie</label>
+      <input type="text" name="patologie" data-label="Patologie">
+
+      <label>Ultimo pasto</label>
+      <input type="text" name="ultimo_pasto" data-label="Ultimo pasto">
+
+      <label>Altro</label>
+      <input type="text" name="altro" data-label="Altro">
+    </div>
+  </form>
+
+  <div style="text-align: center; margin-top: 30px;">
+    <button type="button" onclick="generaPDF()">Salva PDF</button>
   </div>
-</td></tr>
-
-                <tr><td>Polso centrale (solo se assente il periferico)</td>
-<td>
-  <div class="checkbox-group exclusive-group">
-    <label><input type="checkbox" name="polso_centrale" value="Sì" data-label="Polso centrale"> Sì</label>
-    <label><input type="checkbox" name="polso_centrale" value="No" data-label="Polso centrale"> No</label>
-  </div>
-</td></tr>
-
-               <tr><td>Ferite esterne</td>
-<td>
-  <div class="checkbox-group exclusive-group">
-    <label><input type="checkbox" name="ferite_esterne" value="Sì" data-label="Ferite esterne"> Sì</label>
-    <label><input type="checkbox" name="ferite_esterne" value="No" data-label="Ferite esterne"> No</label>
-  </div>
-</td></tr>
-
-            </table>
-
-            <label>Frequenza cardiaca</label>
-<input type="number" name="frequenza_cardiaca" data-min="1" data-max="200" inputmode="numeric" pattern="[0-9]*" data-label="Frequenza cardiaca" data-type="soft">
-
-            <p class="note">Valori normali 60 - 100 atti al minuto</p>
-
-            <label>Note</label>
-            <div class="checkbox-group">
-                <label><input type="checkbox" data-label="Note"> Polso forte</label>
-                <label><input type="checkbox" data-label="Note"> Polso debole</label>
-                <label><input type="checkbox" data-label="Note"> Polso irregolare</label>
-                <label><input type="checkbox" data-label="Note"> Cute sudata</label>
-                <label><input type="checkbox" data-label="Note"> Cute fredda</label>
-                <label><input type="checkbox" data-label="Note"> Cute pallida</label>
-                <label><input type="checkbox" data-label="Note"> Cute cianotica</label>
-                <label><input type="checkbox" data-label="Note"> Medicazione ferite</label>
-            </div>
-
-            <label>Bacino</label>
-            <div class="checkbox-group">
-                <label><input type="checkbox" data-label="Bacino"> Deformato</label>
-                <label><input type="checkbox" data-label="Bacino"> Dolore</label>
-                <label><input type="checkbox" data-label="Bacino"> Fascia pelvica</label>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>Sezione D - Neurologico</h2>
-            <label>AVPU</label>
-<div class="radio-group">
-    <label>
-        <input type="radio" name="avpu" value="A - Sveglio, risponde a tono e collabora" data-label="AVPU">
-        A - Sveglio, risponde a tono e collabora
-    </label>
-    <label>
-        <input type="radio" name="avpu" value="V - Risponde se chiamato, confuso, poco collaborante" data-label="AVPU">
-        V - Risponde se chiamato, confuso, poco collaborante
-    </label>
-    <label>
-        <input type="radio" name="avpu" value="P - Soporoso, non risponde, reagisce solo al dolore" data-label="AVPU">
-        P - Soporoso, non risponde, reagisce solo al dolore
-    </label>
-    <label>
-        <input type="radio" name="avpu" value="U - Non reagisce a nessuno stimolo" data-label="AVPU">
-        U - Non reagisce a nessuno stimolo
-    </label>
-</div>
 
 
-            <label>Neurologico</label>
-            <div class="checkbox-group">
-                <label><input type="checkbox" data-label="Neurologico"> Trauma cranico</label>
-                <label><input type="checkbox" data-label="Neurologico"> Agitazione psicomotoria</label>
-                <label><input type="checkbox" data-label="Neurologico"> Convulsioni</label>
-            </div>
-
-            <label>Deficit forza arto</label>
-            <div class="checkbox-group">
-                <label><input type="checkbox" data-label="Deficit forza arto"> Sup. DX</label>
-                <label><input type="checkbox" data-label="Deficit forza arto"> Sup. SX</label>
-                <label><input type="checkbox" data-label="Deficit forza arto"> Inf. DX</label>
-                <label><input type="checkbox" data-label="Deficit forza arto"> Inf. SX</label>
-            </div>
-
-            <label>Deficit sensibilità arto</label>
-            <div class="checkbox-group">
-                <label><input type="checkbox" data-label="Deficit sensibilità arto"> Sup. DX</label>
-                <label><input type="checkbox" data-label="Deficit sensibilità arto"> Sup. SX</label>
-                <label><input type="checkbox" data-label="Deficit sensibilità arto"> Inf. DX</label>
-                <label><input type="checkbox" data-label="Deficit sensibilità arto"> Inf. SX</label>
-            </div>
-
-            <label>Non muove</label>
-            <input type="text" name="non_muove" data-label="Non muove">
-
-            <label>Non sente toccare</label>
-            <input type="text" name="non_sente" data-label="Non sente toccare">
-        </div>
-
-        <div class="section">
-            <h2>Sezione E - Testa piedi ed AMPIA</h2>
-            <label><strong>Esegui testa-piedi</strong></label>
-            <div class="checkbox-group">
-                <label><input type="checkbox" data-label="Esegui testa-piedi" id="testaPiedi" required> Fatto</label>
-            </div>
-
-            <label>Dolore (1-10)</label>
-            <input type="number" name="dolore" data-min="1" data-max="10" inputmode="numeric" pattern="[0-9]*" data-label="Dolore (1-10)" data-type="hard" required>
-
-            <label>Allergie</label>
-            <input type="text" name="allergie" data-label="Allergie">
-
-            <label>Medicinali</label>
-            <input type="text" name="medicinali" data-label="Medicinali">
-
-            <label>Patologie</label>
-            <input type="text" name="patologie" data-label="Patologie">
-
-            <label>Ultimo pasto</label>
-            <input type="text" name="ultimo_pasto" data-label="Ultimo pasto">
-
-            <label>Altro</label>
-            <input type="text" name="altro" data-label="Altro">
-        </div>
-    </form>
-
-    <div style="text-align: center; margin-top: 30px;">
-  <button type="button" onclick="generaPDF()">Salva PDF</button>
-</div>
-
-
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     -->
-<script src="libs/jspdf.umd.min.js"></script>
-    
-<script>
-async function generaPDF() {
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
+  <script src="libs/jspdf.umd.min.js"></script>
 
-  let y = 20;
-  const lineHeight = 10;
-  const pageHeight = doc.internal.pageSize.height;
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      // Data odierna in formato YYYY-MM-DD
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0'); // mesi da 0 a 11
+      const dd = String(today.getDate()).padStart(2, '0');
+      const currentDate = `${yyyy}-${mm}-${dd}`;
 
-  doc.setFontSize(16);
-  doc.text('Riepilogo Valutazione X-A-B-C-D-E', 20, y);
-  y += lineHeight * 2;
+      const dataInput = document.querySelector('input[name="data"]');
+      if (dataInput) dataInput.value = currentDate;
 
-  doc.setFontSize(12);
+      // Ora corrente in formato HH:MM
+      const hh = String(today.getHours()).padStart(2, '0');
+      const min = String(today.getMinutes()).padStart(2, '0');
+      const currentTime = `${hh}:${min}`;
 
-  // 1️⃣ RACCOLTA DATI PAZIENTE (solo se scheda visibile)
-  const schedaInputs = document.querySelectorAll('#schedaPaziente input');
-  let haDatiPaziente = false;
+      const orarioInput = document.querySelector('input[name="orario"]');
+      if (orarioInput) orarioInput.value = currentTime;
+    });
+  </script>
 
-  schedaInputs.forEach(input => {
-    // Considera solo campi compilati e non checkbox/radio
-    if (!['checkbox', 'radio'].includes(input.type) && input.value.trim()) {
-      haDatiPaziente = true;
-      doc.text(`${input.dataset.label}: ${input.value}`, 20, y);
-      y += lineHeight;
+  <script>
+    function modificaFC(delta) {
+      const input = document.getElementById('frequenza_cardiaca');
+      let valore = parseInt(input.value) || 0;
+      const min = parseInt(input.dataset.min);
+      const max = parseInt(input.dataset.max);
+
+      valore += delta;
+
+      // Limiti
+      if (valore < min) valore = min;
+      if (valore > max) valore = max;
+
+      input.value = valore;
     }
-  });
+  </script>
 
-  // Se ci sono dati paziente → linea separatrice
-  if (haDatiPaziente) {
-    doc.setLineWidth(0.5);
-    doc.line(20, y, 190, y);
-    y += lineHeight;
-  }
 
-  // 2️⃣ RACCOLTA ALTRI DATI
-  const inputs = document.querySelectorAll('input, textarea, select');
-  const grouped = {};
+  <script>
+    async function generaPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
 
-  inputs.forEach(input => {
-    // Salta i campi della scheda paziente
-    if (input.closest('#schedaPaziente')) return;
+      let y = 20;
+      const lineHeight = 10;
+      const pageHeight = doc.internal.pageSize.height;
 
-    const label = input.dataset.label || input.name || '';
-    let value = '';
+      doc.setFontSize(16);
+      doc.text('Riepilogo Valutazione X-A-B-C-D-E', 20, y);
+      y += lineHeight * 2;
 
-    if ((input.type === 'checkbox' || input.type === 'radio') && input.checked) {
-      value = input.nextSibling?.textContent?.trim() || input.value;
-    } 
-    else if (['text', 'number', 'time', 'date'].includes(input.type) || input.tagName === 'TEXTAREA' || input.tagName === 'SELECT') {
-      if (input.value.trim()) value = input.value;
+      doc.setFontSize(12);
+
+      // 1️⃣ RACCOLTA DATI PAZIENTE (solo se scheda visibile)
+      const schedaInputs = document.querySelectorAll('#schedaPaziente input');
+      let haDatiPaziente = false;
+
+      schedaInputs.forEach(input => {
+        // Considera solo campi compilati e non checkbox/radio
+        if (!['checkbox', 'radio'].includes(input.type) && input.value.trim()) {
+          haDatiPaziente = true;
+          doc.text(`${input.dataset.label}: ${input.value}`, 20, y);
+          y += lineHeight;
+        }
+      });
+
+      // Se ci sono dati paziente → linea separatrice
+      if (haDatiPaziente) {
+        doc.setLineWidth(0.5);
+        doc.line(20, y, 190, y);
+        y += lineHeight;
+      }
+
+      // 2️⃣ RACCOLTA ALTRI DATI
+      const inputs = document.querySelectorAll('input, textarea, select');
+      const grouped = {};
+
+      inputs.forEach(input => {
+        // Salta i campi della scheda paziente
+        if (input.closest('#schedaPaziente')) return;
+
+        const label = input.dataset.label || input.name || '';
+        let value = '';
+
+        if ((input.type === 'checkbox' || input.type === 'radio') && input.checked) {
+          value = input.nextSibling?.textContent?.trim() || input.value;
+        }
+        else if (['text', 'number', 'time', 'date'].includes(input.type) || input.tagName === 'TEXTAREA' || input.tagName === 'SELECT') {
+          if (input.value.trim()) value = input.value;
+        }
+
+        if (value) {
+          if (!grouped[label]) grouped[label] = [];
+          grouped[label].push(value);
+        }
+      });
+
+      // 3️⃣ SCRITTURA DATI RAGGRUPPATI
+      for (const [label, answers] of Object.entries(grouped)) {
+        const line = `${label}: ${answers.join(', ')}`;
+        if (y + lineHeight > pageHeight - 10) {
+          doc.addPage();
+          y = 20;
+        }
+        doc.text(line, 20, y);
+        y += lineHeight;
+      }
+
+      doc.save("scheda_valutazione.pdf");
     }
 
-    if (value) {
-      if (!grouped[label]) grouped[label] = [];
-      grouped[label].push(value);
+  </script>
+
+  <script>
+    // Checkbox mutuamente esclusivi (gruppi Sì/No e simili)
+    document.querySelectorAll('.exclusive-group').forEach(group => {
+      const checkboxes = group.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+          if (checkbox.checked) {
+            checkboxes.forEach(other => {
+              if (other !== checkbox) other.checked = false;
+            });
+          }
+        });
+      });
+    });
+  </script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/APP-Scheda/service-worker.js')
+        .then(reg => console.log('✅ Service Worker registrato'))
+        .catch(err => console.error('❌ Errore Service Worker:', err));
     }
-  });
+  </script>
 
-  // 3️⃣ SCRITTURA DATI RAGGRUPPATI
-  for (const [label, answers] of Object.entries(grouped)) {
-    const line = `${label}: ${answers.join(', ')}`;
-    if (y + lineHeight > pageHeight - 10) {
-      doc.addPage();
-      y = 20;
-    }
-    doc.text(line, 20, y);
-    y += lineHeight;
-  }
+  <!-- script per la verifica dei campi -->
+  <script>
+    const campi = document.querySelectorAll('input[type="number"][data-min][data-max][data-type]');
 
-  doc.save("scheda_valutazione.pdf");
-}
+    campi.forEach(campo => {
+      campo.addEventListener('change', function () {
+        const valore = parseFloat(this.value);
+        const min = parseFloat(this.dataset.min);
+        const max = parseFloat(this.dataset.max);
+        const tipo = this.dataset.type;
 
-</script>
+        if (isNaN(valore)) return; // Campo vuoto → nessun controllo
 
+        if (tipo === "soft") {
+          if (valore < min) {
+            alert(`Sei sicuro? Il valore è insolitamente basso`);
+          } else if (valore > max) {
+            alert(`Sei sicuro? Il valore è insolitamente alto`);
+          }
+        }
 
-    <script>
-  // Checkbox mutuamente esclusivi (gruppi Sì/No e simili)
-  document.querySelectorAll('.exclusive-group').forEach(group => {
-    const checkboxes = group.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach(checkbox => {
-      checkbox.addEventListener('change', () => {
-        if (checkbox.checked) {
-          checkboxes.forEach(other => {
-            if (other !== checkbox) other.checked = false;
-          });
+        if (tipo === "hard") {
+          if (valore < min || valore > max) {
+            alert(`Il valore deve essere tra ${min} e ${max}`);
+            this.value = ""; // Svuota il campo
+          }
         }
       });
     });
-  });
-</script>
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/APP-Scheda/service-worker.js')
-      .then(reg => console.log('✅ Service Worker registrato'))
-      .catch(err => console.error('❌ Errore Service Worker:', err));
-  }
-</script>
-
-    <!-- script per la verifica dei campi -->
-    <script>
-  const campi = document.querySelectorAll('input[type="number"][data-min][data-max][data-type]');
-
-  campi.forEach(campo => {
-    campo.addEventListener('change', function () {
-      const valore = parseFloat(this.value);
-      const min = parseFloat(this.dataset.min);
-      const max = parseFloat(this.dataset.max);
-      const tipo = this.dataset.type;
-
-      if (isNaN(valore)) return; // Campo vuoto → nessun controllo
-
-      if (tipo === "soft") {
-        if (valore < min) {
-          alert(`Sei sicuro? Il valore è insolitamente basso`);
-        } else if (valore > max) {
-          alert(`Sei sicuro? Il valore è insolitamente alto`);
-        }
-      }
-
-      if (tipo === "hard") {
-        if (valore < min || valore > max) {
-          alert(`Il valore deve essere tra ${min} e ${max}`);
-          this.value = ""; // Svuota il campo
-        }
-      }
-    });
-  });
-</script>
+  </script>
 
 </body>
+
 </html>
