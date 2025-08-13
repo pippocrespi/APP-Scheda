@@ -1,0 +1,54 @@
+body {
+    background: white !important;
+    color: black !important;
+    font-size: 12px !important;
+    margin: 0;
+    padding: 0;
+}
+
+.section {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 5px !important;
+    margin: 0 0 10px 0 !important;
+    background: white !important;
+}
+
+h1,
+h2 {
+    font-size: 14px !important;
+    margin-bottom: 6px;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+input,
+select,
+textarea {
+    font-size: 12px !important;
+    padding: 4px !important;
+    margin-top: 2px !important;
+}
+
+.checkbox-group label,
+.radio-group label {
+    margin-left: 10px !important;
+    margin-bottom: 2px;
+}
+
+button,
+nav,
+.no-print {
+    display: none !important;
+}
+
+table {
+    font-size: 12px;
+}
+
+.note {
+    display: none !important;
+}
