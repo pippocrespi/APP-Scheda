@@ -284,13 +284,22 @@
       </div>
 
       <label>Frequenza respiratoria</label>
-      <input type="number" name="frequenza_respiratoria" data-min="1" data-max="60" inputmode="numeric" pattern="[0-9]*"
-        data-label="Frequenza respiratoria" data-type="soft">
+      <div style="display:flex; align-items:center; gap:5px;">
+        <button type="button" onclick="modificaFR(-1)">-</button>
+        <input type="number" name="frequenza_respiratoria" data-min="1" data-max="60" inputmode="numeric"
+          pattern="[0-9]*" data-label="Frequenza respiratoria" data-type="soft" id="frequenza_respiratoria">
+        <button type="button" onclick="modificaFR(1)">+</button>
+      </div>
+
       <p class="note">Valori normali 12-20 atti al minuto</p>
 
       <label>Saturimetria</label>
-      <input type="number" name="saturimetria" data-min="50" data-max="100" inputmode="numeric" pattern="[0-9]*"
-        data-label="Saturimetria" data-type="hard" required>
+      <div style="display:flex; align-items:center; gap:5px;">
+        <button type="button" onclick="modificaSPO2(-1)">-</button>
+        <input type="number" name="saturimetria" data-min="50" data-max="100" inputmode="numeric" pattern="[0-9]*"
+          data-label="Saturimetria" data-type="hard" required id="saturimetria">
+        <button type="button" onclick="modificaSPO2(1)">+</button>
+      </div>
       <p class="note">Valori normali >94%</p>
     </div>
 
@@ -334,7 +343,7 @@
       <div style="display:flex; align-items:center; gap:5px;">
         <button type="button" onclick="modificaFC(-10)">-</button>
         <input type="number" name="frequenza_cardiaca" data-min="0" data-max="200" inputmode="numeric" pattern="[0-9]*"
-          data-label="Frequenza cardiaca" data-type="soft" value="0" id="frequenza_cardiaca">
+          data-label="Frequenza cardiaca" data-type="soft" id="frequenza_cardiaca">
         <button type="button" onclick="modificaFC(10)">+</button>
       </div>
 
@@ -490,9 +499,59 @@
       if (valore > max) valore = max;
 
       input.value = valore;
+      aggiornaColoreCampo(input);
     }
-  </script>
 
+    function modificaFR(delta) {
+      const input = document.getElementById('frequenza_respiratoria');
+      let valore = parseInt(input.value) || 0;
+      const min = parseInt(input.dataset.min);
+      const max = parseInt(input.dataset.max);
+
+      valore += delta;
+
+      // Limiti
+      if (valore < min) valore = min;
+      if (valore > max) valore = max;
+
+      input.value = valore;
+      aggiornaColoreCampo(input);
+    }
+
+    function modificaSPO2(delta) {
+      const input = document.getElementById('saturimetria');
+      let valore = parseInt(input.value) || 0;
+      const min = parseInt(input.dataset.min);
+      const max = parseInt(input.dataset.max);
+
+      valore += delta;
+
+      // Limiti
+      if (valore < min) valore = min;
+      if (valore > max) valore = max;
+
+      input.value = valore;
+      aggiornaColoreCampo(input);
+    }
+
+    function aggiornaColoreCampo(input) {
+      const valore = parseFloat(input.value);
+      const min = parseFloat(input.dataset.min);
+      const max = parseFloat(input.dataset.max);
+      const tipo = input.dataset.type;
+
+      input.style.backgroundColor = "white"; // reset colore
+
+      if (isNaN(valore)) return;
+
+      if (tipo === "soft") {
+        if (valore < min || valore > max) {
+          input.style.backgroundColor = "yellow"; // campo fuori range
+        }
+      }
+    }
+
+  </script>
 
   <script>
     async function generaPDF() {
@@ -605,11 +664,14 @@
 
         if (isNaN(valore)) return; // Campo vuoto → nessun controllo
 
+        this.style.backgroundColor = "white";
+
         if (tipo === "soft") {
           if (valore < min) {
-            alert(`Sei sicuro? Il valore è insolitamente basso`);
+            
+            this.style.backgroundColor = "yellow";
           } else if (valore > max) {
-            alert(`Sei sicuro? Il valore è insolitamente alto`);
+            this.style.backgroundColor = "yellow";
           }
         }
 
