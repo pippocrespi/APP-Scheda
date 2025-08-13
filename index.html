@@ -285,20 +285,20 @@
 
       <label>Frequenza respiratoria</label>
       <div style="display:flex; align-items:center; gap:5px;">
-        <button type="button" onclick="modificaFR(-1)">-</button>
+        <button type="button" id="btn_fr_minus">-</button>
         <input type="number" name="frequenza_respiratoria" data-min="1" data-max="60" inputmode="numeric"
           pattern="[0-9]*" data-label="Frequenza respiratoria" data-type="soft" id="frequenza_respiratoria">
-        <button type="button" onclick="modificaFR(1)">+</button>
+        <button type="button" id="btn_fr_plus">+</button>
       </div>
 
-      <p class="note">Valori normali 12-20 atti al minuto</p>
+      <p class=" note">Valori normali 12-20 atti al minuto</p>
 
       <label>Saturimetria</label>
       <div style="display:flex; align-items:center; gap:5px;">
-        <button type="button" onclick="modificaSPO2(-1)">-</button>
+        <button type="button" id="btn_spo2_minus">-</button>
         <input type="number" name="saturimetria" data-min="50" data-max="100" inputmode="numeric" pattern="[0-9]*"
           data-label="Saturimetria" data-type="hard" required id="saturimetria">
-        <button type="button" onclick="modificaSPO2(1)">+</button>
+        <button type="button" id="btn_spo2_plus">+</button>
       </div>
       <p class="note">Valori normali >94%</p>
     </div>
@@ -311,8 +311,10 @@
           <td>Polso periferico</td>
           <td>
             <div class="checkbox-group exclusive-group">
-              <label><input type="checkbox" name="polso_periferico" value="Sì" data-label="Polso periferico"> Sì</label>
-              <label><input type="checkbox" name="polso_periferico" value="No" data-label="Polso periferico"> No</label>
+              <label><input type="checkbox" name="polso_periferico" value="Sì" data-label="Polso periferico">
+                Sì</label>
+              <label><input type="checkbox" name="polso_periferico" value="No" data-label="Polso periferico">
+                No</label>
             </div>
           </td>
         </tr>
@@ -341,10 +343,10 @@
 
       <label>Frequenza cardiaca</label>
       <div style="display:flex; align-items:center; gap:5px;">
-        <button type="button" onclick="modificaFC(-10)">-</button>
+        <button type="button" id="btn_fc_minus">-</button>
         <input type="number" name="frequenza_cardiaca" data-min="0" data-max="200" inputmode="numeric" pattern="[0-9]*"
           data-label="Frequenza cardiaca" data-type="soft" id="frequenza_cardiaca">
-        <button type="button" onclick="modificaFC(10)">+</button>
+        <button type="button" id="btn_fc_plus">+</button>
       </div>
 
 
@@ -486,6 +488,56 @@
   </script>
 
   <script>
+
+
+    let intervalId = null;
+    function startHolding(callback) {
+      callback(); // esegue subito una volta
+      intervalId = setInterval(callback, 150); // ripete ogni 150ms
+    }
+
+    function stopHolding() {
+      clearInterval(intervalId);
+    }
+    // --- Pulsanti FC ---
+    document.getElementById('btn_fc_plus').addEventListener('mousedown', () => {
+      startHolding(() => modificaFC(10));
+    });
+    document.getElementById('btn_fc_plus').addEventListener('mouseup', stopHolding);
+    document.getElementById('btn_fc_plus').addEventListener('mouseleave', stopHolding);
+
+    document.getElementById('btn_fc_minus').addEventListener('mousedown', () => {
+      startHolding(() => modificaFC(-10));
+    });
+    document.getElementById('btn_fc_minus').addEventListener('mouseup', stopHolding);
+    document.getElementById('btn_fc_minus').addEventListener('mouseleave', stopHolding);
+
+    // --- Pulsanti FR ---
+    document.getElementById('btn_fr_plus').addEventListener('mousedown', () => {
+      startHolding(() => modificaFR(1));
+    });
+    document.getElementById('btn_fr_plus').addEventListener('mouseup', stopHolding);
+    document.getElementById('btn_fr_plus').addEventListener('mouseleave', stopHolding);
+
+    document.getElementById('btn_fr_minus').addEventListener('mousedown', () => {
+      startHolding(() => modificaFR(-1));
+    });
+    document.getElementById('btn_fr_minus').addEventListener('mouseup', stopHolding);
+    document.getElementById('btn_fr_minus').addEventListener('mouseleave', stopHolding);
+
+    // --- Pulsanti SpO₂ ---
+    document.getElementById('btn_spo2_plus').addEventListener('mousedown', () => {
+      startHolding(() => modificaSPO2(1));
+    });
+    document.getElementById('btn_spo2_plus').addEventListener('mouseup', stopHolding);
+    document.getElementById('btn_spo2_plus').addEventListener('mouseleave', stopHolding);
+
+    document.getElementById('btn_spo2_minus').addEventListener('mousedown', () => {
+      startHolding(() => modificaSPO2(-1));
+    });
+    document.getElementById('btn_spo2_minus').addEventListener('mouseup', stopHolding);
+    document.getElementById('btn_spo2_minus').addEventListener('mouseleave', stopHolding);
+
     function modificaFC(delta) {
       const input = document.getElementById('frequenza_cardiaca');
       let valore = parseInt(input.value) || 0;
@@ -668,7 +720,7 @@
 
         if (tipo === "soft") {
           if (valore < min) {
-            
+
             this.style.backgroundColor = "yellow";
           } else if (valore > max) {
             this.style.backgroundColor = "yellow";
