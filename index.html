@@ -26,29 +26,29 @@
         Posizione: caricamento...
       </label>
       <label>Data</label>
-      <input type="date" name="data" data-label="Data">
+      <input type="date" id="data" name="data" data-label="Data">
       <label>Orario valutazione</label>
-      <input type="time" name="orario" data-label="Ora">
+      <input type="time" id="ora" name="orario" data-label="Ora">
     </div>
 
     <div class="section">
       <h2>Sezione X - Emorragia Massiva</h2>
       <label>Emorragia massiva</label>
       <div class="checkbox-group exclusive-group">
-        <label><input type="checkbox" name="emorragia_x" value="Sì" data-label="Emorragia massiva"> Sì</label>
-        <label><input type="checkbox" name="emorragia_x" value="No" data-label="Emorragia massiva"> No</label>
+        <label><input type="checkbox" id="emorragia_x_Sì" name="emorragia_x" value="Sì" data-label="Emorragia massiva"> Sì</label>
+        <label><input type="checkbox" id="emorragia_x_No" name="emorragia_x" value="No" data-label="Emorragia massiva"> No</label>
       </div>
 
 
       <label>Presidi e valutazione X</label>
       <div class="checkbox-group">
-        <label><input type="checkbox" name="x_presidi" value="Compressione" data-label="Presidi e valutazione X">
+        <label><input type="checkbox" id="x_presidi_Compressione" name="x_presidi" value="Compressione" data-label="Presidi e valutazione X">
           Compressione manuale dell'emorragia</label>
-        <label><input type="checkbox" name="x_presidi" value="Medicazione" data-label="Presidi e valutazione X">
+        <label><input type="checkbox" id="x_presidi_Medicazione" name="x_presidi" value="Medicazione" data-label="Presidi e valutazione X">
           Medicazione compressiva</label>
-        <label><input type="checkbox" name="x_presidi" value="Israele" data-label="Presidi e valutazione X"> Benda
+        <label><input type="checkbox" id="x_presidi_Israele" name="x_presidi" value="Israele" data-label="Presidi e valutazione X"> Benda
           israeliana</label>
-        <label><input type="checkbox" name="x_presidi" value="Tourniquet" data-label="Presidi e valutazione X">
+        <label><input type="checkbox" id="x_presidi_Tourniquet" name="x_presidi" value="Tourniquet" data-label="Presidi e valutazione X">
           Tourniquet</label>
       </div>
     </div>
@@ -63,42 +63,42 @@
       </ul>
       <label>Coscienza</label>
       <div class="checkbox-group exclusive-group">
-        <label><input type="checkbox" name="coscienza" value="Sì" data-label="Cosciente"> Sì</label>
-        <label><input type="checkbox" name="coscienza" value="No"> No</label>
+        <label><input type="checkbox" id="coscienza_Sì" name="coscienza" value="Sì" data-label="Cosciente"> Sì</label>
+        <label><input type="checkbox" id="coscienza_No" name="coscienza" value="No"> No</label>
       </div>
 
       <label>Respira</label>
       <div class="checkbox-group exclusive-group">
-        <label><input type="checkbox" name="respira" value="Sì" data-label="Respira"> Sì</label>
-        <label><input type="checkbox" name="respira" value="No" data-label="Respira"> No</label>
+        <label><input type="checkbox" id="respira_Sì" name="respira" value="Sì" data-label="Respira"> Sì</label>
+        <label><input type="checkbox" id="respira_No" name="respira" value="No" data-label="Respira"> No</label>
       </div>
 
 
       <label>Vie aeree</label>
       <div class="checkbox-group exclusive-group">
-        <label><input type="checkbox" name="vie_aeree" value="Pervie" data-label="Vie aeree"> Pervie</label>
-        <label><input type="checkbox" name="vie_aeree" value="Ostruite" data-label="Vie aeree"> Ostruite</label>
+        <label><input type="checkbox" id="vie_aeree_Pervie" name="vie_aeree" value="Pervie" data-label="Vie aeree"> Pervie</label>
+        <label><input type="checkbox" id="vie_aeree_Ostruite" name="vie_aeree" value="Ostruite" data-label="Vie aeree"> Ostruite</label>
       </div>
 
 
       <label>Immobilizzazione manuale rachide cervicale</label>
       <div class="checkbox-group exclusive-group">
-        <label><input type="checkbox" name="immobilizzazione" value="Sì"
+        <label><input type="checkbox"  id="immobilizzazione_Sì" name="immobilizzazione" value="Sì"
             data-label="Immobilizzazione manuale rachide cervicale"> Sì</label>
-        <label><input type="checkbox" name="immobilizzazione" value="No"
+        <label><input type="checkbox"  id="immobilizzazione_No" name="immobilizzazione" value="No"
             data-label="Immobilizzazione manuale rachide cervicale"> No</label>
       </div>
 
 
       <label>Presidi e valutazione</label>
       <div class="checkbox-group">
-        <label><input type="checkbox" name="a_presidi" value="Collare" data-label="Presidi e valutazione B"> Collare
+        <label><input type="checkbox" id="a_presidi_Collare" name="a_presidi" value="Collare" data-label="Presidi e valutazione B"> Collare
           cervicale</label>
-        <label><input type="checkbox" name="a_presidi" value="Disostruzione" data-label="Presidi e valutazione B">
+        <label><input type="checkbox" id="a_presidi_Disostruzione" name="a_presidi" value="Disostruzione" data-label="Presidi e valutazione B">
           Disostruzione/aspirazione</label>
-        <label><input type="checkbox" name="a_presidi" value="Cannula" data-label="Presidi e valutazione B"> Cann.
+        <label><input type="checkbox" id="a_presidi_Cannula" name="a_presidi" value="Cannula" data-label="Presidi e valutazione B"> Cann.
           orofaringea/nasofaringea</label>
-        <label><input type="checkbox" name="a_presidi" value="Ventilazione" data-label="Presidi e valutazione B">
+        <label><input type="checkbox" id="a_presidi_Ventilazione" name="a_presidi" value="Ventilazione" data-label="Presidi e valutazione B">
           Ventila con pallone</label>
       </div>
     </div>
@@ -107,9 +107,9 @@
       <h2>Sezione B - Qualità Respiro</h2>
       <label>Difficoltà respiratoria</label>
       <div class="radio-group">
-        <label><input type="radio" name="difficolta_respiratoria" value="Sì" data-label="Difficoltà respiratoria">
+        <label><input type="radio" id="difficolta_respiratoria_Sì" name="difficolta_respiratoria" value="Sì" data-label="Difficoltà respiratoria">
           Sì</label>
-        <label><input type="radio" name="difficolta_respiratoria" value="No" data-label="Difficoltà respiratoria">
+        <label><input type="radio" id="difficolta_respiratoria_No" name="difficolta_respiratoria" value="No" data-label="Difficoltà respiratoria">
           No</label>
       </div>
 
@@ -126,7 +126,7 @@
       <label>Frequenza respiratoria</label>
       <div style="display:flex; align-items:center; gap:5px;">
         <button type="button" id="btn_fr_minus">-</button>
-        <input type="number" name="frequenza_respiratoria" data-min="1" data-max="60" inputmode="numeric"
+        <input type="number" id="frequenza_respiratoria" name="frequenza_respiratoria" data-min="1" data-max="60" inputmode="numeric"
           pattern="[0-9]*" data-label="Frequenza respiratoria" data-type="soft" id="frequenza_respiratoria">
         <button type="button" id="btn_fr_plus">+</button>
       </div>
@@ -136,7 +136,7 @@
       <label>Saturimetria</label>
       <div style="display:flex; align-items:center; gap:5px;">
         <button type="button" id="btn_spo2_minus">-</button>
-        <input type="number" name="saturimetria" data-min="50" data-max="100" inputmode="numeric" pattern="[0-9]*"
+        <input type="number" id="saturimetria" name="saturimetria" data-min="50" data-max="100" inputmode="numeric" pattern="[0-9]*"
           data-label="Saturimetria" data-type="hard" required id="saturimetria">
         <button type="button" id="btn_spo2_plus">+</button>
       </div>
@@ -151,9 +151,9 @@
           <td>Polso periferico</td>
           <td>
             <div class="checkbox-group exclusive-group">
-              <label><input type="checkbox" name="polso_periferico" value="Sì" data-label="Polso periferico">
+              <label><input type="checkbox" id="polso_periferico_Sì" name="polso_periferico" value="Sì" data-label="Polso periferico">
                 Sì</label>
-              <label><input type="checkbox" name="polso_periferico" value="No" data-label="Polso periferico">
+              <label><input type="checkbox" id="polso_periferico_No" name="polso_periferico_No" value="No" data-label="Polso periferico">
                 No</label>
             </div>
           </td>
@@ -163,8 +163,8 @@
           <td>Polso centrale (solo se assente il periferico)</td>
           <td>
             <div class="checkbox-group exclusive-group">
-              <label><input type="checkbox" name="polso_centrale" value="Sì" data-label="Polso centrale"> Sì</label>
-              <label><input type="checkbox" name="polso_centrale" value="No" data-label="Polso centrale"> No</label>
+              <label><input type="checkbox"  id="polso_centrale_Sì" name="polso_centrale" value="Sì" data-label="Polso centrale"> Sì</label>
+              <label><input type="checkbox"  id="polso_centrale_No" name="polso_centrale" value="No" data-label="Polso centrale"> No</label>
             </div>
           </td>
         </tr>
@@ -173,8 +173,8 @@
           <td>Ferite esterne</td>
           <td>
             <div class="checkbox-group exclusive-group">
-              <label><input type="checkbox" name="ferite_esterne" value="Sì" data-label="Ferite esterne"> Sì</label>
-              <label><input type="checkbox" name="ferite_esterne" value="No" data-label="Ferite esterne"> No</label>
+              <label><input type="checkbox" id="ferite_esterne_Sì" name="ferite_esterne" value="Sì" data-label="Ferite esterne"> Sì</label>
+              <label><input type="checkbox" id="ferite_esterne_No" name="ferite_esterne" value="No" data-label="Ferite esterne"> No</label>
             </div>
           </td>
         </tr>
@@ -184,33 +184,29 @@
       <label>Frequenza cardiaca</label>
       <div style="display:flex; align-items:center; gap:5px;">
         <button type="button" id="btn_fc_minus">-</button>
-        <input type="number" name="frequenza_cardiaca" data-min="0" data-max="200" inputmode="numeric" pattern="[0-9]*"
+        <input type="number" id="frequenza_cardiaca" name="frequenza_cardiaca" data-min="0" data-max="200" inputmode="numeric" pattern="[0-9]*"
           data-label="Frequenza cardiaca" data-type="soft" id="frequenza_cardiaca">
         <button type="button" id="btn_fc_plus">+</button>
       </div>
-
-
-
-
       <p class="note">Valori normali 60 - 100 atti al minuto</p>
 
       <label>Note</label>
       <div class="checkbox-group">
-        <label><input type="checkbox" data-label="Note"> Polso forte</label>
-        <label><input type="checkbox" data-label="Note"> Polso debole</label>
-        <label><input type="checkbox" data-label="Note"> Polso irregolare</label>
-        <label><input type="checkbox" data-label="Note"> Cute sudata</label>
-        <label><input type="checkbox" data-label="Note"> Cute fredda</label>
-        <label><input type="checkbox" data-label="Note"> Cute pallida</label>
-        <label><input type="checkbox" data-label="Note"> Cute cianotica</label>
-        <label><input type="checkbox" data-label="Note"> Medicazione ferite</label>
+        <label><input type="checkbox" id="Polso_forte" data-label="Note"> Polso forte</label>
+        <label><input type="checkbox" id="Polso_debole" data-label="Note"> Polso debole</label>
+        <label><input type="checkbox" id="Polso_irregolare" data-label="Note"> Polso irregolare</label>
+        <label><input type="checkbox" id="Cute_sudata" data-label="Note"> Cute sudata</label>
+        <label><input type="checkbox" id="Cute_fredda" data-label="Note"> Cute fredda</label>
+        <label><input type="checkbox" id="Cute_pallida" data-label="Note"> Cute pallida</label>
+        <label><input type="checkbox" id="Cute_cianotica" data-label="Note"> Cute cianotica</label>
+        <label><input type="checkbox" id="Medicazione_ferite" data-label="Note"> Medicazione ferite</label>
       </div>
 
       <label>Bacino</label>
       <div class="checkbox-group">
-        <label><input type="checkbox" data-label="Bacino"> Deformato</label>
-        <label><input type="checkbox" data-label="Bacino"> Dolore</label>
-        <label><input type="checkbox" data-label="Bacino"> Fascia pelvica</label>
+        <label><input type="checkbox" id="Bacino_deformato" data-label="Bacino"> Deformato</label>
+        <label><input type="checkbox" id="Bacino_dolore" data-label="Bacino"> Dolore</label>
+        <label><input type="checkbox" id="Bacino_fascia_pelvica" data-label="Bacino"> Fascia pelvica</label>
       </div>
     </div>
 
@@ -219,20 +215,20 @@
       <label>AVPU</label>
       <div class="radio-group">
         <label>
-          <input type="radio" name="avpu" value="A - Sveglio, risponde a tono e collabora" data-label="AVPU">
+          <input type="radio" id="avpu_A" name="avpu" value="A - Sveglio, risponde a tono e collabora" data-label="AVPU">
           A - Sveglio, risponde a tono e collabora
         </label>
         <label>
-          <input type="radio" name="avpu" value="V - Risponde se chiamato, confuso, poco collaborante"
+          <input type="radio" id="avpu_B" name="avpu" value="V - Risponde se chiamato, confuso, poco collaborante"
             data-label="AVPU">
           V - Risponde se chiamato, confuso, poco collaborante
         </label>
         <label>
-          <input type="radio" name="avpu" value="P - Soporoso, non risponde, reagisce solo al dolore" data-label="AVPU">
+          <input type="radio" id="avpu_P" name="avpu" value="P - Soporoso, non risponde, reagisce solo al dolore" data-label="AVPU">
           P - Soporoso, non risponde, reagisce solo al dolore
         </label>
         <label>
-          <input type="radio" name="avpu" value="U - Non reagisce a nessuno stimolo" data-label="AVPU">
+          <input type="radio" id="avpu_U" name="avpu" value="U - Non reagisce a nessuno stimolo" data-label="AVPU">
           U - Non reagisce a nessuno stimolo
         </label>
       </div>
@@ -240,32 +236,32 @@
 
       <label>Neurologico</label>
       <div class="checkbox-group">
-        <label><input type="checkbox" data-label="Neurologico"> Trauma cranico</label>
-        <label><input type="checkbox" data-label="Neurologico"> Agitazione psicomotoria</label>
-        <label><input type="checkbox" data-label="Neurologico"> Convulsioni</label>
+        <label><input type="checkbox" id="Trauma_cranico" data-label="Neurologico"> Trauma cranico</label>
+        <label><input type="checkbox" id="Agitazione_psicomotoria" data-label="Neurologico"> Agitazione psicomotoria</label>
+        <label><input type="checkbox" id="Convulsioni" data-label="Neurologico"> Convulsioni</label>
       </div>
 
       <label>Deficit forza arto</label>
       <div class="checkbox-group">
-        <label><input type="checkbox" data-label="Deficit forza arto"> Sup. DX</label>
-        <label><input type="checkbox" data-label="Deficit forza arto"> Sup. SX</label>
-        <label><input type="checkbox" data-label="Deficit forza arto"> Inf. DX</label>
-        <label><input type="checkbox" data-label="Deficit forza arto"> Inf. SX</label>
+        <label><input type="checkbox" id="DF_sup_DX" data-label="Deficit forza arto"> Sup. DX</label>
+        <label><input type="checkbox" id="DF_sup_SX" data-label="Deficit forza arto"> Sup. SX</label>
+        <label><input type="checkbox" id="DF_inf_DX" data-label="Deficit forza arto"> Inf. DX</label>
+        <label><input type="checkbox" id="DF_inf_SX" data-label="Deficit forza arto"> Inf. SX</label>
       </div>
 
       <label>Deficit sensibilità arto</label>
       <div class="checkbox-group">
-        <label><input type="checkbox" data-label="Deficit sensibilità arto"> Sup. DX</label>
-        <label><input type="checkbox" data-label="Deficit sensibilità arto"> Sup. SX</label>
-        <label><input type="checkbox" data-label="Deficit sensibilità arto"> Inf. DX</label>
-        <label><input type="checkbox" data-label="Deficit sensibilità arto"> Inf. SX</label>
+        <label><input type="checkbox" id="DS_sup_DX" data-label="Deficit sensibilità arto"> Sup. DX</label>
+        <label><input type="checkbox" id="DS_sup_SX" data-label="Deficit sensibilità arto"> Sup. SX</label>
+        <label><input type="checkbox" id="DS_inf_DX" data-label="Deficit sensibilità arto"> Inf. DX</label>
+        <label><input type="checkbox" id="DS_inf_SX" data-label="Deficit sensibilità arto"> Inf. SX</label>
       </div>
 
       <label>Non muove</label>
-      <input type="text" name="non_muove" data-label="Non muove">
+      <input type="text" id="non_muove" name="non_muove" data-label="Non muove">
 
       <label>Non sente toccare</label>
-      <input type="text" name="non_sente" data-label="Non sente toccare">
+      <input type="text" id="non_sente" name="non_sente" data-label="Non sente toccare">
     </div>
 
     <div class="section">
@@ -283,7 +279,7 @@
       <label>Dolore (1-10)</label>
       <span id="doloreValue">NON DEFINITO</span>
       <div class="slider-container">
-        <input type="range" min="1" max="10" value="0" step="1" id="doloreRange">
+        <input type="range" id="doloreRange" min="1" max="10" value="0" step="1" id="doloreRange">
       </div>
 
       <script>
@@ -298,16 +294,16 @@
 
 
       <label>Allergie</label>
-      <input type="text" name="allergie" data-label="Allergie">
+      <input type="text" id="allergie" name="allergie" data-label="Allergie">
 
       <label>Medicinali</label>
-      <input type="text" name="medicinali" data-label="Medicinali">
+      <input type="text" id="farmaci" name="medicinali" data-label="Medicinali">
 
       <label>Patologie</label>
-      <input type="text" name="patologie" data-label="Patologie">
+      <input type="text" id="patologie" name="patologie" data-label="Patologie">
 
       <label>Ultimo pasto</label>
-      <input type="text" name="ultimo_pasto" data-label="Ultimo pasto">
+      <input type="text" id="ultimo_pasto" name="ultimo_pasto" data-label="Ultimo pasto">
 
       <label>Altro</label>
       <input type="text" name="altro" data-label="Altro">
@@ -327,7 +323,7 @@
     <br>
     <p>x</p>
     <br>
-    <button id="btnCompilaPDF">TEST Compila PDF</button>
+    <button id="btnCompilaPDF">TEST Compila direttamente scheda (rete richiesta)</button>
   </div>
 
 
