@@ -120,19 +120,22 @@ async function generaPDF() {
     // --- RACCOLTA DATI ---
     doc.text(document.getElementById('gpsLabel').textContent, 10, 10);
 
-    const inputs = document.querySelectorAll('input, textarea, select');
+    const inputs = document.querySelectorAll('input, textarea, select, span');
     const rows = [];
 
     inputs.forEach(input => {
         if (input.closest('#schedaPaziente')) return; // Salta scheda paziente se vuoi
 
-        const label = input.dataset.label || input.name || '';
+        let label = input.dataset.label || input.name || '';
         let value = '';
 
         if ((input.type === 'checkbox' || input.type === 'radio') && input.checked) {
             value = input.nextSibling?.textContent?.trim() || input.value;
         } else if (['text', 'number', 'time', 'date'].includes(input.type) || input.tagName === 'TEXTAREA' || input.tagName === 'SELECT') {
             value = input.value.trim();
+        }else if (input.id === 'doloreValue' && input.textContent.trim() !== "NON DEFINITO") {
+            label = "dolore";
+            value = input.textContent.trim();
         }
 
         if (value) {
