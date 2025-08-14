@@ -297,6 +297,62 @@
     <button type="button" onclick="generaPDF()">Salva PDF</button>
   </div>
 
+  <button type="button" id="genera-pdf">Scarica PDF compilato</button>
+
+</form>
+
+<script type="module">
+import { PDFDocument } from 'https://cdn.skypack.dev/pdf-lib';
+
+async function compilaPdf() {
+  // Carica il PDF esistente
+  const formPdfBytes = await fetch('scheda_sanitaria_fields.pdf').then(res => res.arrayBuffer());
+  const pdfDoc = await PDFDocument.load(formPdfBytes);
+  const form = pdfDoc.getForm();
+
+  // Scansiona i campi del form HTML
+  document.querySelectorAll('#mio-form input, #mio-form select, #mio-form textarea').forEach(input => {
+    const nomeCampoPdf = generaNomeCampoPdf(input);
+
+    if (input.type === 'checkbox') {
+      if (input.checked) {
+        try { form.getCheckBox(nomeCampoPdf).check(); } catch (err) { console.warn(nomeCampoPdf, err); }
+      }
+    } else if (input.type === 'radio') {
+      if (input.checked) {
+        try { form.getRadioGroup(input.name).select(input.value); } catch (err) { console.warn(input.name, err); }
+      }
+    } else {
+      if (input.value) {
+        try { form.getTextField(nomeCampoPdf).setText(input.value); } catch (err) { console.warn(nomeCampoPdf, err); }
+      }
+    }
+  });
+
+  // Salva e scarica il PDF compilato
+  const pdfBytes = await pdfDoc.save();
+  download(pdfBytes, 'modulo_compilato.pdf', 'application/pdf');
+}
+
+function generaNomeCampoPdf(input) {
+  if (input.type === 'checkbox') {
+    return `${input.name}_${input.value.replace(/\s+/g, '_')}`;
+  }
+  return input.name;
+}
+
+function download(data, filename, type) {
+  const blob = new Blob([data], { type });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = filename;
+  link.click();
+}
+
+document.getElementById('genera-pdf').addEventListener('click', compilaPdf);
+</script>
+
+
 
   <!--Libreria-->
   <script src="libs/jspdf.umd.min.js"></script>
