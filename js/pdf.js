@@ -75,45 +75,85 @@ async function generaPDF() {
 */
 
 
+const inputFoto = document.getElementById('fotoPaziente');
+const anteprima = document.getElementById('anteprimaFoto');
+const btnCambia = document.getElementById('btnCambiaFoto');
+const btnCancella = document.getElementById('btnCancellaFoto');
+
+// Carica foto e mostra anteprima
+inputFoto.addEventListener('change', () => {
+    if (inputFoto.files.length > 0) {
+        const file = inputFoto.files[0];
+        const reader = new FileReader();
+        reader.onload = e => {
+            anteprima.src = e.target.result;
+            anteprima.style.display = 'block';
+            btnCambia.textContent = "Cambia foto"
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+// Cambia foto → simula click sul file input
+btnCambia.addEventListener('click', () => {
+    inputFoto.click();
+});
+
+// Cancella foto
+btnCancella.addEventListener('click', () => {
+    inputFoto.value = "";
+    anteprima.src = "";
+    anteprima.style.display = 'none';
+    btnCambia.textContent = "Seleziona/Scatta foto da caricare"
+});
+
+
+
 async function generaPDF() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
-  
+
     doc.setFontSize(16);
     doc.text('Riepilogo Valutazione X-A-B-C-D-E', 14, 20);
     doc.setFontSize(12);
-  
+
     // --- RACCOLTA DATI ---
+    doc.text(document.getElementById('gpsLabel').textContent, 10, 10);
+
     const inputs = document.querySelectorAll('input, textarea, select');
     const rows = [];
-  
+
     inputs.forEach(input => {
-      if (input.closest('#schedaPaziente')) return; // Salta scheda paziente se vuoi
-  
-      const label = input.dataset.label || input.name || '';
-      let value = '';
-  
-      if ((input.type === 'checkbox' || input.type === 'radio') && input.checked) {
-        value = input.nextSibling?.textContent?.trim() || input.value;
-      } else if (['text', 'number', 'time', 'date'].includes(input.type) || input.tagName === 'TEXTAREA' || input.tagName === 'SELECT') {
-        value = input.value.trim();
-      }
-  
-      if (value) {
-        rows.push([label, value]);
-      }
+        if (input.closest('#schedaPaziente')) return; // Salta scheda paziente se vuoi
+
+        const label = input.dataset.label || input.name || '';
+        let value = '';
+
+        if ((input.type === 'checkbox' || input.type === 'radio') && input.checked) {
+            value = input.nextSibling?.textContent?.trim() || input.value;
+        } else if (['text', 'number', 'time', 'date'].includes(input.type) || input.tagName === 'TEXTAREA' || input.tagName === 'SELECT') {
+            value = input.value.trim();
+        }
+
+        if (value) {
+            rows.push([label, value]);
+        }
     });
-  
+
     // --- CREA TABELLA ---
     doc.autoTable({
-      startY: 30,
-      head: [['Campo', 'Valore']],
-      body: rows,
-      theme: 'grid', // grid, plain, striped
-      headStyles: { fillColor: [41, 128, 185], textColor: 255 },
-      styles: { fontSize: 12 },
+        startY: 30,
+        head: [['Campo', 'Valore']],
+        body: rows,
+        theme: 'grid', // grid, plain, striped
+        headStyles: { fillColor: [41, 128, 185], textColor: 255 },
+        styles: { fontSize: 12 },
     });
-  
+    if (anteprima?.complete && anteprima.naturalWidth > 0) 
+    {
+        doc.addPage();
+        doc.addImage(anteprima.src, 'JPEG', 20, 20, 180, 0);
+    }
+
     doc.save("scheda_valutazione.pdf");
-  }
-  
+}

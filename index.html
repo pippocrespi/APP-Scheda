@@ -22,6 +22,9 @@
   <form>
 
     <div class="section">
+      <label id="gpsLabel" style="font-size: 12px; color: gray;">
+        Posizione: caricamento...
+      </label>
       <label>Data</label>
       <input type="date" name="data" data-label="Data">
       <label>Orario valutazione</label>
@@ -291,49 +294,19 @@
       <label>Altro</label>
       <input type="text" name="altro" data-label="Altro">
     </div>
+
+    <div id="fotoWrapper" style="display:flex; align-items:center; gap:10px;">
+      <input type="file" id="fotoPaziente" accept="image/*" style="display:none;">
+      <button type="button" id="btnCambiaFoto">Seleziona/Scatta foto da caricare</button>
+      <button type="button" id="btnCancellaFoto">Cancella</button>
+    </div>
+
+    <img id="anteprimaFoto" src="" alt="" style="display:none; max-width:100px; margin-top:10px;">
   </form>
 
   <div style="text-align: center; margin-top: 30px;">
     <button type="button" onclick="generaPDF()">Salva PDF</button>
   </div>
-   <div style="text-align: center; margin-top: 30px;">
-  <button type="button" onclick="compilaSchedaUfficiale()">Stampa Scheda Ufficiale</button>
-  <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
-   </div>
-</form>
-
-<script>
-  import { PDFDocument } from 'pdf-lib';
-
-async function compilaSchedaUfficiale() {
-  const formData = new FormData(document.querySelector('form'));
-  
-  // Carica il PDF di base
-  const existingPdfBytes = await fetch('scheda_sanitaria_fields.pdf').then(res => res.arrayBuffer());
-  const pdfDoc = await PDFDocument.load(existingPdfBytes);
-
-  const form = pdfDoc.getForm();
-
-  // Mappa campi form HTML → PDF
-  form.getCheckBox('emorragia_x_Sì').check(formData.get('emorragia_x') === 'Sì');
-  form.getCheckBox('emorragia_x_No').check(formData.get('emorragia_x') === 'No');
-
-  form.getCheckBox('x_presidi_Compressione').check(formData.getAll('x_presidi').includes('Compressione'));
-  form.getCheckBox('x_presidi_Medicazione').check(formData.getAll('x_presidi').includes('Medicazione'));
-  form.getCheckBox('x_presidi_Israele').check(formData.getAll('x_presidi').includes('Israele'));
-  form.getCheckBox('x_presidi_Tourniquet').check(formData.getAll('x_presidi').includes('Tourniquet'));
-
-  // Salva PDF compilato
-  const pdfBytes = await pdfDoc.save();
-  const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-  const link = document.createElement('a');
-  link.href = URL.createObjectURL(blob);
-  link.download = 'scheda_sanitaria_compilata.pdf';
-  link.click();
-}
-
-</script>
-
 
 
   <!--Libreria-->
@@ -348,6 +321,7 @@ async function compilaSchedaUfficiale() {
   <script src="js/incrementButton.js"></script>
   <script src="js/exclusiveCheckbox.js"></script>
   <script src="js/checkValue.js"></script>
+  <script src="js/localization.js"></script>
 
   <script>
     if ('serviceWorker' in navigator) {

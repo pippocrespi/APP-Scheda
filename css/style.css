@@ -4,6 +4,16 @@
     }
 }
 
+button,
+input[type="button"],
+input[type="submit"] {
+  -webkit-user-select: none; /* Safari/Chrome */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE/Edge */
+  user-select: none;         /* standard */
+  touch-action: manipulation; /* migliora il tap su mobile */
+}
+
 button {
     background-color: #007BFF;
     color: white;
