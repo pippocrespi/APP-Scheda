@@ -297,59 +297,41 @@
     <button type="button" onclick="generaPDF()">Salva PDF</button>
   </div>
    <div style="text-align: center; margin-top: 30px;">
-  <button type="button" id="genera-pdf">Scarica PDF Scheda Sanitaria</button>
+  <button type="button" onclick="compilaSchedaUfficiale()">Stampa scheda ufficiale</button>
+  <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
    </div>
 </form>
 
-<script type="module">
-import { PDFDocument } from 'https://cdn.skypack.dev/pdf-lib';
+<script>
+  import { PDFDocument } from 'pdf-lib';
 
-async function compilaPdf() {
-  // Carica il PDF esistente
-  const formPdfBytes = await fetch('scheda_sanitaria_fields.pdf').then(res => res.arrayBuffer());
-  const pdfDoc = await PDFDocument.load(formPdfBytes);
+async function compilaSchedaUfficiale() {
+  const formData = new FormData(document.querySelector('form'));
+  
+  // Carica il PDF di base
+  const existingPdfBytes = await fetch('scheda_sanitaria_fields.pdf').then(res => res.arrayBuffer());
+  const pdfDoc = await PDFDocument.load(existingPdfBytes);
+
   const form = pdfDoc.getForm();
 
-  // Scansiona i campi del form HTML
-  document.querySelectorAll('#mio-form input, #mio-form select, #mio-form textarea').forEach(input => {
-    const nomeCampoPdf = generaNomeCampoPdf(input);
+  // Mappa campi form HTML → PDF
+  form.getCheckBox('emorragia_x_Sì').check(formData.get('emorragia_x') === 'Sì');
+  form.getCheckBox('emorragia_x_No').check(formData.get('emorragia_x') === 'No');
 
-    if (input.type === 'checkbox') {
-      if (input.checked) {
-        try { form.getCheckBox(nomeCampoPdf).check(); } catch (err) { console.warn(nomeCampoPdf, err); }
-      }
-    } else if (input.type === 'radio') {
-      if (input.checked) {
-        try { form.getRadioGroup(input.name).select(input.value); } catch (err) { console.warn(input.name, err); }
-      }
-    } else {
-      if (input.value) {
-        try { form.getTextField(nomeCampoPdf).setText(input.value); } catch (err) { console.warn(nomeCampoPdf, err); }
-      }
-    }
-  });
+  form.getCheckBox('x_presidi_Compressione').check(formData.getAll('x_presidi').includes('Compressione'));
+  form.getCheckBox('x_presidi_Medicazione').check(formData.getAll('x_presidi').includes('Medicazione'));
+  form.getCheckBox('x_presidi_Israele').check(formData.getAll('x_presidi').includes('Israele'));
+  form.getCheckBox('x_presidi_Tourniquet').check(formData.getAll('x_presidi').includes('Tourniquet'));
 
-  // Salva e scarica il PDF compilato
+  // Salva PDF compilato
   const pdfBytes = await pdfDoc.save();
-  download(pdfBytes, 'modulo_compilato.pdf', 'application/pdf');
-}
-
-function generaNomeCampoPdf(input) {
-  if (input.type === 'checkbox') {
-    return `${input.name}_${input.value.replace(/\s+/g, '_')}`;
-  }
-  return input.name;
-}
-
-function download(data, filename, type) {
-  const blob = new Blob([data], { type });
+  const blob = new Blob([pdfBytes], { type: 'application/pdf' });
   const link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
-  link.download = filename;
+  link.download = 'scheda_sanitaria_compilata.pdf';
   link.click();
 }
 
-document.getElementById('genera-pdf').addEventListener('click', compilaPdf);
 </script>
 
 
