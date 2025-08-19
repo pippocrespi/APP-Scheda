@@ -309,15 +309,17 @@
       <input type="text" name="altro" data-label="Altro">
     </div>
 
-    <div id="fotoWrapper" style="display:flex; align-items:center; gap:10px;">
-      <input type="file" id="fotoPaziente" accept="image/*" style="display:none;">
-      <button type="button" id="btnCambiaFoto">Seleziona/Scatta foto da caricare</button>
-      <button type="button" id="btnCancellaFoto">Cancella</button>
+    <div class="section">
+      <h2>Seleziona o scatta foto da caricare</h2>
+      <div id="fotoWrapper" style="display:flex; align-items:center; gap:10px;">
+        <input type="file" id="fotoPaziente" accept="image/*" style="display:none;">
+        <button type="button_negativo" id="btnCambiaFoto">+</button>
+        <button type="button" id="btnCancellaFoto">Cancella</button>
+      </div>
+
+      <img id="anteprimaFoto" src="" alt="" style="display:none; max-width:100px; margin-top:10px;">
     </div>
-
-    <img id="anteprimaFoto" src="" alt="" style="display:none; max-width:100px; margin-top:10px;">
-  </form>
-
+      
   <div style="text-align: center; margin-top: 30px;">
     <button type="button" onclick="generaPDF()">Salva PDF</button>
     <br>
