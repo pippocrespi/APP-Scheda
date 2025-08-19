@@ -313,8 +313,8 @@
       <h2>Seleziona o scatta foto da caricare</h2>
       <div id="fotoWrapper" style="display:flex; align-items:center; gap:10px;">
         <input type="file" id="fotoPaziente" accept="image/*" style="display:none;">
-        <button type="button_negativo" id="btnCambiaFoto">+</button>
-        <button type="button_negativo" id="btnCancellaFoto">Cancella</button>
+        <button class="button_negativo" type="button" id="btnCambiaFoto">+</button>
+        <button class="button_negativo" type="button" id="btnCancellaFoto">Cancella</button>
       </div>
 
       <img id="anteprimaFoto" src="" alt="" style="display:none; max-width:100px; margin-top:10px;">
@@ -326,9 +326,27 @@
       <p> </p>
       <br>
       <button id="btnCompilaPDF">TEST Compila direttamente scheda</button>
-      <p class="note">Connessione internet richiesta</p>
     </div>
   </div>   
+  <!--Script che nasconde il bottone compila direttamente scheda se utente è offline-->
+  <script>
+    const button = document.getElementById("btnCompilaPDF");
+
+    function updateButtonVisibility() {
+      if (navigator.onLine) {
+        button.classList.remove("hidden");
+      } else {
+        button.classList.add("hidden");
+      }
+    }
+
+    // Al caricamento
+    window.addEventListener("load", updateButtonVisibility);
+
+    // Quando cambia la connessione
+    window.addEventListener("online", updateButtonVisibility);
+    window.addEventListener("offline", updateButtonVisibility);
+  </script>
 
   <!--Libreria-->
   <script src="libs/jspdf.umd.min.js"></script>
