@@ -157,6 +157,22 @@ async function generaPDF() {
         doc.addPage();
         doc.addImage(anteprima.src, 'JPEG', 20, 20, 180, 0);
     }
+    // --- prova per formattare il nome del file con l'aggiunta della data
+    // vecchio codice angelino 
+    // doc.save("scheda_valutazione.pdf");
 
-    doc.save("scheda_valutazione.pdf");
+    // Nuovo codice di prova
+    // Prendi la data dal campo del form
+    const dataScheda = document.getElementById('data')?.value || '';
+
+    // Formatta la data (sostituisci "-" con "_")
+    const dataFormattata = dataScheda.replace(/-/g, "_");
+
+    // Costruisci il nome del file
+    const nomeFile = `scheda_valutazione_${dataFormattata}.pdf`;
+
+    // Salva il PDF con il nome dinamico
+    doc.save(nomeFile);
+
 }
+
