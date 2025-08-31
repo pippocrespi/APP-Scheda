@@ -326,72 +326,8 @@
       <p> </p>
       <br>
       <button id="btnCompilaPDF">TEST Compila direttamente scheda</button>
-      <br>
-      <p> </p>
-      <br>
-      <button type="button" onclick="inviaDatiAlFoglio()">Invia dati al foglio</button>
     </div>
   </div>   
-
-  <!-- Script per inviare i dati al foglio google -->
-  <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxNtIt9ICgVgdCiotOSWu3GkTbX5L9SJU5WiYRRipnz1wPdtIbVR8HSHqUdQ2MkrYA/exec";
-    function inviaDatiAlFoglio() {
-  const datiScheda = {
-    data: document.getElementById("data").value,
-    orario: document.getElementById("ora").value,
-    posizione: document.getElementById("gpsLabel").textContent,
-    
-    emorragia_x: document.querySelector('input[name="emorragia_x"]:checked')?.value,
-    x_presidi: Array.from(document.querySelectorAll('input[name="x_presidi"]:checked')).map(el => el.value),
-    
-    coscienza: document.querySelector('input[name="coscienza"]:checked')?.value,
-    respira: document.querySelector('input[name="respira"]:checked')?.value,
-    vie_aeree: document.querySelector('input[name="vie_aeree"]:checked')?.value,
-    immobilizzazione: document.querySelector('input[name="immobilizzazione"]:checked')?.value,
-    a_presidi: Array.from(document.querySelectorAll('input[name="a_presidi"]:checked')).map(el => el.value),
-    
-    difficolta_respiratoria: document.querySelector('input[name="difficolta_respiratoria"]:checked')?.value,
-    opacs: Array.from(document.querySelectorAll('input[name="opacs"]:checked')).map(el => el.value),
-    frequenza_respiratoria: document.getElementById("frequenza_respiratoria").value,
-    saturimetria: document.getElementById("saturimetria").value,
-    
-    polso_periferico: document.querySelector('input[name="polso_periferico"]:checked')?.value,
-    polso_centrale: document.querySelector('input[name="polso_centrale"]:checked')?.value,
-    ferite_esterne: document.querySelector('input[name="ferite_esterne"]:checked')?.value,
-    frequenza_cardiaca: document.getElementById("frequenza_cardiaca").value,
-    
-    note: Array.from(document.querySelectorAll('input[data-label="Note"]:checked')).map(el => el.id),
-    bacino: Array.from(document.querySelectorAll('input[data-label="Bacino"]:checked')).map(el => el.id),
-    
-    avpu: document.querySelector('input[name="avpu"]:checked')?.value,
-    neurologico: Array.from(document.querySelectorAll('input[data-label="Neurologico"]:checked')).map(el => el.id),
-    deficit_forza: Array.from(document.querySelectorAll('input[data-label="Deficit forza arto"]:checked')).map(el => el.id),
-    deficit_sensibilita: Array.from(document.querySelectorAll('input[data-label="Deficit sensibilità arto"]:checked')).map(el => el.id),
-    
-    non_muove: document.getElementById("non_muove").value,
-    non_sente: document.getElementById("non_sente").value,
-    testaPiedi: document.getElementById("testaPiedi").checked,
-    dolore: document.getElementById("doloreRange").value,
-    
-    allergie: document.getElementById("allergie").value,
-    farmaci: document.getElementById("farmaci").value,
-    patologie: document.getElementById("patologie").value,
-    ultimo_pasto: document.getElementById("ultimo_pasto").value,
-    altro: document.querySelector('input[name="altro"]').value
-  };
-
-  fetch(SCRIPT_URL, {
-    method: "POST",
-    body: JSON.stringify(datiScheda),
-    headers: { "Content-Type": "application/json" }
-  })
-  .then(res => res.json())
-  .then(resp => console.log("Dati inviati:", resp))
-  .catch(err => console.error("Errore invio dati:", err));
-}
-
-  </script>
     
   <!--Script che nasconde il bottone compila direttamente scheda se utente è offline-->
   <script>
