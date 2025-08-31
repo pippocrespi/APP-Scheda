@@ -328,61 +328,6 @@
       <button id="btnCompilaPDF">TEST Compila direttamente scheda</button>
     </div>
   </div>   
-
-  <!-- Script che invia i dati al foglio google -->
-  <script>
-    document.getElementById("btnInviaDatiSheet").addEventListener("click", async () => {
-  const form = document.querySelector("form");
-  const data = {};
-
-  form.querySelectorAll("input, select, textarea").forEach(input => {
-    const name = input.name || input.id;
-    if(!name) return; // ignora input senza name/id
-
-    switch(input.type) {
-      case "checkbox":
-        if(input.checked){
-          if(data[name]){
-            data[name] += ', ' + input.value;
-          } else {
-            data[name] = input.value;
-          }
-        }
-        break;
-      case "radio":
-        if(input.checked) data[name] = input.value;
-        break;
-      case "number":
-      case "text":
-      case "date":
-      case "time":
-        if(input.value.trim() !== "") data[name] = input.value.trim();
-        break;
-      default:
-        if(input.value.trim() !== "") data[name] = input.value.trim();
-    }
-  });
-
-  try {
-    const response = await fetch("/.netlify/functions/proxy", {
-      method: "POST",
-      body: JSON.stringify(data)
-    });
-
-    const result = await response.json();
-
-    if(result.status === "success"){
-      alert("✅ Dati inviati correttamente al Google Sheet!");
-    } else {
-      alert("❌ Errore nell'invio dei dati: " + JSON.stringify(result));
-    }
-  } catch(err) {
-    console.error(err);
-    alert("❌ Errore nella comunicazione con il Google Sheet.");
-  }
-});
-
-  </script>
     
   <!--Script che nasconde il bottone compila direttamente scheda se utente è offline-->
   <script>
