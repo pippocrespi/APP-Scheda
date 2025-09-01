@@ -61,3 +61,13 @@ self.addEventListener('activate', event => {
     })
   );
 });
+
+// Codice per rilevare se ci sono nuove versioni dell'app
+// Riceve messaggi dal client
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
+});
+
+
