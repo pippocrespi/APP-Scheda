@@ -338,7 +338,7 @@
 
     // Sezione X
     emorragia_x: document.getElementById('emorragia_x_Sì')?.checked ? 'Sì' :
-                  document.getElementById('emorragia_x_No')?.checked ? 'No' : '',
+                 document.getElementById('emorragia_x_No')?.checked ? 'No' : '',
     x_presidi_Compressione: document.getElementById('x_presidi_Compressione')?.checked ? 'Sì' : '',
     x_presidi_Medicazione: document.getElementById('x_presidi_Medicazione')?.checked ? 'Sì' : '',
     x_presidi_Israele: document.getElementById('x_presidi_Israele')?.checked ? 'Sì' : '',
@@ -375,15 +375,43 @@
                     document.getElementById('ferite_esterne_No')?.checked ? 'No' : '',
     frequenza_cardiaca: document.getElementById('frequenza_cardiaca')?.value || '',
 
-    // Sezione D
+    // Note e bacino
+    Polso_forte: document.getElementById('Polso_forte')?.checked ? 'Sì' : '',
+    Polso_debole: document.getElementById('Polso_debole')?.checked ? 'Sì' : '',
+    Polso_irregolare: document.getElementById('Polso_irregolare')?.checked ? 'Sì' : '',
+    Cute_sudata: document.getElementById('Cute_sudata')?.checked ? 'Sì' : '',
+    Cute_fredda: document.getElementById('Cute_fredda')?.checked ? 'Sì' : '',
+    Cute_pallida: document.getElementById('Cute_pallida')?.checked ? 'Sì' : '',
+    Cute_cianotica: document.getElementById('Cute_cianotica')?.checked ? 'Sì' : '',
+    Medicazione_ferite: document.getElementById('Medicazione_ferite')?.checked ? 'Sì' : '',
+    Bacino_deformato: document.getElementById('Bacino_deformato')?.checked ? 'Sì' : '',
+    Bacino_dolore: document.getElementById('Bacino_dolore')?.checked ? 'Sì' : '',
+    Bacino_fascia_pelvica: document.getElementById('Bacino_fascia_pelvica')?.checked ? 'Sì' : '',
+
+    // Sezione D - neurologico
     avpu: document.querySelector('input[name="avpu"]:checked')?.value || '',
+    Trauma_cranico: document.getElementById('Trauma_cranico')?.checked ? 'Sì' : '',
+    Agitazione_psicomotoria: document.getElementById('Agitazione_psicomotoria')?.checked ? 'Sì' : '',
+    Convulsioni: document.getElementById('Convulsioni')?.checked ? 'Sì' : '',
+    DF_sup_DX: document.getElementById('DF_sup_DX')?.checked ? 'Sì' : '',
+    DF_sup_SX: document.getElementById('DF_sup_SX')?.checked ? 'Sì' : '',
+    DF_inf_DX: document.getElementById('DF_inf_DX')?.checked ? 'Sì' : '',
+    DF_inf_SX: document.getElementById('DF_inf_SX')?.checked ? 'Sì' : '',
+    DS_sup_DX: document.getElementById('DS_sup_DX')?.checked ? 'Sì' : '',
+    DS_sup_SX: document.getElementById('DS_sup_SX')?.checked ? 'Sì' : '',
+    DS_inf_DX: document.getElementById('DS_inf_DX')?.checked ? 'Sì' : '',
+    DS_inf_SX: document.getElementById('DS_inf_SX')?.checked ? 'Sì' : '',
+    non_muove: document.getElementById('non_muove')?.value || '',
+    non_sente: document.getElementById('non_sente')?.value || '',
 
     // Sezione E
+    testaPiedi: document.getElementById('testaPiedi')?.checked ? 'Sì' : '',
     dolore: document.getElementById('doloreRange')?.value || '',
     allergie: document.getElementById('allergie')?.value || '',
     farmaci: document.getElementById('farmaci')?.value || '',
     patologie: document.getElementById('patologie')?.value || '',
-    ultimo_pasto: document.getElementById('ultimo_pasto')?.value || ''
+    ultimo_pasto: document.getElementById('ultimo_pasto')?.value || '',
+    altro: document.querySelector('input[name="altro"]')?.value || ''
   };
 
   // Creazione form dinamico
@@ -391,7 +419,7 @@
   form.action = 'https://script.google.com/macros/s/AKfycbzUdWEWPRKZX97vZhnRGfSw4m83IE6HgYu3NALCtMjEVbG1HChd1TrZkFJxk-7kJhDYLQ/exec';
   form.method = 'POST';
   form.style.display = 'none';
-  
+
   // Aggiungi campi nascosti
   for (let key in dati) {
     const input = document.createElement('input');
