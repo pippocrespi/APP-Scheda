@@ -162,17 +162,25 @@ async function generaPDF() {
     // doc.save("scheda_valutazione.pdf");
 
     // Nuovo codice di prova
-    // Prendi la data dal campo del form
     const dataScheda = document.getElementById('data')?.value || '';
 
-    // Formatta la data (sostituisci "-" con "_")
-    const dataFormattata = dataScheda.replace(/-/g, "_");
+    if (dataScheda) {
+      // Divide "2025-09-01" → [2025, 09, 01]
+      const [anno, mese, giorno] = dataScheda.split("-");
 
-    // Costruisci il nome del file
-    const nomeFile = `scheda_valutazione_${dataFormattata}.pdf`;
+      // Ricostruisci in formato "gg/mm/aaaa"
+      const dataFormattata = `${giorno}/${mese}/${anno}`;
 
-    // Salva il PDF con il nome dinamico
-    doc.save(nomeFile);
+      // Costruisci il nome file
+      const nomeFile = `scheda_valutazione_${dataFormattata}.pdf`;
+
+      // Salva il PDF
+      doc.save(nomeFile);
+    } else {
+      console.error("❌ Nessuna data selezionata");
+    }
+
 
 }
+
 
