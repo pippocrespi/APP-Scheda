@@ -366,6 +366,19 @@ async function inviaDatiAlFoglio() {
     ultimo_pasto: document.getElementById('ultimo_pasto')?.value || ''
   };
 
+  try {
+    const response = await fetch("https://script.google.com/macros/s/AKfycbzUdWEWPRKZX97vZhnRGfSw4m83IE6HgYu3NALCtMjEVbG1HChd1TrZkFJxk-7kJhDYLQ/exec", {
+      method: "POST",
+      mode: "no-cors", // Apps Script Web App spesso richiede no-cors
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(dati)
+    });
+
+    console.log("✅ Dati inviati con successo:", dati);
+  } catch (error) {
+    console.error("❌ Errore durante l'invio:", error);
+  }
+  
   // Crea iframe invisibile per invio senza ricaricare pagina
   let iframe = document.createElement('iframe');
   iframe.name = 'invisibleFrame';
