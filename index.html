@@ -19,7 +19,7 @@
 
   <!-- Codice che mostra banner se c'è una nuova versione -->
   <script>
-    if ('serviceWorker' in navigator) {
+if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('service-worker.js')
     .then(registration => {
 
@@ -28,35 +28,60 @@
 
       function showUpdateBanner(worker) {
         const banner = document.createElement('div');
+        banner.id = 'updateBanner';
         banner.style = `
           position: fixed;
           bottom: 20px;
-          left: 50%;
-          transform: translateX(-50%);
-          background: #333;
-          color: white;
-          padding: 12px 20px;
-          border-radius: 8px;
+          right: 20px;
+          max-width: 300px;
+          background: #1e88e5;
+          color: #fff;
+          padding: 14px 18px;
+          border-radius: 12px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+          font-family: sans-serif;
           font-size: 14px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.3s ease, transform 0.3s ease;
           z-index: 9999;
         `;
         banner.innerHTML = `
-          🔄 Nuova versione disponibile
+          <span>🔄 Nuova versione disponibile</span>
           <button id="updateAppBtn" style="
             margin-left: 10px;
             padding: 6px 12px;
             background: #fff;
-            color: #333;
+            color: #1e88e5;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
+            font-weight: bold;
             cursor: pointer;
+            transition: background 0.2s ease;
           ">Aggiorna</button>
         `;
         document.body.appendChild(banner);
 
+        // Animazione comparsa
+        requestAnimationFrame(() => {
+          banner.style.opacity = 1;
+          banner.style.transform = 'translateY(0)';
+        });
+
+        // Azione al clic
         document.getElementById('updateAppBtn').addEventListener('click', () => {
           worker.postMessage({ type: 'SKIP_WAITING' });
         });
+
+        // Scompare automaticamente dopo 10 secondi
+        setTimeout(() => {
+          banner.style.opacity = 0;
+          banner.style.transform = 'translateY(20px)';
+          banner.addEventListener('transitionend', () => banner.remove());
+        }, 10000);
       }
 
       if (registration.waiting) {
@@ -82,8 +107,7 @@
 
     });
 }
-
-  </script>
+</script>
 
 
   
