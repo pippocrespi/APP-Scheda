@@ -334,23 +334,23 @@
   </div>   
 
   <script>
-    // =======================
-// Funzione per inviare dati
-// =======================
+    // Blocca il submit classico del form
+const form = document.querySelector("form");
+form.addEventListener("submit", function(e){
+  e.preventDefault();
+});
+
+// Funzione per inviare i dati
 async function inviaDatiAlFoglio() {
-  // Raccogli i dati dai campi della scheda
+  // Raccogli i dati dai campi
   const dati = {
     data: document.getElementById('data')?.value || '',
     ora: document.getElementById('ora')?.value || '',
-
-    // Sezione X
     emorragia_x: document.getElementById('emorragia_x_Sì')?.checked ? 'Sì' : (document.getElementById('emorragia_x_No')?.checked ? 'No' : ''),
     x_presidi_Compressione: document.getElementById('x_presidi_Compressione')?.checked ? 'Sì' : '',
     x_presidi_Medicazione: document.getElementById('x_presidi_Medicazione')?.checked ? 'Sì' : '',
     x_presidi_Israele: document.getElementById('x_presidi_Israele')?.checked ? 'Sì' : '',
     x_presidi_Tourniquet: document.getElementById('x_presidi_Tourniquet')?.checked ? 'Sì' : '',
-
-    // Sezione A
     coscienza: document.getElementById('coscienza_Sì')?.checked ? 'Sì' : (document.getElementById('coscienza_No')?.checked ? 'No' : ''),
     respira: document.getElementById('respira_Sì')?.checked ? 'Sì' : (document.getElementById('respira_No')?.checked ? 'No' : ''),
     vie_aeree: document.getElementById('vie_aeree_Pervie')?.checked ? 'Pervie' : (document.getElementById('vie_aeree_Ostruite')?.checked ? 'Ostruite' : ''),
@@ -359,49 +359,17 @@ async function inviaDatiAlFoglio() {
     a_presidi_Disostruzione: document.getElementById('a_presidi_Disostruzione')?.checked ? 'Sì' : '',
     a_presidi_Cannula: document.getElementById('a_presidi_Cannula')?.checked ? 'Sì' : '',
     a_presidi_Ventilazione: document.getElementById('a_presidi_Ventilazione')?.checked ? 'Sì' : '',
-
-    // Sezione B
     difficolta_respiratoria: document.querySelector('input[name="difficolta_respiratoria"]:checked')?.value || '',
     opacs_O_simmetrico: document.querySelector('input[name="opacs"][value="O_simmetrico"]')?.checked ? 'Sì' : '',
     opacs_P_enfisema: document.querySelector('input[name="opacs"][value="P_enfisema"]')?.checked ? 'Sì' : '',
     opacs_A_rumori: document.querySelector('input[name="opacs"][value="A_rumori"]')?.checked ? 'Sì' : '',
     frequenza_respiratoria: document.getElementById('frequenza_respiratoria')?.value || '',
     saturimetria: document.getElementById('saturimetria')?.value || '',
-
-    // Sezione C
     polso_periferico: document.getElementById('polso_periferico_Sì')?.checked ? 'Sì' : (document.getElementById('polso_periferico_No')?.checked ? 'No' : ''),
     polso_centrale: document.getElementById('polso_centrale_Sì')?.checked ? 'Sì' : (document.getElementById('polso_centrale_No')?.checked ? 'No' : ''),
     ferite_esterne: document.getElementById('ferite_esterne_Sì')?.checked ? 'Sì' : (document.getElementById('ferite_esterne_No')?.checked ? 'No' : ''),
     frequenza_cardiaca: document.getElementById('frequenza_cardiaca')?.value || '',
-    Polso_forte: document.getElementById('Polso_forte')?.checked ? 'Sì' : '',
-    Polso_debole: document.getElementById('Polso_debole')?.checked ? 'Sì' : '',
-    Polso_irregolare: document.getElementById('Polso_irregolare')?.checked ? 'Sì' : '',
-    Cute_sudata: document.getElementById('Cute_sudata')?.checked ? 'Sì' : '',
-    Cute_fredda: document.getElementById('Cute_fredda')?.checked ? 'Sì' : '',
-    Cute_pallida: document.getElementById('Cute_pallida')?.checked ? 'Sì' : '',
-    Cute_cianotica: document.getElementById('Cute_cianotica')?.checked ? 'Sì' : '',
-    Medicazione_ferite: document.getElementById('Medicazione_ferite')?.checked ? 'Sì' : '',
-    Bacino_deformato: document.getElementById('Bacino_deformato')?.checked ? 'Sì' : '',
-    Bacino_dolore: document.getElementById('Bacino_dolore')?.checked ? 'Sì' : '',
-    Bacino_fascia_pelvica: document.getElementById('Bacino_fascia_pelvica')?.checked ? 'Sì' : '',
-
-    // Sezione D
     avpu: document.querySelector('input[name="avpu"]:checked')?.value || '',
-    Trauma_cranico: document.getElementById('Trauma_cranico')?.checked ? 'Sì' : '',
-    Agitazione_psicomotoria: document.getElementById('Agitazione_psicomotoria')?.checked ? 'Sì' : '',
-    Convulsioni: document.getElementById('Convulsioni')?.checked ? 'Sì' : '',
-    DF_sup_DX: document.getElementById('DF_sup_DX')?.checked ? 'Sì' : '',
-    DF_sup_SX: document.getElementById('DF_sup_SX')?.checked ? 'Sì' : '',
-    DF_inf_DX: document.getElementById('DF_inf_DX')?.checked ? 'Sì' : '',
-    DF_inf_SX: document.getElementById('DF_inf_SX')?.checked ? 'Sì' : '',
-    DS_sup_DX: document.getElementById('DS_sup_DX')?.checked ? 'Sì' : '',
-    DS_sup_SX: document.getElementById('DS_sup_SX')?.checked ? 'Sì' : '',
-    DS_inf_DX: document.getElementById('DS_inf_DX')?.checked ? 'Sì' : '',
-    DS_inf_SX: document.getElementById('DS_inf_SX')?.checked ? 'Sì' : '',
-    non_muove: document.getElementById('non_muove')?.value || '',
-    non_sente: document.getElementById('non_sente')?.value || '',
-
-    // Sezione E
     testaPiedi: document.getElementById('testaPiedi')?.checked ? 'Sì' : '',
     dolore: document.getElementById('doloreRange')?.value || '',
     allergie: document.getElementById('allergie')?.value || '',
@@ -412,7 +380,6 @@ async function inviaDatiAlFoglio() {
   };
 
   try {
-    // Invio dati al Web App
     await fetch("https://script.google.com/macros/s/AKfycbzb4OqdVC57Y4NWkEGT3SBX3lbi2FXNS5wDNNMV_57fk6AQ3Qbf-OCTLazk7UZGVxGupA/exec", {
       method: "POST",
       mode: "no-cors",
@@ -421,26 +388,14 @@ async function inviaDatiAlFoglio() {
     });
 
     alert("✅ Dati inviati correttamente!");
-
-  } catch (err) {
+  } catch(err) {
     console.error("❌ Errore durante l'invio:", err);
-    alert("❌ Errore durante l'invio dei dati. Controlla la connessione.");
+    alert("❌ Errore nell'invio dati. Controlla la connessione.");
   }
 }
 
-// =======================
-// Blocca il submit classico del form
-// =======================
-const form = document.getElementById("schedaForm");
-form.addEventListener("submit", function(e) {
-  e.preventDefault();
-});
-
-// =======================
 // Collega il bottone all'invio
-// =======================
-document.getElementById("btnInviaDatiSheet")
-        .addEventListener("click", inviaDatiAlFoglio);
+document.getElementById("btnInviaDatiSheet").addEventListener("click", inviaDatiAlFoglio);
 
   </script>
 
