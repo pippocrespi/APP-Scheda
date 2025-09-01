@@ -334,29 +334,27 @@
   </div>   
 
   <script>
-    async function inviaDatiAlFoglio() {
-  // Raccogli i dati dai campi della PWA
+    // =======================
+// Funzione per inviare dati
+// =======================
+async function inviaDatiAlFoglio() {
+  // Raccogli i dati dai campi della scheda
   const dati = {
     data: document.getElementById('data')?.value || '',
     ora: document.getElementById('ora')?.value || '',
 
     // Sezione X
-    emorragia_x: document.getElementById('emorragia_x_Sì')?.checked ? 'Sì' :
-                 document.getElementById('emorragia_x_No')?.checked ? 'No' : '',
+    emorragia_x: document.getElementById('emorragia_x_Sì')?.checked ? 'Sì' : (document.getElementById('emorragia_x_No')?.checked ? 'No' : ''),
     x_presidi_Compressione: document.getElementById('x_presidi_Compressione')?.checked ? 'Sì' : '',
     x_presidi_Medicazione: document.getElementById('x_presidi_Medicazione')?.checked ? 'Sì' : '',
     x_presidi_Israele: document.getElementById('x_presidi_Israele')?.checked ? 'Sì' : '',
     x_presidi_Tourniquet: document.getElementById('x_presidi_Tourniquet')?.checked ? 'Sì' : '',
 
     // Sezione A
-    coscienza: document.getElementById('coscienza_Sì')?.checked ? 'Sì' :
-               document.getElementById('coscienza_No')?.checked ? 'No' : '',
-    respira: document.getElementById('respira_Sì')?.checked ? 'Sì' :
-             document.getElementById('respira_No')?.checked ? 'No' : '',
-    vie_aeree: document.getElementById('vie_aeree_Pervie')?.checked ? 'Pervie' :
-               document.getElementById('vie_aeree_Ostruite')?.checked ? 'Ostruite' : '',
-    immobilizzazione: document.getElementById('immobilizzazione_Sì')?.checked ? 'Sì' :
-                       document.getElementById('immobilizzazione_No')?.checked ? 'No' : '',
+    coscienza: document.getElementById('coscienza_Sì')?.checked ? 'Sì' : (document.getElementById('coscienza_No')?.checked ? 'No' : ''),
+    respira: document.getElementById('respira_Sì')?.checked ? 'Sì' : (document.getElementById('respira_No')?.checked ? 'No' : ''),
+    vie_aeree: document.getElementById('vie_aeree_Pervie')?.checked ? 'Pervie' : (document.getElementById('vie_aeree_Ostruite')?.checked ? 'Ostruite' : ''),
+    immobilizzazione: document.getElementById('immobilizzazione_Sì')?.checked ? 'Sì' : (document.getElementById('immobilizzazione_No')?.checked ? 'No' : ''),
     a_presidi_Collare: document.getElementById('a_presidi_Collare')?.checked ? 'Sì' : '',
     a_presidi_Disostruzione: document.getElementById('a_presidi_Disostruzione')?.checked ? 'Sì' : '',
     a_presidi_Cannula: document.getElementById('a_presidi_Cannula')?.checked ? 'Sì' : '',
@@ -371,15 +369,10 @@
     saturimetria: document.getElementById('saturimetria')?.value || '',
 
     // Sezione C
-    polso_periferico: document.getElementById('polso_periferico_Sì')?.checked ? 'Sì' :
-                      document.getElementById('polso_periferico_No')?.checked ? 'No' : '',
-    polso_centrale: document.getElementById('polso_centrale_Sì')?.checked ? 'Sì' :
-                    document.getElementById('polso_centrale_No')?.checked ? 'No' : '',
-    ferite_esterne: document.getElementById('ferite_esterne_Sì')?.checked ? 'Sì' :
-                    document.getElementById('ferite_esterne_No')?.checked ? 'No' : '',
+    polso_periferico: document.getElementById('polso_periferico_Sì')?.checked ? 'Sì' : (document.getElementById('polso_periferico_No')?.checked ? 'No' : ''),
+    polso_centrale: document.getElementById('polso_centrale_Sì')?.checked ? 'Sì' : (document.getElementById('polso_centrale_No')?.checked ? 'No' : ''),
+    ferite_esterne: document.getElementById('ferite_esterne_Sì')?.checked ? 'Sì' : (document.getElementById('ferite_esterne_No')?.checked ? 'No' : ''),
     frequenza_cardiaca: document.getElementById('frequenza_cardiaca')?.value || '',
-
-    // Note e bacino
     Polso_forte: document.getElementById('Polso_forte')?.checked ? 'Sì' : '',
     Polso_debole: document.getElementById('Polso_debole')?.checked ? 'Sì' : '',
     Polso_irregolare: document.getElementById('Polso_irregolare')?.checked ? 'Sì' : '',
@@ -392,7 +385,7 @@
     Bacino_dolore: document.getElementById('Bacino_dolore')?.checked ? 'Sì' : '',
     Bacino_fascia_pelvica: document.getElementById('Bacino_fascia_pelvica')?.checked ? 'Sì' : '',
 
-    // Sezione D - neurologico
+    // Sezione D
     avpu: document.querySelector('input[name="avpu"]:checked')?.value || '',
     Trauma_cranico: document.getElementById('Trauma_cranico')?.checked ? 'Sì' : '',
     Agitazione_psicomotoria: document.getElementById('Agitazione_psicomotoria')?.checked ? 'Sì' : '',
@@ -418,31 +411,36 @@
     altro: document.querySelector('input[name="altro"]')?.value || ''
   };
 
-  // Creazione form dinamico
-  const form = document.createElement('form');
-  form.action = 'https://script.google.com/macros/s/AKfycbzb4OqdVC57Y4NWkEGT3SBX3lbi2FXNS5wDNNMV_57fk6AQ3Qbf-OCTLazk7UZGVxGupA/exec';
-  form.method = 'POST';
-  form.style.display = 'none';
+  try {
+    // Invio dati al Web App
+    await fetch("https://script.google.com/macros/s/AKfycbzb4OqdVC57Y4NWkEGT3SBX3lbi2FXNS5wDNNMV_57fk6AQ3Qbf-OCTLazk7UZGVxGupA/exec", {
+      method: "POST",
+      mode: "no-cors",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(dati)
+    });
 
-  // Aggiungi campi nascosti
-  for (let key in dati) {
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = key;
-    input.value = dati[key];
-    form.appendChild(input);
+    alert("✅ Dati inviati correttamente!");
+
+  } catch (err) {
+    console.error("❌ Errore durante l'invio:", err);
+    alert("❌ Errore durante l'invio dei dati. Controlla la connessione.");
   }
-
-  document.body.appendChild(form);
-  form.submit();
-  form.remove();
-
-  console.log('✅ Dati inviati:', dati);
-  alert("✅ Dati inviati correttamente!");
 }
 
-// Collega il bottone
-document.getElementById('btnInviaDatiSheet').addEventListener('click', inviaDatiAlFoglio);
+// =======================
+// Blocca il submit classico del form
+// =======================
+const form = document.getElementById("schedaForm");
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+});
+
+// =======================
+// Collega il bottone all'invio
+// =======================
+document.getElementById("btnInviaDatiSheet")
+        .addEventListener("click", inviaDatiAlFoglio);
 
   </script>
 
