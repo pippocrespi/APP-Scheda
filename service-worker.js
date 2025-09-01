@@ -1,4 +1,5 @@
-const CACHE_NAME = 'scheda-offline-cache-v1';
+const CACHE_VERSION = "v1"; // <--- cambia numero a ogni aggiornamento
+const CACHE_NAME = `scheda-offline-cache-${CACHE_VERSION}`;
 
 const urlsToCache = [
   '/APP-Scheda/',
