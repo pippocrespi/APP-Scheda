@@ -20,7 +20,7 @@
   <!-- Codice che mostra banner se c'è una nuova versione -->
   <script>
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js').then(registration => {
+  navigator.serviceWorker.register('service-worker.js').then(registration => {
 
     function showUpdateBanner(worker) {
       const banner = document.createElement('div');
