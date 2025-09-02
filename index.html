@@ -27,6 +27,12 @@ if ('serviceWorker' in navigator) {
       registration.update();
 
       function showUpdateBanner(worker) {
+        // Se non c’è connessione, non mostrare nulla
+        if (!navigator.onLine) return;
+
+        // Se il banner esiste già, non ricrearlo
+        if (document.getElementById('updateBanner')) return;
+
         const banner = document.createElement('div');
         banner.id = 'updateBanner';
         banner.style = `
@@ -75,13 +81,6 @@ if ('serviceWorker' in navigator) {
         document.getElementById('updateAppBtn').addEventListener('click', () => {
           worker.postMessage({ type: 'SKIP_WAITING' });
         });
-
-        // Scompare automaticamente dopo 10 secondi
-        setTimeout(() => {
-          banner.style.opacity = 0;
-          banner.style.transform = 'translateY(20px)';
-          banner.addEventListener('transitionend', () => banner.remove());
-        }, 10000);
       }
 
       if (registration.waiting) {
@@ -105,10 +104,22 @@ if ('serviceWorker' in navigator) {
         }
       });
 
+      // Nascondi il banner se si va offline
+      window.addEventListener('offline', () => {
+        const banner = document.getElementById('updateBanner');
+        if (banner) banner.remove();
+      });
+
+      // Se si torna online, rimostra il banner se c'è un update in attesa
+      window.addEventListener('online', () => {
+        if (registration.waiting) {
+          showUpdateBanner(registration.waiting);
+        }
+      });
+
     });
 }
 </script>
-
 
   
   <h1>Scheda Valutazione</h1>
