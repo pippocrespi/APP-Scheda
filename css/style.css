@@ -288,7 +288,7 @@ input[type="number"] {
 
 /* Media query per schermi piccoli */
 @media (max-width: 768px) {
-    input[type="date"], input[type="time"], input[type="text"], input[type="number"] {
+    input[type="date"], input[type="time"] {
         width: fit-content;  /* Mantieni la larghezza auto su schermi piccoli */
         font-size: 0.85rem;   /* Ridurre ulteriormente la dimensione del font */
         padding: 5px;         /* Ridurre l'imbottitura per risparmiare spazio */
