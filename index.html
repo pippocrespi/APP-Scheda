@@ -140,7 +140,7 @@
     <input type="time" id="ora_attivazione" name="ora_attivazione" data-label="ora_attivazione">
 
     <label>Dinamica intervento</label>
-    <input type="text" id="dinamica" name="dinamica" data-label="dinamica">
+    <input type="text" id="dinamica" name="dinamica" data-label="dinamica" style="width: 100%;">
     <br><br>
 
     <button class="accordion" id="sanitaria">+ &emsp; Sanitaria</button>
@@ -476,7 +476,70 @@
     </div>
     <button class="accordion">+ &emsp; Valanga</button>
     <div class="panel">
-      <label>TODO</label>
+      <label>Ora Valanga</label>
+      <input type="time" id="ora_valanga" name="ora_valanga" data-label="ora_valanga">
+      <label>Ora del disseppellimento del viso</label>
+      <input type="time" id="ora_disseppellimento" name="ora_disseppellimento" data-label="ora_disseppellimento">
+      <label>Durata del seppellimento</label><span id="durata_seppellimento">--:--</span>
+
+      <label>Vie aeree pervie</label>
+      <div class="checkbox-group exclusive-group">
+        <label><input type="checkbox" id="valanga_vie_aeree_si" name="valanga_vie_aeree" value="valanga_vie_aeree_si"
+            data-label="valanga_vie_aeree">
+          Si</label>
+        <label><input type="checkbox" id="valanga_vie_aeree_no" name="valanga_vie_aeree" value="valanga_vie_aeree_no"
+            data-label="valanga_vie_aeree">
+          No</label>
+      </div>
+
+      <label>Segni vitali presenti?</label>
+      <div class="checkbox-group exclusive-group">
+        <label><input type="checkbox" id="valanga_segni_vitali_si" name="valanga_segni_vitali"
+            value="valanga_segni_vitali_si" data-label="valanga_segni_vitali">
+          Si</label>
+        <label><input type="checkbox" id="valanga_segni_vitali_no" name="valanga_segni_vitali"
+            value="valanga_segni_vitali_no" data-label="valanga_segni_vitali">
+          No</label>
+      </div>
+
+      <label for="temperatura_corporea">Temperatura corporea (°C)</label>
+      <input type="number" id="temperatura_corporea" name="temperatura_corporea" step="0.1" min="25" max="45"
+        inputmode="decimal" data-label="temperatura_corporea" placeholder="Es: 36.5" class="small-input">
+
+      <div id="valanga_check_extra" class="hidden">
+        <label>Monitora ECG appena possibile:</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="asistolia" value="asistolia"> Asistolia</label>
+          <label><input type="checkbox" name="FV" value="FV"> FV</label>
+          <label><input type="checkbox" name="PEA" value="PEA"> PEA</label>
+          <label><input type="checkbox" name="non_noto" value="non_noto"> Non noto</label>
+        </div>
+
+        <label>Lesioni letali</label>
+        <div class="checkbox-group exclusive-group">
+        <label><input type="checkbox" id="lesioni_letali_si" name="lesioni_letali"
+            value="lesioni_letali_si" data-label="lesioni_letali">
+          Si</label>
+        <label><input type="checkbox" id="lesioni_letali_no" name="lesioni_letali"
+            value="lesioni_letali_no" data-label="lesioni_letali">
+          No</label>
+      </div>
+
+      <label> TODO : Modificare tramite script in base alla scheda e ai dati che abbiamo (probabilmente dobbiamo aggiungere checkbox)</label>
+
+      </div>
+
+      
+
+      <div id="extra_vitali_si" class="hidden">
+        <label>Parametri da valutare:</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="extra" value="extra"> TODO : COPIARE PANNELLO VERDE SU SCHEDA</label>
+        </div>
+      </div>
+
+
+
     </div>
 
     <h2>Tabella Rivalutazione Paziente</h2>
@@ -506,19 +569,19 @@
         </tr>
         <tr>
           <td>Freq. Respiratoria</td>
-          <td><input type="number" onchange="handleInput(this)"></td>
+          <td><input type="number" inputmode="numeric" onchange="handleInput(this)"></td>
         </tr>
         <tr>
           <td>Freq. Polso</td>
-          <td><input type="number" onchange="handleInput(this)"></td>
+          <td><input type="number" inputmode="numeric" onchange="handleInput(this)"></td>
         </tr>
         <tr>
           <td>Saturimetro</td>
-          <td><input type="number" onchange="handleInput(this)"></td>
+          <td><input type="number" inputmode="numeric" onchange="handleInput(this)"></td>
         </tr>
         <tr>
           <td>Dolore</td>
-          <td><input type="number" onchange="handleInput(this)"></td>
+          <td><input type="number" inputmode="numeric" onchange="handleInput(this)"></td>
         </tr>
       </tbody>
     </table>
@@ -640,6 +703,9 @@
     <script src="js/fillPDF.js"></script>
     <script src="js/accordion.js"></script>
     <script src="js/tableRivalutation.js"></script>
+    <script src="js/ecgAvalanches.js"></script>
+    <script src="js/colorTemp.js"></script>
+    <script src="js/showParametriVitaliSi.js"></script>
     <script>
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/APP-Scheda/service-worker.js')

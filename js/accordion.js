@@ -25,3 +25,12 @@ for (var i = 0; i < acc.length; i++) {
     }
   });
 }
+
+
+function aggiornaAltezzaAccordion(panel) {
+    if (panel && panel.style.maxHeight) {
+      // Recalcola l'altezza se è già aperto
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  }
+  
