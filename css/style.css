@@ -285,3 +285,20 @@ input[type="number"] {
         background-color: #d9534f;
     }
 }
+
+/* Media query per schermi piccoli */
+@media (max-width: 768px) {
+    /* Modifica la larghezza delle colonne con date e orari */
+    .col-data, .col-ora {
+        width: 100px; /* Imposta una larghezza più piccola per data e orario */
+        font-size: 0.9rem; /* Riduci la dimensione del font per risparmiare spazio */
+    }
+
+    /* Per le celle della tabella contenenti date e ore */
+    td.date, td.time {
+        max-width: 120px; /* Impostiamo un massimo per evitare l'allargamento */
+        text-overflow: ellipsis; /* Aggiunge i puntini se il testo è troppo lungo */
+        overflow: hidden; /* Nasconde il testo che esce dalla cella */
+        white-space: nowrap; /* Impedisce che il testo vada a capo */
+    }
+}
