@@ -159,3 +159,28 @@ input[type="number"] {
     display: none;
     overflow: hidden;
   } 
+
+
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+    border: 1px solid #999;
+    padding: 8px;
+    text-align: center;
+  }
+  select, input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+
+  /* Colorazioni tenui */
+  .verde { background-color: #d6f5d6; }      /* Verde tenue */
+  .giallo { background-color: #fff9cc; }     /* Giallo tenue */
+  .arancione { background-color: #ffe0b3; }  /* Arancione tenue */
+  .rosso { background-color: #f8cccc; }      /* Rosso tenue */
