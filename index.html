@@ -543,48 +543,13 @@
     </div>
 
     <h2>Tabella Rivalutazione Paziente</h2>
-    <table id="valutazione-table">
-      <thead>
-        <tr id="header-row">
-          <th>Parametro</th>
-          <th>1</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>RIVALUTA (Ora)</td>
-          <td class="auto-time"></td>
-        </tr>
-        <tr>
-          <td>AVPU</td>
-          <td>
-            <select onchange="handleInput(this)">
-              <option value="">--</option>
-              <option value="A">A</option>
-              <option value="V">V</option>
-              <option value="P">P</option>
-              <option value="U">U</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td>Freq. Respiratoria</td>
-          <td><input type="number" inputmode="numeric" onchange="handleInput(this)"></td>
-        </tr>
-        <tr>
-          <td>Freq. Polso</td>
-          <td><input type="number" inputmode="numeric" onchange="handleInput(this)"></td>
-        </tr>
-        <tr>
-          <td>Saturimetro</td>
-          <td><input type="number" inputmode="numeric" onchange="handleInput(this)"></td>
-        </tr>
-        <tr>
-          <td>Dolore</td>
-          <td><input type="number" inputmode="numeric" onchange="handleInput(this)"></td>
-        </tr>
-      </tbody>
-    </table>
+
+    <ul id="tabs">
+      <li class="tab active" data-index="1" onclick="showTab(1)">1</li>
+    </ul>
+    
+    <div id="tab-content"></div>
+    
 
     <br><br>
     <div class="section">

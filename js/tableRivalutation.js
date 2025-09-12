@@ -1,101 +1,183 @@
 let columnCount = 1;
+let activeTabIndex = 1;
 
-function handleInput(element) {
-  const cell = element.parentElement;
-  const colIndex = cell.cellIndex;
-  const table = document.getElementById("valutazione-table");
+const paramLabels = [
+    "RIVALUTA (Ora)",
+    "AVPU",
+    "Freq. Respiratoria",
+    "Freq. Polso",
+    "Saturimetro",
+    "Dolore"
+];
 
-  // Orario automatico
-  const rivalutaRow = table.rows[1];
-  const timeCell = rivalutaRow.cells[colIndex];
-  if (timeCell.textContent.trim() === "") {
-    const now = new Date();
-    const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    timeCell.textContent = timeString;
-  }
+// dati per ogni tab: tabData[colIndex] = array dei parametri {value}
+const tabData = {
+    1: paramLabels.map(() => ({ value: "" }))
+};
 
-  // Aggiunta nuova colonna se è l'ultima
-  if (colIndex === columnCount) {
-    addNewColumn();
-  }
+function showTab(index) {
+    activeTabIndex = index;
+    // aggiorna tab attivi
+    document.querySelectorAll("#tabs .tab").forEach(tab => tab.classList.remove("active"));
+    const activeTab = document.querySelector(`#tabs .tab[data-index="${index}"]`);
+    if (activeTab) activeTab.classList.add("active");
 
-  // Applica il colore in base al valore
-  applyColor(element);
+    renderTab(index);
 }
 
-function applyColor(element) {
-  const cell = element.parentElement;
-  const row = cell.parentElement;
-  const label = row.cells[0].textContent.trim();
+function renderTab(colIndex) {
+    const container = document.getElementById("tab-content");
+    container.innerHTML = "";
 
-  // Pulisci classi di colore precedenti
-  cell.classList.remove("verde", "giallo", "arancione", "rosso");
+    const table = document.createElement("table");
 
-  let value = element.value;
-  if (label === "AVPU") {
-    switch (value) {
-      case "A": cell.classList.add("verde"); break;
-      case "V": cell.classList.add("giallo"); break;
-      case "P": cell.classList.add("arancione"); break;
-      case "U": cell.classList.add("rosso"); break;
-    }
-  } else if (label === "Freq. Respiratoria") {
+    paramLabels.forEach((label, i) => {
+        const row = document.createElement("tr");
+
+        // prima colonna label fissa
+        const labelCell = document.createElement("td");
+        labelCell.textContent = label;
+        labelCell.classList.add("fixed-label");
+        row.appendChild(labelCell);
+
+        // seconda colonna input o span
+        const valueCell = document.createElement("td");
+
+        if (i === 0) {
+            // Orario automatico: span non modificabile
+            const span = document.createElement("span");
+            span.classList.add("auto-time");
+            span.textContent = tabData[colIndex][0].value || "";
+            // Non cambiare orario al click per evitare confusioni
+            valueCell.appendChild(span);
+        } else if (label === "AVPU") {
+            const select = document.createElement("select");
+            select.innerHTML = `
+        <option value="">--</option>
+        <option value="A">A</option>
+        <option value="V">V</option>
+        <option value="P">P</option>
+        <option value="U">U</option>
+      `;
+            select.value = tabData[colIndex][i].value;
+            select.onchange = (e) => handleInput(e.target, colIndex, i);
+            valueCell.appendChild(select);
+        } else {
+            const input = document.createElement("input");
+            input.type = "number";
+            input.inputMode = "numeric";
+            input.value = tabData[colIndex][i].value;
+            input.onchange = (e) => handleInput(e.target, colIndex, i);
+            valueCell.appendChild(input);
+        }
+
+        row.appendChild(valueCell);
+        table.appendChild(row);
+
+        // Applica il colore al caricamento (se valore presente)
+        if (i !== 0 && tabData[colIndex][i].value !== "") {
+            applyColor(valueCell.firstChild, label, tabData[colIndex][i].value);
+        }
+    });
+
+    container.appendChild(table);
+}
+
+function applyColor(element, label, value) {
+    const cell = element.closest("td");
+    if (!cell) return;
+
+    cell.classList.remove("verde", "giallo", "arancione", "rosso");
+
     let num = parseInt(value);
-    if (!isNaN(num)) {
-      if (num >= 12 && num <= 18) cell.classList.add("verde");
-      else if ((num >= 7 && num <= 11) || (num >= 19 && num <= 23)) cell.classList.add("giallo");
-      else cell.classList.add("rosso");
+    if (label === "AVPU") {
+        switch (value) {
+            case "A": cell.classList.add("verde"); break;
+            case "V": cell.classList.add("giallo"); break;
+            case "P": cell.classList.add("arancione"); break;
+            case "U": cell.classList.add("rosso"); break;
+        }
+    } else if (label === "Freq. Respiratoria") {
+        if (!isNaN(num)) {
+            if (num >= 12 && num <= 18) cell.classList.add("verde");
+            else if ((num >= 7 && num <= 11) || (num >= 19 && num <= 23)) cell.classList.add("giallo");
+            else cell.classList.add("rosso");
+        }
+    } else if (label === "Saturimetro") {
+        if (!isNaN(num)) {
+            if (num > 95) cell.classList.add("verde");
+            else if (num >= 90 && num <= 95) cell.classList.add("giallo");
+            else if (num < 90) cell.classList.add("rosso");
+        }
+    } else if (label === "Dolore") {
+        if (!isNaN(num)) {
+            if (num >= 0 && num <= 3) cell.classList.add("verde");
+            else if (num >= 4 && num <= 6) cell.classList.add("giallo");
+            else if (num >= 7 && num <= 10) cell.classList.add("rosso");
+        }
     }
-  } else if (label === "Saturimetro") {
-    let num = parseInt(value);
-    if (!isNaN(num)) {
-      if (num > 95) cell.classList.add("verde");
-      else if (num >= 90 && num <= 95) cell.classList.add("giallo");
-      else if (num < 90) cell.classList.add("rosso");
-    }
-  } else if (label === "Dolore") {
-    let num = parseInt(value);
-    if (!isNaN(num)) {
-      if (num >= 0 && num <= 3) cell.classList.add("verde");
-      else if (num >= 4 && num <= 6) cell.classList.add("giallo");
-      else if (num >= 7 && num <= 10) cell.classList.add("rosso");
-    }
-  }
 }
 
 function addNewColumn() {
-  columnCount++;
-  const table = document.getElementById("valutazione-table");
-
-  // Aggiungi intestazione
-  const headerRow = document.getElementById("header-row");
-  const newHeader = document.createElement("th");
-  newHeader.textContent = columnCount;
-  headerRow.appendChild(newHeader);
-
-  // RIGA 1: Orario
-  table.rows[1].appendChild(document.createElement("td")).classList.add("auto-time");
-
-  // RIGA 2: AVPU
-  const avpuCell = document.createElement("td");
-  const avpuSelect = document.createElement("select");
-  avpuSelect.innerHTML = `
-    <option value="">--</option>
-    <option value="A">A</option>
-    <option value="V">V</option>
-    <option value="P">P</option>
-    <option value="U">U</option>`;
-  avpuSelect.onchange = () => handleInput(avpuSelect);
-  avpuCell.appendChild(avpuSelect);
-  table.rows[2].appendChild(avpuCell);
-
-  // Campi numerici (righe 3–6)
-  for (let i = 3; i < table.rows.length; i++) {
-    const inputCell = document.createElement("td");
-    const input = document.createElement("input");
-    input.type = "number";
-    input.onchange = () => handleInput(input);
-    inputCell.appendChild(input);
-    table.rows[i].appendChild(inputCell);
+    columnCount++;
+    const newIndex = columnCount;
+  
+    // Aggiungi nuova tab in alto
+    const tabList = document.getElementById("tabs");
+    const newTab = document.createElement("li");
+    newTab.classList.add("tab");
+    newTab.textContent = newIndex;
+    newTab.dataset.index = newIndex;
+    newTab.onclick = () => showTab(newIndex);
+    tabList.appendChild(newTab);
+  
+    // Inizializza i dati per nuova colonna
+    tabData[newIndex] = paramLabels.map(() => ({ value: "" }));
+  
+    // **NON mostrare subito la nuova tab**
+    // Commenta o rimuovi la riga seguente per non cambiare tab automaticamente
+    // showTab(newIndex);
   }
-}
+  
+// Inizializza la pagina mostrando la prima tab
+window.onload = () => {
+    showTab(1);
+};
+
+function handleInput(element, colIndex, paramIndex) {
+    let value = element.value || element.textContent || "";
+  
+    // Se sto modificando una riga diversa dall'orario
+    // ma l'orario della colonna è vuoto, lo imposto automaticamente
+    if (paramIndex !== 0 && (!tabData[colIndex][0].value || tabData[colIndex][0].value.trim() === "")) {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      tabData[colIndex][0].value = timeString;
+  
+      // Aggiorno la vista se la tab è attiva
+      if (colIndex === activeTabIndex) {
+        const container = document.getElementById("tab-content");
+        const spanOrario = container.querySelector(".auto-time");
+        if(spanOrario) spanOrario.textContent = timeString;
+      }
+  
+      // Aggiorno il tab con "numero - orario"
+      const tab = document.querySelector(`#tabs .tab[data-index="${colIndex}"]`);
+      if (tab) {
+        tab.textContent = `${colIndex} - ${timeString}`;
+      }
+    }
+  
+    // Ora salvo il valore modificato
+    tabData[colIndex][paramIndex].value = value;
+  
+    // Applica colore solo se non è la riga orario
+    if(paramIndex !== 0){
+      applyColor(element, paramLabels[paramIndex], value);
+    }
+  
+    // Se siamo nell’ultima colonna (tab), aggiungine una nuova
+    if (colIndex === columnCount) {
+      addNewColumn();
+    }
+  }
