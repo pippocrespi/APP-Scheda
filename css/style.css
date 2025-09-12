@@ -12,11 +12,16 @@
 button,
 input[type="button"],
 input[type="submit"] {
-    -webkit-user-select: none; /* Safari/Chrome */
-    -moz-user-select: none;    /* Firefox */
-    -ms-user-select: none;     /* IE/Edge */
-    user-select: none;         /* standard */
-    touch-action: manipulation; /* migliora il tap su mobile */
+    -webkit-user-select: none;
+    /* Safari/Chrome */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE/Edge */
+    user-select: none;
+    /* standard */
+    touch-action: manipulation;
+    /* migliora il tap su mobile */
 }
 
 button {
@@ -48,7 +53,8 @@ body {
     padding: 20px;
     line-height: 1.6;
     color: #333;
-    background: linear-gradient(to bottom right, #f4f9ff, #ffffff); /* Tema chiaro */
+    background: linear-gradient(to bottom right, #f4f9ff, #ffffff);
+    /* Tema chiaro */
     transition: background 0.3s, color 0.3s;
 }
 
@@ -119,7 +125,8 @@ table {
     margin-top: 10px;
 }
 
-th, td {
+th,
+td {
     text-align: left;
     padding: 8px;
 }
@@ -149,35 +156,59 @@ input[type="number"] {
     transition: 0.4s;
 }
 
-.active, .accordion:hover {
+/* Aggiungi la classe active per il cambio colore quando viene premuto */
+.active,
+.accordion:hover {
     background-color: #ccc;
 }
 
+/* Gestione della transizione dell'altezza del pannello */
 .panel {
     padding: 0 18px;
     background-color: white;
-    display: none;
+    max-height: 0;
     overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    /* Transizione animata */
 }
 
 /* Colorazioni tenui */
-.verde { background-color: #d6f5d6; }      /* Verde tenue */
-.giallo { background-color: #fff9cc; }     /* Giallo tenue */
-.arancione { background-color: #ffe0b3; }  /* Arancione tenue */
-.rosso { background-color: #f8cccc; }      /* Rosso tenue */
+.verde {
+    background-color: #d6f5d6;
+}
+
+/* Verde tenue */
+.giallo {
+    background-color: #fff9cc;
+}
+
+/* Giallo tenue */
+.arancione {
+    background-color: #ffe0b3;
+}
+
+/* Arancione tenue */
+.rosso {
+    background-color: #f8cccc;
+}
+
+/* Rosso tenue */
 
 
 /* -------------------------------------------- */
 /* Media query per tema scuro */
 @media (prefers-color-scheme: dark) {
+
     /* Corpo per tema scuro */
     body {
-        background: linear-gradient(to bottom right, #181818, #333333); /* Tema scuro */
+        background: linear-gradient(to bottom right, #181818, #333333);
+        /* Tema scuro */
         color: #f4f4f4;
     }
 
     /* Titoli e testo */
-    h1, h2 {
+    h1,
+    h2 {
         color: #f4f4f4;
     }
 
@@ -217,7 +248,8 @@ input[type="number"] {
         color: #f4f4f4;
     }
 
-    th, td {
+    th,
+    td {
         border: 1px solid #555;
     }
 
@@ -227,7 +259,8 @@ input[type="number"] {
         color: #f4f4f4;
     }
 
-    .active, .accordion:hover {
+    .active,
+    .accordion:hover {
         background-color: #666;
     }
 
@@ -236,8 +269,19 @@ input[type="number"] {
     }
 
     /* Colorazioni per valori */
-    .verde { background-color: #4b8f53; }
-    .giallo { background-color: #f4e26b; }
-    .arancione { background-color: #f2b400; }
-    .rosso { background-color: #d9534f; }
+    .verde {
+        background-color: #4b8f53;
+    }
+
+    .giallo {
+        background-color: #f4e26b;
+    }
+
+    .arancione {
+        background-color: #f2b400;
+    }
+
+    .rosso {
+        background-color: #d9534f;
+    }
 }

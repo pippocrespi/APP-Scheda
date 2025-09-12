@@ -7,17 +7,21 @@ for (var i = 0; i < acc.length; i++) {
 
     // Toggle panel visibility
     var panel = this.nextElementSibling;
-    if (panel.style.display === "block") {
-      panel.style.display = "none";
-    } else {
-      panel.style.display = "block";
-    }
 
     // Cambia il testo da + TESTO a - TESTO e viceversa
     if (this.innerText.trim().startsWith("+")) {
       this.innerText = this.innerText.replace("+", "-");
     } else if (this.innerText.trim().startsWith("-")) {
       this.innerText = this.innerText.replace("-", "+");
+    }
+
+    // Gestisci l'altezza massima per l'animazione
+    if (this.classList.contains("active")) {
+      // Imposta l'altezza massima del pannello per farlo espandere
+      panel.style.maxHeight = panel.scrollHeight + "px"; // scrollHeight è l'altezza effettiva del contenuto
+    } else {
+      // Chiudi il pannello riducendo maxHeight a 0
+      panel.style.maxHeight = null; // In automatico si ridurrà a 0 e il pannello si nasconderà
     }
   });
 }
