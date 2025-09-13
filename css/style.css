@@ -86,7 +86,7 @@ h2 {
 }
 
 .form-row label {
-  width: auto;
+  max-width: 150px;
   margin-right: 30px;
   font-weight: bold;
 }
@@ -113,7 +113,7 @@ h2 {
 
 label {
     font-weight: bold;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     display: block;
 }
 
@@ -123,8 +123,8 @@ textarea {
     width: 100%;
     padding: 10px;
     height: 40px; 
-    font-size: 1.2rem;
-    border: 2px solid black;
+    font-size: 1rem;
+    border: 1px solid #c0c0c0;
     border-radius: 10px;
     margin-top: 5px;
     background-color: #fff;
