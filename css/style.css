@@ -25,7 +25,7 @@ input[type="submit"] {
 }
 
 button {
-    background-color: #007BFF;
+    background-color: #004e98;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -37,9 +37,9 @@ button {
 
 .button_negativo {
     background-color: #FFFFFF;
-    color: #007BFF;
+    color: #004e98;
     border-style: solid;
-    border-color: #007BFF;
+    border-color: #004e98;
     padding: 10px 20px;
     font-size: 1rem;
     border-radius: 5px;
@@ -148,8 +148,8 @@ input[type="radio"] {
     display: flex;
     align-items: center;
     margin: 6px 0;
+    gap: 6px;
 }
-
 
 .input-stepper {
   display: flex;
@@ -160,17 +160,17 @@ input[type="radio"] {
 
 .input-stepper input {
   flex: 1;
-  height: 40px !important;   /* forza altezza corretta ignorando global input */
+  height: 40px !important; 
   padding: 0 10px;
   font-size: 1.2rem;
   border: 2px solid black;
   border-radius: 10px;
   box-sizing: border-box;
-  margin: 0;                /* annulla eventuali margin globali */
+  margin: 0;            
 }
 
 .input-stepper button {
-  height: 40px;             /* stessa altezza dell’input */
+  height: 40px;             
   width: 40px;
   padding: 0;
   font-size: 1.2rem;
@@ -184,6 +184,72 @@ input[type="radio"] {
   align-items: center;
   justify-content: center;
 }
+
+.separa-linea label {
+  display: flex;              /* allinea radio, lettera e testo */
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;  /* linea divisoria */
+  gap: 8px;                   /* spazio tra radio e resto */
+}
+
+.separa-linea label:last-child {
+  border-bottom: none;        /* niente linea sull’ultimo */
+}
+
+.separa-linea b {
+  margin-right: 10px;         /* spazio tra lettera e descrizione */
+  display: inline-block;
+  font-weight: bold;
+  font-size: 1.8rem;   
+  min-width: 20px;            /* fissa spazio per allineare le lettere */
+  text-align: center;
+}
+
+.important {
+  border-left: 6px solid #ff6700; /* bordo arancione a sinistra */
+  background-color: #ffdfc9;     /* sfondo tenue arancione */
+  padding: 12px 15px;
+  margin: 15px 0;
+  border-radius: 6px;
+}
+
+.important label {
+  font-weight: bold;
+}
+
+.custom-slider {
+  -webkit-appearance: none;
+  height: 2px;
+  background: linear-gradient(to left, #ff0000, #ffff00, #00ff00); /* sfumatura totale */
+  outline: none;
+}
+
+/* thumb standard */
+.custom-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: black;
+  cursor: pointer;
+  margin-top: -5px; /* centra il thumb sul track */
+}
+
+/* Firefox */
+.custom-slider::-moz-range-track {
+  background: linear-gradient(to left, #ff0000, #ffff00, #00ff00);
+  height: 4px;
+  border-radius: 5px;
+}
+.custom-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: black;
+  cursor: pointer;
+}
+
 
 
 .section {
@@ -262,6 +328,8 @@ input[type="number"] {
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     transition: max-height 0.3s ease-out;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
     /* Transizione animata */
 }
 

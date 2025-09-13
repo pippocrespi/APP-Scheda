@@ -296,7 +296,7 @@
         </div>
         
         <label>OPACS</label>
-        <div class="checkbox-group">
+        <div class="checkbox-group separa-linea">
           <label><input type="checkbox" name="opacs" value="O_simmetrico" data-label="OPACS"><b>O</b>   espande
             simmetrico</label>
           <label><input type="checkbox" name="opacs" value="P_enfisema" data-label="OPACS"><b>P</b>   enfisema
@@ -317,7 +317,7 @@
         <p class=" note">Valori normali 12-20 atti al minuto</p>
         
         <label>Saturimetria</label>
-        <div style="display:flex; align-items:center; gap:5px;">
+        <div class="input-stepper">
           <button type="button" id="btn_spo2_minus">-</button>
           <input type="number" id="saturimetria" name="saturimetria" data-min="50" data-max="100" inputmode="numeric"
             pattern="[0-9]*" data-label="Saturimetria" data-type="hard" required id="saturimetria">
@@ -371,7 +371,7 @@
         </table>
 
         <label>Frequenza cardiaca</label>
-        <div style="display:flex; align-items:center; gap:5px;">
+        <div class="input-stepper">
           <button type="button" id="btn_fc_minus">-</button>
           <input type="number" id="frequenza_cardiaca" name="frequenza_cardiaca" data-min="0" data-max="200"
             inputmode="numeric" pattern="[0-9]*" data-label="Frequenza cardiaca" data-type="soft"
@@ -391,7 +391,7 @@
           <label><input type="checkbox" id="Cute_cianotica" data-label="Note"> Cute cianotica</label>
           <label><input type="checkbox" id="Medicazione_ferite" data-label="Note"> Medicazione ferite</label>
         </div>
-
+        <br>
         <label>Bacino</label>
         <div class="checkbox-group">
           <label><input type="checkbox" id="Bacino_deformato" data-label="Bacino"> Deformato</label>
@@ -403,25 +403,25 @@
       <div class="section">
         <h2>Sezione D - Neurologico</h2>
         <label>AVPU</label>
-        <div class="radio-group">
+        <div class="radio-group separa-linea">
           <label>
             <input type="radio" id="avpu_A" name="avpu" value="A - Sveglio, risponde a tono e collabora"
               data-label="AVPU">
-            A - Sveglio, risponde a tono e collabora
+            <b>A</b> Sveglio, risponde a tono e collabora
           </label>
           <label>
             <input type="radio" id="avpu_B" name="avpu" value="V - Risponde se chiamato, confuso, poco collaborante"
               data-label="AVPU">
-            V - Risponde se chiamato, confuso, poco collaborante
+            <b>V</b> Risponde se chiamato, confuso, poco collaborante
           </label>
           <label>
             <input type="radio" id="avpu_P" name="avpu" value="P - Soporoso, non risponde, reagisce solo al dolore"
               data-label="AVPU">
-            P - Soporoso, non risponde, reagisce solo al dolore
+            <b>P</b> Soporoso, non risponde, reagisce solo al dolore
           </label>
           <label>
             <input type="radio" id="avpu_U" name="avpu" value="U - Non reagisce a nessuno stimolo" data-label="AVPU">
-            U - Non reagisce a nessuno stimolo
+            <b>U</b> Non reagisce a nessuno stimolo
           </label>
         </div>
 
@@ -433,37 +433,45 @@
             psicomotoria</label>
           <label><input type="checkbox" id="Convulsioni" data-label="Neurologico"> Convulsioni</label>
         </div>
-
+        <br>
         <label>Deficit forza arto</label>
-        <div class="checkbox-group">
+        <div class="checkbox-group tutte-in-riga">
           <label><input type="checkbox" id="DF_sup_DX" data-label="Deficit forza arto"> Sup. DX</label>
           <label><input type="checkbox" id="DF_sup_SX" data-label="Deficit forza arto"> Sup. SX</label>
+        </div>
+        <div class="checkbox-group tutte-in-riga">
           <label><input type="checkbox" id="DF_inf_DX" data-label="Deficit forza arto"> Inf. DX</label>
           <label><input type="checkbox" id="DF_inf_SX" data-label="Deficit forza arto"> Inf. SX</label>
         </div>
-
+ 
+        <br>
         <label>Deficit sensibilità arto</label>
-        <div class="checkbox-group">
-          <label><input type="checkbox" id="DS_sup_DX" data-label="Deficit sensibilità arto"> Sup. DX</label>
+        <div class="checkbox-group tutte-in-riga">
           <label><input type="checkbox" id="DS_sup_SX" data-label="Deficit sensibilità arto"> Sup. SX</label>
-          <label><input type="checkbox" id="DS_inf_DX" data-label="Deficit sensibilità arto"> Inf. DX</label>
-          <label><input type="checkbox" id="DS_inf_SX" data-label="Deficit sensibilità arto"> Inf. SX</label>
+          <label><input type="checkbox" id="DS_sup_DX" data-label="Deficit sensibilità arto"> Sup. DX</label>
         </div>
-
+        <div class="checkbox-group tutte-in-riga">
+          <label><input type="checkbox" id="DS_inf_SX" data-label="Deficit sensibilità arto"> Inf. SX</label>
+          <label><input type="checkbox" id="DS_inf_DX" data-label="Deficit sensibilità arto"> Inf. DX</label>
+        </div>
+        <br>
         <label>Non muove</label>
         <input type="text" id="non_muove" name="non_muove" data-label="Non muove">
-
+        <br>
+        <br>
         <label>Non sente toccare</label>
         <input type="text" id="non_sente" name="non_sente" data-label="Non sente toccare">
       </div>
 
       <div class="section">
         <h2>Sezione E - Testa piedi ed AMPIA</h2>
-        <label><strong>Esegui testa-piedi</strong></label>
+        <div class="important">
+          <label>Esegui testa-piedi</label>
         <div class="checkbox-group">
           <label><input type="checkbox" data-label="Esegui testa-piedi" id="testaPiedi" required> Fatto</label>
         </div>
-
+        </div>
+        <br>
         <!--
         <label>Dolore (1-10)</label>
       <input type="number" name="dolore" data-min="1" data-max="10" inputmode="numeric" pattern="[0-9]*"
@@ -472,9 +480,9 @@
         <label>Dolore (1-10)</label>
         <span id="doloreValue">NON DEFINITO</span>
         <div class="slider-container">
-          <input type="range" id="doloreRange" min="1" max="10" value="0" step="1" id="doloreRange">
+          <input class="custom-slider" type="range" id="doloreRange" min="1" max="10" value="0" step="1" id="doloreRange">
         </div>
-
+        <br>
         <script>
           const doloreRange = document.getElementById('doloreRange');
           const doloreValue = document.getElementById('doloreValue');
@@ -484,22 +492,26 @@
           });
         </script>
 
-
-
-        <label>Allergie</label>
+          <label>Allergie</label>
         <input type="text" id="allergie" name="allergie" data-label="Allergie">
-
+        <br>
+        <br>
         <label>Medicinali</label>
         <input type="text" id="farmaci" name="medicinali" data-label="Medicinali">
-
+        <br>
+        <br>
         <label>Patologie</label>
         <input type="text" id="patologie" name="patologie" data-label="Patologie">
-
+        <br>
+        <br>
         <label>Ultimo pasto</label>
         <input type="text" id="ultimo_pasto" name="ultimo_pasto" data-label="Ultimo pasto">
-
+        <br>
+        <br>
         <label>Altro</label>
         <input type="text" name="altro" data-label="Altro">
+ 
+        
       </div>
     </div>
     <button class="accordion">+ &emsp; Valanga</button>
