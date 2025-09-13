@@ -12,7 +12,6 @@
   <title>Scheda Valutazione X-A-B-C-D-E</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/print.css" media="print">
-
 </head>
 
 <body>
@@ -122,46 +121,63 @@
   </script>
 
 
-  <h1>Scheda Valutazione</h1>
-  <h1>X-A-B-C-D-E</h1>
-
+  <h1>Scheda Valutazione Paziente</h1>
 
   <form>
-    <label id="gpsLabel" style="font-size: 12px; color: gray;">
-      Posizione: caricamento...
-    </label>
-    <label>Data</label>
-    <input type="date" id="data" name="data" data-label="Data">
+    <!-- Ho messo i gruppi di label e input dentro a dei blocchi colorati così possiamo mettere degli stili più carini da vedere -->  
+    <div class="gruppo">
+      <label id="gpsLabel" style="font-size: 16px; color: gray;">
+        Posizione: caricamento...
+      </label>
+    <!-- Ho messo la classe form row così alcuni elementi dove il testo inserito è corto (ad es. date) sono tutti sulla stessa riga -->
+    <div class="form-row">
+      <label>Data</label>
+      <input type="date" id="data" name="data" data-label="Data">
+    </div>
 
-    <label>N° Scheda</label>
-    <input type="number" id="numero_scheda" name="numero_scheda" data-label="numero_scheda">
-
-    <label>Ora attivazione</label>
-    <input type="time" id="ora_attivazione" name="ora_attivazione" data-label="ora_attivazione">
+    <div class="form-row">
+      <label>N° Scheda</label>
+      <input type="number" id="numero_scheda" name="numero_scheda" data-label="numero_scheda">
+    </div>
+    
+    <div class="form-row">
+      <label>Ora attivazione</label>
+      <input type="time" id="ora_attivazione" name="ora_attivazione" data-label="ora_attivazione">
+    </div>
+    
 
     <label>Dinamica intervento</label>
     <input type="text" id="dinamica" name="dinamica" data-label="dinamica" style="width: 100%;">
-    <br><br>
+    </div>
+
 
     <button class="accordion" id="sanitaria">+ &emsp; Sanitaria</button>
     <div class="panel">
       <div class="section">
-        <label>Orario valutazione</label>
-        <input type="time" id="ora" name="orario" data-label="Ora">
-
-        <label>Nome Cognome Paziente</label>
+        <div class="form-row">
+          <label>Orario valutazione</label>
+          <input type="time" id="ora" name="orario" data-label="Ora">
+        </div>
+        <label>Nome e Cognome Paziente</label>
         <input type="text" id="nome_cognome" name="nome_cognome" data-label="nome_cognome">
 
-        <label>Sesso</label>
-        <div class="checkbox-group exclusive-group">
+        <div class="form-row">
+          <label>Sesso</label>
+        <div class="checkbox-group exclusive-group tutte-in-riga">
           <label><input type="checkbox" id="sesso_m" name="sesso" value="M" data-label="M">
             M</label>
           <label><input type="checkbox" id="sesso_f" name="sesso" value="F" data-label="F">
             F</label>
+          </div>
+          
         </div>
-
-        <label>Data di nascita</label>
-        <input type="date" id="data_nascita" name="data_nascita" data-label="data_nascita">
+          
+        
+        <div class="form-row">
+          <label>Data di nascita</label>
+          <input type="date" id="data_nascita" name="data_nascita" data-label="data_nascita">
+        </div>
+        
 
         <label>Comune di nascita</label>
         <input type="text" id="Comune_nascita" name="Comune_nascita" data-label="Comune_nascita">
@@ -170,8 +186,9 @@
 
       <div class="section">
         <h2>Sezione X - Emorragia Massiva</h2>
-        <label>Emorragia massiva</label>
-        <div class="checkbox-group exclusive-group">
+        <div class="form-row">
+          <label>Emorragia massiva</label>
+        <div class="checkbox-group exclusive-group tutte-in-riga">
           <label><input type="checkbox" id="emorragia_x_Sì" name="emorragia_x" value="Sì"
               data-label="Emorragia massiva">
             Sì</label>
@@ -179,6 +196,8 @@
               data-label="Emorragia massiva">
             No</label>
         </div>
+        </div>
+        
 
 
         <label>Presidi e valutazione X</label>
@@ -206,36 +225,43 @@
           <li>Ventila pallone autoespandibie + filtro Hepa (30:2)</li>
           <li>DAE</li>
         </ul>
-        <label>Coscienza</label>
-        <div class="checkbox-group exclusive-group">
+        <div class="form-row">
+          <label>Coscienza</label>
+        <div class="checkbox-group exclusive-group tutte-in-riga">
           <label><input type="checkbox" id="coscienza_Sì" name="coscienza" value="Sì" data-label="Cosciente"> Sì</label>
           <label><input type="checkbox" id="coscienza_No" name="coscienza" value="No"> No</label>
         </div>
-
-        <label>Respira</label>
-        <div class="checkbox-group exclusive-group">
+        </div>
+        
+        <div class="form-row">
+          <label>Respira</label>
+        <div class="checkbox-group exclusive-group tutte-in-riga">
           <label><input type="checkbox" id="respira_Sì" name="respira" value="Sì" data-label="Respira"> Sì</label>
           <label><input type="checkbox" id="respira_No" name="respira" value="No" data-label="Respira"> No</label>
         </div>
-
-
-        <label>Vie aeree</label>
-        <div class="checkbox-group exclusive-group">
+        </div>
+        
+        <div class="form-row con-riga-di-chechbox">
+          <label>Vie aeree</label>
+        <div class="checkbox-group exclusive-group tutte-in-riga">
           <label><input type="checkbox" id="vie_aeree_Pervie" name="vie_aeree" value="Pervie" data-label="Vie aeree">
             Pervie</label>
           <label><input type="checkbox" id="vie_aeree_Ostruite" name="vie_aeree" value="Ostruite"
               data-label="Vie aeree">
             Ostruite</label>
         </div>
-
-
-        <label>Immobilizzazione manuale rachide cervicale</label>
-        <div class="checkbox-group exclusive-group">
+        </div>
+        
+        <div class="form-row con-riga-di-chechbox">
+          <label>Immobilizzazione manuale rachide cervicale</label>
+        <div class="checkbox-group exclusive-group tutte-in-riga">
           <label><input type="checkbox" id="immobilizzazione_Sì" name="immobilizzazione" value="Sì"
               data-label="Immobilizzazione manuale rachide cervicale"> Sì</label>
           <label><input type="checkbox" id="immobilizzazione_No" name="immobilizzazione" value="No"
               data-label="Immobilizzazione manuale rachide cervicale"> No</label>
         </div>
+        </div>
+        
 
 
         <label>Presidi e valutazione</label>
@@ -257,8 +283,9 @@
 
       <div class="section">
         <h2>Sezione B - Qualità Respiro</h2>
-        <label>Difficoltà respiratoria</label>
-        <div class="radio-group">
+        <div class="form-row con-riga-di-chechbox">
+          <label>Difficoltà respiratoria</label>
+        <div class="radio-group tutte-in-riga">
           <label><input type="radio" id="difficolta_respiratoria_Sì" name="difficolta_respiratoria" value="Sì"
               data-label="Difficoltà respiratoria">
             Sì</label>
@@ -266,19 +293,20 @@
               data-label="Difficoltà respiratoria">
             No</label>
         </div>
-
+        </div>
+        
         <label>OPACS</label>
         <div class="checkbox-group">
-          <label><input type="checkbox" name="opacs" value="O_simmetrico" data-label="OPACS">O - espande
+          <label><input type="checkbox" name="opacs" value="O_simmetrico" data-label="OPACS"><b>O</b>   espande
             simmetrico</label>
-          <label><input type="checkbox" name="opacs" value="P_enfisema" data-label="OPACS">P - enfisema
+          <label><input type="checkbox" name="opacs" value="P_enfisema" data-label="OPACS"><b>P</b>   enfisema
             sottocute/dolore/ferite</label>
-          <label><input type="checkbox" name="opacs" value="A_rumori" data-label="OPACS">A - rumori respiratori
+          <label><input type="checkbox" name="opacs" value="A_rumori" data-label="OPACS"><b>A</b>   rumori respiratori
             anomali</label>
         </div>
 
         <label>Frequenza respiratoria</label>
-        <div style="display:flex; align-items:center; gap:5px;">
+        <div class="input-stepper">
           <button type="button" id="btn_fr_minus">-</button>
           <input type="number" id="frequenza_respiratoria" name="frequenza_respiratoria" data-min="1" data-max="60"
             inputmode="numeric" pattern="[0-9]*" data-label="Frequenza respiratoria" data-type="soft"
@@ -287,7 +315,7 @@
         </div>
 
         <p class=" note">Valori normali 12-20 atti al minuto</p>
-
+        
         <label>Saturimetria</label>
         <div style="display:flex; align-items:center; gap:5px;">
           <button type="button" id="btn_spo2_minus">-</button>
