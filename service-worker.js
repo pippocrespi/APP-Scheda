@@ -1,4 +1,4 @@
-const CACHE_VERSION = "v1.2.3"; // <--- cambia numero a ogni aggiornamento
+const CACHE_VERSION = "v1.2.4"; // <--- cambia numero a ogni aggiornamento
 const CACHE_NAME = `scheda-offline-cache-${CACHE_VERSION}`;
 
 const urlsToCache = [
@@ -20,7 +20,7 @@ const urlsToCache = [
   '/APP-Scheda/js/localization.js',
   '/APP-Scheda/js/pdf.js',
 
-  // Libs
+  // Libs 
   '/APP-Scheda/libs/jspdf.es.js',
   '/APP-Scheda/libs/jspdf.es.min.js',
   '/APP-Scheda/libs/jspdf.node.js',

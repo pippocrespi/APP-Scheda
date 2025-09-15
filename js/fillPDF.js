@@ -10,9 +10,38 @@ async function fillPdfBrowser() {
 
   const pdfDoc = await PDFLib.PDFDocument.load(existingPdfBytes);
   const form = pdfDoc.getForm();
-
-
-
+// inizia la prova che ho fatto io (pippo) per compilare la scheda
+ if (document.getElementById("data").checked) {
+    form.getCheckBox('data_incidente').check();
+  }
+  if (document.getElementById("data").checked) {
+    form.getCheckBox('data').check();
+  }
+  if (document.getElementById("numero_scheda").checked) {
+    form.getCheckBox('numero_scheda').check();
+  }
+  if (document.getElementById("ora_incidente").checked) {
+    form.getCheckBox('ora_incidente').check();
+  }
+  if (document.getElementById("ora_attivazione").checked) {
+    form.getCheckBox('ora_attivazione').check();
+  }
+  if (document.getElementById("dinamica").checked) {
+    form.getCheckBox('dinamica').check();
+  }
+  if (document.getElementById("orario").checked) {
+    form.getCheckBox('orario').check();
+  }
+  if (document.getElementById("nome_cognome").checked) {
+    form.getCheckBox('nome_cognome').check();
+  }
+  if (document.getElementById("data_nascita").checked) {
+    form.getCheckBox('nato_il').check();
+  }
+  if (document.getElementById("Comune_nascita").checked) {
+    form.getCheckBox('nato_a').check();
+  }
+// fine tentativo pippo
   if (document.getElementById("emorragia_x_Sì").checked) {
     form.getCheckBox('emorragia_x_Sì').check();
   }
