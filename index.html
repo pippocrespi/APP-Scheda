@@ -515,15 +515,23 @@
       </div>
     </div>
     <button class="accordion">+ &emsp; Valanga</button>
+    
     <div class="panel">
+      <div class="form-row">
       <label>Ora Valanga</label>
       <input type="time" id="ora_valanga" name="ora_valanga" data-label="ora_valanga">
-      <label>Ora del disseppellimento del viso</label>
+      </div>
+      <div class="form-row">
+        <label>Ora del disseppellimento del viso</label>
       <input type="time" id="ora_disseppellimento" name="ora_disseppellimento" data-label="ora_disseppellimento">
-      <label>Durata del seppellimento</label><span id="durata_seppellimento">--:--</span>
+      </div>
+      <div class="form-row">
+      <label>Durata del seppellimento</label>
+      <span id="durata_seppellimento">--:--</span>
+      </div>
 
       <label>Vie aeree pervie</label>
-      <div class="checkbox-group exclusive-group">
+      <div class="checkbox-group exclusive-group tutte-in-riga">
         <label><input type="checkbox" id="valanga_vie_aeree_si" name="valanga_vie_aeree" value="valanga_vie_aeree_si"
             data-label="valanga_vie_aeree">
           Si</label>
@@ -533,7 +541,7 @@
       </div>
 
       <label>Segni vitali presenti?</label>
-      <div class="checkbox-group exclusive-group">
+      <div class="checkbox-group exclusive-group tutte-in-riga">
         <label><input type="checkbox" id="valanga_segni_vitali_si" name="valanga_segni_vitali"
             value="valanga_segni_vitali_si" data-label="valanga_segni_vitali">
           Si</label>
@@ -541,11 +549,12 @@
             value="valanga_segni_vitali_no" data-label="valanga_segni_vitali">
           No</label>
       </div>
-
-      <label for="temperatura_corporea">Temperatura corporea (°C)</label>
+      <div class="form-row">
+        <label for="temperatura_corporea">Temperatura corporea (°C)</label>
       <input type="number" id="temperatura_corporea" name="temperatura_corporea" step="0.1" min="25" max="45"
         inputmode="decimal" data-label="temperatura_corporea" placeholder="Es: 36.5" class="small-input">
-
+      </div>
+      
       <div id="valanga_check_extra" class="hidden">
         <label>Monitora ECG appena possibile:</label>
         <div class="checkbox-group">
@@ -582,19 +591,24 @@
 
     </div>
 
-    <h2>Tabella Rivalutazione Paziente</h2>
-
+    <br>
+    <div class="gruppo">
+    <h2>Tabella Rivalutazione Paziente</h2> 
+    <div style="text-align: center;">
+    <button style="border-radius: 0.4em;" onclick="addNewColumn()">+</button>
+  </div>
     <ul id="tabs">
       <li class="tab active" data-index="1" onclick="showTab(1)">1</li>
     </ul>
     
     <div id="tab-content"></div>
+    </div>
     
 
     <br><br>
     <div class="section">
       <h2>Seleziona o scatta foto da caricare</h2>
-      <div id="fotoWrapper" style="display:flex; align-items:center; gap:10px;">
+      <div id="fotoWrapper" style="display:flex; justify-content:center; align-items:center; gap:10px;">
         <input type="file" id="fotoPaziente" accept="image/*" style="display:none;">
         <button class="button_negativo" type="button" id="btnCambiaFoto">+</button>
         <button class="button_negativo" type="button" id="btnCancellaFoto">Cancella</button>

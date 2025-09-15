@@ -29,8 +29,8 @@ button {
     color: white;
     border: none;
     padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 5px;
+    font-size: 1.6rem;
+    border-radius: 0.8em;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -41,8 +41,8 @@ button {
     border-style: solid;
     border-color: #004e98;
     padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 5px;
+    font-size: 1.4rem;
+    border-radius: 0.7em;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -75,7 +75,7 @@ h2 {
 
 .gruppo {
     padding: 30px;
-    border-radius: 20px;
+    border-radius: 1.2em;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
@@ -125,7 +125,7 @@ textarea {
     height: 40px; 
     font-size: 1rem;
     border: 1px solid #c0c0c0;
-    border-radius: 10px;
+    border-radius: 0.6em;
     margin-top: 5px;
     background-color: #fff;
     box-sizing: border-box;
@@ -164,7 +164,7 @@ input[type="radio"] {
   padding: 0 10px;
   font-size: 1.2rem;
   border: 2px solid black;
-  border-radius: 10px;
+  border-radius: 0.6em;
   box-sizing: border-box;
   margin: 0;            
 }
@@ -175,7 +175,7 @@ input[type="radio"] {
   padding: 0;
   font-size: 1.2rem;
   line-height: 1;
-  border-radius: 10px;
+  border-radius: 0.6em;
   border: none;
   background-color: #004e98;
   color: #fff;
@@ -211,7 +211,7 @@ input[type="radio"] {
   background-color: #ffdfc9;     /* sfondo tenue arancione */
   padding: 12px 15px;
   margin: 15px 0;
-  border-radius: 6px;
+  border-radius: 0.6em;
 }
 
 .important label {
@@ -223,6 +223,7 @@ input[type="radio"] {
   height: 2px;
   background: linear-gradient(to left, #ff0000, #ffff00, #00ff00); /* sfumatura totale */
   outline: none;
+  font-size: 1.8rem;
 }
 
 /* thumb standard */
@@ -240,23 +241,76 @@ input[type="radio"] {
 .custom-slider::-moz-range-track {
   background: linear-gradient(to left, #ff0000, #ffff00, #00ff00);
   height: 4px;
-  border-radius: 5px;
+  border-radius: 0.6em;
 }
 .custom-slider::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background: black;
   cursor: pointer;
 }
 
+/* Stile per la lista */
+#tabs {
+  display: flex;             /* mette i <li> in orizzontale */
+  justify-content: center;   /* centra la lista nella pagina */
+  list-style: none;          /* toglie i pallini */
+  padding: 0;
+  margin: 20px 0;
+    overflow-x: auto;          /* abilita lo scroll orizzontale */
+  white-space: nowrap;  
+  scrollbar-width: thin; 
+}
 
+#tabs::-webkit-scrollbar {
+  height: auto;               /* altezza scrollbar (Chrome/Safari/Edge) */
+}
+
+#tabs::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+/* Stile per ogni tab */
+#tabs .tab {
+    flex: 0 0 auto;
+  padding: 10px 20px;
+  margin: 0 5px ;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 0.6em;
+  background-color: #f2f2f2;
+  transition: 0.3s;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Effetto hover */
+#tabs .tab:hover {
+  background-color: #ddd;
+}
+
+/* Tab attivo */
+#tabs .tab.active {
+  background-color: #4285f4;
+  color: white;
+  border-color: #4285f4;
+}
+
+#tab-content {
+    border: 2px solid #4285f4;
+    padding: 6px;
+    border-radius: 0.6em;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
 
 .section {
     background-color: #ffffff;
     padding: 20px;
     margin-bottom: 25px;
-    border-radius: 10px;
+    border-radius: 0.6em;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
@@ -299,7 +353,7 @@ input[type="number"] {
     cursor: pointer;
     padding: 18px;
     background-color: #004e98;
-    border-radius: 20px;
+    border-radius: 0.8em;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     margin-top: 22px;
     width: 100%;
@@ -328,33 +382,56 @@ input[type="number"] {
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     transition: max-height 0.3s ease-out;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 0.6em;
+    border-bottom-right-radius: 0.6em;
     /* Transizione animata */
 }
 
-/* Colorazioni tenui */
-.verde {
-    background-color: #d6f5d6;
+/* Verde */
+td.verde input,
+td.verde select {       
+  font-weight: bold;    
+  background-color: #d4edda;
+  border: 1px solid green;
 }
 
-/* Verde tenue */
-.giallo {
-    background-color: #fff9cc;
+/* Giallo */
+td.giallo input,
+td.giallo select {          
+  font-weight: bold;    
+  background-color: #fff9cc;
+  border: 1px solid goldenrod;
 }
 
-/* Giallo tenue */
-.arancione {
-    background-color: #ffe0b3;
+/* Arancione */
+td.arancione input,
+td.arancione select {          
+  font-weight: bold;    
+  background-color: #ffe0b3;
+  border: 1px solid orange;
 }
 
-/* Arancione tenue */
-.rosso {
-    background-color: #f8cccc;
+/* Rosso */
+td.rosso input,
+td.rosso select {          
+  font-weight: bold;    
+  background-color: #f8cccc;
+  border: 1px solid red;
 }
 
-/* Rosso tenue */
-
+/* RESET delle option per tutte le classi di colore */
+td.verde select option,
+td.giallo select option,
+td.arancione select option,
+td.rosso select option,
+select.verde option,
+select.giallo option,
+select.arancione option,
+select.rosso option {
+  color: #333;         
+  background-color: white; 
+  font-weight: initial;
+}
 
 /* -------------------------------------------- */
 /* Media query per tema scuro */
