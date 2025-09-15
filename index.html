@@ -123,36 +123,53 @@
 
   <h1>Scheda Valutazione Paziente</h1>
 
+  <!-- Pulsante per svuotare campi -->
+  <button type="button" onclick="openClearModal()" class="bottone-togli"
+    style="font-size: 1.2rem; display: block; margin: 20px auto;">
+    Svuota campi
+  </button>
+
+  <!-- Banner di conferma per svuotare tutti i campi -->
+  <div id="clearModal" class="modal">
+    <div class="modal-content">
+      <p>Sei sicuro di voler svuotare tutti i campi?</p>
+      <div class="modal-buttons">
+        <button id="confirmYes">Sì</button>
+        <button id="confirmNo">No</button>
+      </div>
+    </div>
+  </div>
+
   <form>
-    <!-- Ho messo i gruppi di label e input dentro a dei blocchi colorati così possiamo mettere degli stili più carini da vedere -->  
+    <!-- Ho messo i gruppi di label e input dentro a dei blocchi colorati così possiamo mettere degli stili più carini da vedere -->
     <div class="gruppo">
       <label id="gpsLabel" style="font-size: 16px; color: gray;">
         Posizione: caricamento...
       </label>
-    <!-- Ho messo la classe form row così alcuni elementi dove il testo inserito è corto (ad es. date) sono tutti sulla stessa riga -->
-    <div class="form-row">
-      <label>Data</label>
-      <input type="date" id="data" name="data" data-label="Data">
-    </div>
+      <!-- Ho messo la classe form row così alcuni elementi dove il testo inserito è corto (ad es. date) sono tutti sulla stessa riga -->
+      <div class="form-row">
+        <label>Data</label>
+        <input type="date" id="data" name="data" data-label="Data">
+      </div>
 
-    <div class="form-row">
-      <label>N° Scheda</label>
-      <input type="number" id="numero_scheda" name="numero_scheda" data-label="numero_scheda">
-    </div>
+      <div class="form-row">
+        <label>N° Scheda</label>
+        <input type="number" id="numero_scheda" name="numero_scheda" data-label="numero_scheda">
+      </div>
 
-    <div class="form-row">
-      <label>Ora incidente</label>
-      <input type="time" id="ora_incidente" name="ora_incidente" data-label="ora_incidente">
-    </div>
-    
-    <div class="form-row">
-      <label>Ora attivazione</label>
-      <input type="time" id="ora_attivazione" name="ora_attivazione" data-label="ora_attivazione">
-    </div>
-    
+      <div class="form-row">
+        <label>Ora incidente</label>
+        <input type="time" id="ora_incidente" name="ora_incidente" data-label="ora_incidente">
+      </div>
 
-    <label>Dinamica intervento</label>
-    <input type="text" id="dinamica" name="dinamica" data-label="dinamica" style="width: 100%;">
+      <div class="form-row">
+        <label>Ora attivazione</label>
+        <input type="time" id="ora_attivazione" name="ora_attivazione" data-label="ora_attivazione">
+      </div>
+
+
+      <label>Dinamica intervento</label>
+      <input type="text" id="dinamica" name="dinamica" data-label="dinamica" style="width: 100%;">
     </div>
 
 
@@ -168,21 +185,21 @@
 
         <div class="form-row">
           <label>Sesso</label>
-        <div class="checkbox-group exclusive-group tutte-in-riga">
-          <label><input type="checkbox" id="sesso_m" name="sesso" value="M" data-label="M">
-            M</label>
-          <label><input type="checkbox" id="sesso_f" name="sesso" value="F" data-label="F">
-            F</label>
+          <div class="checkbox-group exclusive-group tutte-in-riga">
+            <label><input type="checkbox" id="sesso_m" name="sesso" value="M" data-label="M">
+              M</label>
+            <label><input type="checkbox" id="sesso_f" name="sesso" value="F" data-label="F">
+              F</label>
           </div>
-          
+
         </div>
-          
-        
+
+
         <div class="form-row">
           <label>Data di nascita</label>
           <input type="date" id="data_nascita" name="data_nascita" data-label="data_nascita">
         </div>
-        
+
 
         <label>Comune di nascita</label>
         <input type="text" id="Comune_nascita" name="Comune_nascita" data-label="Comune_nascita">
@@ -193,16 +210,16 @@
         <h2>Sezione X - Emorragia Massiva</h2>
         <div class="form-row">
           <label>Emorragia massiva</label>
-        <div class="checkbox-group exclusive-group tutte-in-riga">
-          <label><input type="checkbox" id="emorragia_x_Sì" name="emorragia_x" value="Sì"
-              data-label="Emorragia massiva">
-            Sì</label>
-          <label><input type="checkbox" id="emorragia_x_No" name="emorragia_x" value="No"
-              data-label="Emorragia massiva">
-            No</label>
+          <div class="checkbox-group exclusive-group tutte-in-riga">
+            <label><input type="checkbox" id="emorragia_x_Sì" name="emorragia_x" value="Sì"
+                data-label="Emorragia massiva">
+              Sì</label>
+            <label><input type="checkbox" id="emorragia_x_No" name="emorragia_x" value="No"
+                data-label="Emorragia massiva">
+              No</label>
+          </div>
         </div>
-        </div>
-        
+
 
 
         <label>Presidi e valutazione X</label>
@@ -232,41 +249,42 @@
         </ul>
         <div class="form-row">
           <label>Coscienza</label>
-        <div class="checkbox-group exclusive-group tutte-in-riga">
-          <label><input type="checkbox" id="coscienza_Sì" name="coscienza" value="Sì" data-label="Cosciente"> Sì</label>
-          <label><input type="checkbox" id="coscienza_No" name="coscienza" value="No"> No</label>
+          <div class="checkbox-group exclusive-group tutte-in-riga">
+            <label><input type="checkbox" id="coscienza_Sì" name="coscienza" value="Sì" data-label="Cosciente">
+              Sì</label>
+            <label><input type="checkbox" id="coscienza_No" name="coscienza" value="No"> No</label>
+          </div>
         </div>
-        </div>
-        
+
         <div class="form-row">
           <label>Respira</label>
-        <div class="checkbox-group exclusive-group tutte-in-riga">
-          <label><input type="checkbox" id="respira_Sì" name="respira" value="Sì" data-label="Respira"> Sì</label>
-          <label><input type="checkbox" id="respira_No" name="respira" value="No" data-label="Respira"> No</label>
+          <div class="checkbox-group exclusive-group tutte-in-riga">
+            <label><input type="checkbox" id="respira_Sì" name="respira" value="Sì" data-label="Respira"> Sì</label>
+            <label><input type="checkbox" id="respira_No" name="respira" value="No" data-label="Respira"> No</label>
+          </div>
         </div>
-        </div>
-        
+
         <div class="form-row con-riga-di-chechbox">
           <label>Vie aeree</label>
-        <div class="checkbox-group exclusive-group tutte-in-riga">
-          <label><input type="checkbox" id="vie_aeree_Pervie" name="vie_aeree" value="Pervie" data-label="Vie aeree">
-            Pervie</label>
-          <label><input type="checkbox" id="vie_aeree_Ostruite" name="vie_aeree" value="Ostruite"
-              data-label="Vie aeree">
-            Ostruite</label>
+          <div class="checkbox-group exclusive-group tutte-in-riga">
+            <label><input type="checkbox" id="vie_aeree_Pervie" name="vie_aeree" value="Pervie" data-label="Vie aeree">
+              Pervie</label>
+            <label><input type="checkbox" id="vie_aeree_Ostruite" name="vie_aeree" value="Ostruite"
+                data-label="Vie aeree">
+              Ostruite</label>
+          </div>
         </div>
-        </div>
-        
+
         <div class="form-row con-riga-di-chechbox">
           <label>Immobilizzazione manuale rachide cervicale</label>
-        <div class="checkbox-group exclusive-group tutte-in-riga">
-          <label><input type="checkbox" id="immobilizzazione_Sì" name="immobilizzazione" value="Sì"
-              data-label="Immobilizzazione manuale rachide cervicale"> Sì</label>
-          <label><input type="checkbox" id="immobilizzazione_No" name="immobilizzazione" value="No"
-              data-label="Immobilizzazione manuale rachide cervicale"> No</label>
+          <div class="checkbox-group exclusive-group tutte-in-riga">
+            <label><input type="checkbox" id="immobilizzazione_Sì" name="immobilizzazione" value="Sì"
+                data-label="Immobilizzazione manuale rachide cervicale"> Sì</label>
+            <label><input type="checkbox" id="immobilizzazione_No" name="immobilizzazione" value="No"
+                data-label="Immobilizzazione manuale rachide cervicale"> No</label>
+          </div>
         </div>
-        </div>
-        
+
 
 
         <label>Presidi e valutazione</label>
@@ -290,23 +308,23 @@
         <h2>Sezione B - Qualità Respiro</h2>
         <div class="form-row con-riga-di-chechbox">
           <label>Difficoltà respiratoria</label>
-        <div class="radio-group tutte-in-riga">
-          <label><input type="radio" id="difficolta_respiratoria_Sì" name="difficolta_respiratoria" value="Sì"
-              data-label="Difficoltà respiratoria">
-            Sì</label>
-          <label><input type="radio" id="difficolta_respiratoria_No" name="difficolta_respiratoria" value="No"
-              data-label="Difficoltà respiratoria">
-            No</label>
+          <div class="radio-group tutte-in-riga">
+            <label><input type="radio" id="difficolta_respiratoria_Sì" name="difficolta_respiratoria" value="Sì"
+                data-label="Difficoltà respiratoria">
+              Sì</label>
+            <label><input type="radio" id="difficolta_respiratoria_No" name="difficolta_respiratoria" value="No"
+                data-label="Difficoltà respiratoria">
+              No</label>
+          </div>
         </div>
-        </div>
-        
+
         <label>OPACS</label>
         <div class="checkbox-group separa-linea">
-          <label><input type="checkbox" name="opacs" value="O_simmetrico" data-label="OPACS"><b>O</b>   espande
+          <label><input type="checkbox" name="opacs" value="O_simmetrico" data-label="OPACS"><b>O</b> espande
             simmetrico</label>
-          <label><input type="checkbox" name="opacs" value="P_enfisema" data-label="OPACS"><b>P</b>   enfisema
+          <label><input type="checkbox" name="opacs" value="P_enfisema" data-label="OPACS"><b>P</b> enfisema
             sottocute/dolore/ferite</label>
-          <label><input type="checkbox" name="opacs" value="A_rumori" data-label="OPACS"><b>A</b>   rumori respiratori
+          <label><input type="checkbox" name="opacs" value="A_rumori" data-label="OPACS"><b>A</b> rumori respiratori
             anomali</label>
         </div>
 
@@ -320,11 +338,12 @@
         </div>
 
         <p class=" note">Valori normali 12-20 atti al minuto</p>
-        
+
         <label>Saturimetria</label>
         <div class="input-stepper">
           <button type="button" id="btn_spo2_minus">-</button>
-          <input type="number" id="saturimetria" name="saturimetria" data-min="70" data-max="100" inputmode="numeric" pattern="[0-9]*" data-label="Saturimetria" data-type="hard">
+          <input type="number" id="saturimetria" name="saturimetria" data-min="70" data-max="100" inputmode="numeric"
+            pattern="[0-9]*" data-label="Saturimetria" data-type="hard">
           <button type="button" id="btn_spo2_plus">+</button>
         </div>
         <p class="note">Valori normali >94%</p>
@@ -447,7 +466,7 @@
           <label><input type="checkbox" id="DF_inf_DX" data-label="Deficit forza arto"> Inf. DX</label>
           <label><input type="checkbox" id="DF_inf_SX" data-label="Deficit forza arto"> Inf. SX</label>
         </div>
- 
+
         <br>
         <label>Deficit sensibilità arto</label>
         <div class="checkbox-group tutte-in-riga">
@@ -471,9 +490,9 @@
         <h2>Sezione E - Testa piedi ed AMPIA</h2>
         <div class="important">
           <label>Esegui testa-piedi</label>
-        <div class="checkbox-group">
-          <label><input type="checkbox" data-label="Esegui testa-piedi" id="testaPiedi"> Fatto</label>
-        </div>
+          <div class="checkbox-group">
+            <label><input type="checkbox" data-label="Esegui testa-piedi" id="testaPiedi"> Fatto</label>
+          </div>
         </div>
         <br>
         <!--
@@ -496,7 +515,7 @@
           });
         </script>
 
-          <label>Allergie</label>
+        <label>Allergie</label>
         <input type="text" id="allergie" name="allergie" data-label="Allergie">
         <br>
         <br>
@@ -514,24 +533,24 @@
         <br>
         <label>Altro</label>
         <input type="text" name="altro" data-label="Altro">
- 
-        
+
+
       </div>
     </div>
     <button class="accordion">+ &emsp; Valanga</button>
-    
+
     <div class="panel">
       <div class="form-row">
-      <label>Ora Valanga</label>
-      <input type="time" id="ora_valanga" name="ora_valanga" data-label="ora_valanga">
+        <label>Ora Valanga</label>
+        <input type="time" id="ora_valanga" name="ora_valanga" data-label="ora_valanga">
       </div>
       <div class="form-row">
         <label>Ora del disseppellimento del viso</label>
-      <input type="time" id="ora_disseppellimento" name="ora_disseppellimento" data-label="ora_disseppellimento">
+        <input type="time" id="ora_disseppellimento" name="ora_disseppellimento" data-label="ora_disseppellimento">
       </div>
       <div class="form-row">
-      <label>Durata del seppellimento</label>
-      <span id="durata_seppellimento">--:--</span>
+        <label>Durata del seppellimento</label>
+        <span id="durata_seppellimento">--:--</span>
       </div>
 
       <label>Vie aeree pervie</label>
@@ -555,10 +574,10 @@
       </div>
       <div class="form-row">
         <label for="temperatura_corporea">Temperatura corporea (°C)</label>
-      <input type="number" id="temperatura_corporea" name="temperatura_corporea" step="0.1" min="25" max="45"
-        inputmode="decimal" data-label="temperatura_corporea" placeholder="Es: 36.5" class="small-input">
+        <input type="number" id="temperatura_corporea" name="temperatura_corporea" step="0.1" min="25" max="45"
+          inputmode="decimal" data-label="temperatura_corporea" placeholder="Es: 36.5" class="small-input">
       </div>
-      
+
       <div id="valanga_check_extra" class="hidden">
         <label>Monitora ECG appena possibile:</label>
         <div class="checkbox-group">
@@ -570,19 +589,20 @@
 
         <label>Lesioni letali</label>
         <div class="checkbox-group exclusive-group">
-        <label><input type="checkbox" id="lesioni_letali_si" name="lesioni_letali"
-            value="lesioni_letali_si" data-label="lesioni_letali">
-          Si</label>
-        <label><input type="checkbox" id="lesioni_letali_no" name="lesioni_letali"
-            value="lesioni_letali_no" data-label="lesioni_letali">
-          No</label>
+          <label><input type="checkbox" id="lesioni_letali_si" name="lesioni_letali" value="lesioni_letali_si"
+              data-label="lesioni_letali">
+            Si</label>
+          <label><input type="checkbox" id="lesioni_letali_no" name="lesioni_letali" value="lesioni_letali_no"
+              data-label="lesioni_letali">
+            No</label>
+        </div>
+
+        <label> TODO : Modificare tramite script in base alla scheda e ai dati che abbiamo (probabilmente dobbiamo
+          aggiungere checkbox)</label>
+
       </div>
 
-      <label> TODO : Modificare tramite script in base alla scheda e ai dati che abbiamo (probabilmente dobbiamo aggiungere checkbox)</label>
 
-      </div>
-
-      
 
       <div id="extra_vitali_si" class="hidden">
         <label>Parametri da valutare:</label>
@@ -597,17 +617,21 @@
 
     <br>
     <div class="gruppo">
-    <h2>Tabella Rivalutazione Paziente</h2> 
-    <div style="text-align: center;">
-    <button style="border-radius: 0.4em; font-size: 1.2rem;" onclick="addNewColumn()">Nuova Rivalutazione</button>
-  </div>
-    <ul id="tabs">
-      <li class="tab active" data-index="1" onclick="showTab(1)">1</li>
-    </ul>
-    
-    <div id="tab-content"></div>
+      <h2>Tabella Rivalutazione Paziente</h2>
+      <div style="text-align: center;">
+        <button style="border-radius: 0.4em; font-size: 1.2rem;" onclick="addNewColumn()">Nuova Rivalutazione</button>
+      </div>
+      <ul id="tabs">
+        <li class="tab active" data-index="1" onclick="showTab(1)">1</li>
+      </ul>
+
+      <div id="tab-content"></div>
+      <div style="display: flex; justify-content: center;">
+        <button class="bottone-togli" onclick="removeActiveTab()">-</button>
+      </div>
+
     </div>
-    
+
 
     <br><br>
     <div class="section">
@@ -622,11 +646,21 @@
     </div>
     <div class="section">
       <div style="text-align: center; margin-top: 30px;">
-        <button type="button" onclick="generaPDF()" id="btnInviaDatiSheet">Salva PDF</button>
+        <button type="button" onclick="generaPDF()">Salva PDF</button>
         <br>
         <p> </p>
         <br>
-        <button id="btnCompilaPDF">TEST Compila direttamente scheda</button>
+        <button id="btnCompilaPDF" id="btnInviaDatiSheet">TEST Compila direttamente scheda</button>
+      </div>
+    </div>
+    <!-- HTML per il messaggio di conferma che compare se si vuole eliminare una tab anche parzialmente compilata -->
+    <div id="confirmModal" class="modal">
+      <div class="modal-content">
+        <p id="confirmMessage">La rivalutazione contiene dati. Vuoi davvero eliminarla?</p>
+        <div class="modal-buttons">
+          <button id="confirmYes">Sì</button>
+          <button id="confirmNo">No</button>
+        </div>
       </div>
     </div>
 
@@ -641,7 +675,14 @@
         // Raccogli i dati dai campi
         const dati = new FormData();
         dati.append("data", document.getElementById('data')?.value || '');
+        dati.append("numero_scheda", document.getElementById('numero_scheda')?.value || '');
+        dati.append("ora_incidente", document.getElementById('ora_incidente')?.value || '');
+        dati.append("ora_attivazione", document.getElementById('ora_attivazione')?.value || '');
+        dati.append("dinamica", document.getElementById('dinamica')?.value || '');
         dati.append("ora", document.getElementById('ora')?.value || '');
+        dati.append("nome_cognome", document.getElementById('nome_cognome')?.value || '');
+        dati.append("data_nascita", document.getElementById('data_nascita')?.value || '');
+        dati.append("Comune_nascita", document.getElementById('Comune_nascita')?.value || '');
         dati.append("emorragia_x", document.getElementById('emorragia_x_Sì')?.checked ? 'Sì' : (document.getElementById('emorragia_x_No')?.checked ? 'No' : ''));
         dati.append("x_presidi_Compressione", document.getElementById('x_presidi_Compressione')?.checked ? 'Sì' : '');
         dati.append("x_presidi_Medicazione", document.getElementById('x_presidi_Medicazione')?.checked ? 'Sì' : '');
@@ -689,6 +730,7 @@
 
 
     </script>
+
     <!--Script che nasconde il bottone compila direttamente scheda se utente è offline-->
     <script>
       const button = document.getElementById("btnCompilaPDF");
@@ -729,6 +771,7 @@
     <script src="js/ecgAvalanches.js"></script>
     <script src="js/colorTemp.js"></script>
     <script src="js/showParametriVitaliSi.js"></script>
+    <script src="js/salva-dati-cache.js"></script>
     <script>
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/APP-Scheda/service-worker.js')

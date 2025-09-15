@@ -177,7 +177,56 @@ function handleInput(element, colIndex, paramIndex) {
     }
   
     // Se siamo nell’ultima colonna (tab), aggiungine una nuova
-    if (colIndex === columnCount) {
-      addNewColumn();
-    }
+    //  if (colIndex === columnCount) {
+    //      addNewColumn();
+    //  }
   }
+
+  // Script pippo per rimuovere la tab attiva con un pulsante -
+ function removeActiveTab() {
+    if (columnCount === 1) return; // Non rimuovere l'unica tab rimasta
+
+    // Verifica se la tab attiva ha campi compilati (escludendo l'orario)
+    const hasData = tabData[activeTabIndex].some((field, i) => i !== 0 && field.value.trim() !== "");
+
+    if (hasData) {
+        // Mostra il modale
+        const modal = document.getElementById("confirmModal");
+        modal.style.display = "flex";
+
+        // Collego i pulsanti del modale
+        document.getElementById("confirmYes").onclick = () => {
+            modal.style.display = "none";
+            reallyRemoveActiveTab(); // rimuove davvero
+        };
+        document.getElementById("confirmNo").onclick = () => {
+            modal.style.display = "none"; // chiudi senza fare nulla
+        };
+
+    } else {
+        // Nessun dato → rimuovi subito
+        reallyRemoveActiveTab();
+    }
+}
+
+function reallyRemoveActiveTab() {
+    // Rimuovi i dati della tab attiva
+    delete tabData[activeTabIndex];
+
+    // Rimuovi l'elemento <li>
+    const tabList = document.getElementById("tabs");
+    const activeTab = tabList.querySelector(`.tab[data-index="${activeTabIndex}"]`);
+    if (activeTab) tabList.removeChild(activeTab);
+
+    // Riduci il contatore
+    columnCount--;
+
+    // Scegli la nuova tab attiva
+    let newActiveIndex = activeTabIndex - 1;
+    if (!tabData[newActiveIndex]) {
+        const keys = Object.keys(tabData).map(Number).sort((a, b) => a - b);
+        newActiveIndex = keys[keys.length - 1]; // ultima tab disponibile
+    }
+
+    showTab(newActiveIndex);
+}
