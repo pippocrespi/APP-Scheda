@@ -26,7 +26,7 @@ if ('serviceWorker' in navigator) {
           bottom: 20px;
           right: 20px;
           max-width: 300px;
-          background: #1e88e5;
+          background: #004e98;
           color: #fff;
           padding: 14px 18px;
           border-radius: 12px;
@@ -47,7 +47,7 @@ if ('serviceWorker' in navigator) {
             margin-left: 10px;
             padding: 6px 12px;
             background: #004e98;
-            color: #1e88e5;
+            color: #fff;
             border: none;
             border-radius: 6px;
             font-weight: bold;
