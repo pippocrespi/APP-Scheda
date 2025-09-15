@@ -60,8 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
   restoreFields();
 
   // Collega bottoni del modal
-  const confirmYes = document.getElementById("confirmYes");
-  const confirmNo = document.getElementById("confirmNo");
+  const confirmYes = document.getElementById("clearYes");
+  const confirmNo = document.getElementById("clearNo");
   const clearModal = document.getElementById("clearModal");
 
   confirmYes.addEventListener("click", () => {

@@ -28,8 +28,19 @@
     <div class="modal-content">
       <p>Sei sicuro di voler svuotare tutti i campi?</p>
       <div class="modal-buttons">
-        <button id="confirmYes">Sì</button>
-        <button id="confirmNo">No</button>
+        <button id="clearYes">Sì</button>
+        <button id="clearNo">No</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HTML per il messaggio di conferma che compare se si vuole eliminare una tab anche parzialmente compilata -->
+  <div id="confirmModal" class="modal">
+    <div class="modal-content">
+      <p id="confirmMessage">La rivalutazione contiene dati. Vuoi davvero eliminarla?</p>
+      <div class="modal-buttons">
+        <button id="tabYes">Sì</button>
+        <button id="tabNo">No</button>
       </div>
     </div>
   </div>
@@ -67,8 +78,8 @@
     </div>
 
 
-      <label>Dinamica intervento</label>
-      <input type="text" id="dinamica" name="dinamica" data-label="dinamica" style="width: 100%;">
+    <label>Dinamica intervento</label>
+    <input type="text" id="dinamica" name="dinamica" data-label="dinamica" style="width: 100%;">
     </div>
 
     <button class="accordion" id="sanitaria">+ &emsp; Sanitaria</button>
@@ -543,16 +554,6 @@
         <p> </p>
         <br>
         <button id="btnCompilaPDF" id="btnInviaDatiSheet">TEST Compila direttamente scheda</button>
-      </div>
-    </div>
-    <!-- HTML per il messaggio di conferma che compare se si vuole eliminare una tab anche parzialmente compilata -->
-    <div id="confirmModal" class="modal">
-      <div class="modal-content">
-        <p id="confirmMessage">La rivalutazione contiene dati. Vuoi davvero eliminarla?</p>
-        <div class="modal-buttons">
-          <button id="confirmYes">Sì</button>
-          <button id="confirmNo">No</button>
-        </div>
       </div>
     </div>
 

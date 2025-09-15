@@ -121,7 +121,7 @@ function applyColor(element, label, value) {
 function addNewColumn() {
     columnCount++;
     const newIndex = columnCount;
-  
+
     // Aggiungi nuova tab in alto
     const tabList = document.getElementById("tabs");
     const newTab = document.createElement("li");
@@ -130,15 +130,15 @@ function addNewColumn() {
     newTab.dataset.index = newIndex;
     newTab.onclick = () => showTab(newIndex);
     tabList.appendChild(newTab);
-  
+
     // Inizializza i dati per nuova colonna
     tabData[newIndex] = paramLabels.map(() => ({ value: "" }));
-  
+
     // **NON mostrare subito la nuova tab**
     // Commenta o rimuovi la riga seguente per non cambiare tab automaticamente
     showTab(newIndex);
-  }
-  
+}
+
 // Inizializza la pagina mostrando la prima tab
 window.onload = () => {
     showTab(1);
@@ -146,44 +146,44 @@ window.onload = () => {
 
 function handleInput(element, colIndex, paramIndex) {
     let value = element.value || element.textContent || "";
-  
+
     // Se sto modificando una riga diversa dall'orario
     // ma l'orario della colonna è vuoto, lo imposto automaticamente
     if (paramIndex !== 0 && (!tabData[colIndex][0].value || tabData[colIndex][0].value.trim() === "")) {
-      const now = new Date();
-      const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      tabData[colIndex][0].value = timeString;
-  
-      // Aggiorno la vista se la tab è attiva
-      if (colIndex === activeTabIndex) {
-        const container = document.getElementById("tab-content");
-        const spanOrario = container.querySelector(".auto-time");
-        if(spanOrario) spanOrario.textContent = timeString;
-      }
-  
-      // Aggiorno il tab con "numero - orario"
-      const tab = document.querySelector(`#tabs .tab[data-index="${colIndex}"]`);
-      if (tab) {
-        tab.textContent = `${colIndex} - ${timeString}`;
-      }
+        const now = new Date();
+        const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        tabData[colIndex][0].value = timeString;
+
+        // Aggiorno la vista se la tab è attiva
+        if (colIndex === activeTabIndex) {
+            const container = document.getElementById("tab-content");
+            const spanOrario = container.querySelector(".auto-time");
+            if (spanOrario) spanOrario.textContent = timeString;
+        }
+
+        // Aggiorno il tab con "numero - orario"
+        const tab = document.querySelector(`#tabs .tab[data-index="${colIndex}"]`);
+        if (tab) {
+            tab.textContent = `${colIndex} - ${timeString}`;
+        }
     }
-  
+
     // Ora salvo il valore modificato
     tabData[colIndex][paramIndex].value = value;
-  
+
     // Applica colore solo se non è la riga orario
-    if(paramIndex !== 0){
-      applyColor(element, paramLabels[paramIndex], value);
+    if (paramIndex !== 0) {
+        applyColor(element, paramLabels[paramIndex], value);
     }
-  
+
     // Se siamo nell’ultima colonna (tab), aggiungine una nuova
     //  if (colIndex === columnCount) {
     //      addNewColumn();
     //  }
-  }
+}
 
-  // Script pippo per rimuovere la tab attiva con un pulsante -
- function removeActiveTab() {
+// Script pippo per rimuovere la tab attiva con un pulsante -
+function removeActiveTab() {
     if (columnCount === 1) return; // Non rimuovere l'unica tab rimasta
 
     // Verifica se la tab attiva ha campi compilati (escludendo l'orario)
@@ -194,12 +194,12 @@ function handleInput(element, colIndex, paramIndex) {
         const modal = document.getElementById("confirmModal");
         modal.style.display = "flex";
 
-        // Collego i pulsanti del modale
-        document.getElementById("confirmYes").onclick = () => {
+        // Collego i pulsanti del modale ai nuovi ID
+        document.getElementById("tabYes").onclick = () => {
             modal.style.display = "none";
             reallyRemoveActiveTab(); // rimuove davvero
         };
-        document.getElementById("confirmNo").onclick = () => {
+        document.getElementById("tabNo").onclick = () => {
             modal.style.display = "none"; // chiudi senza fare nulla
         };
 
@@ -208,6 +208,7 @@ function handleInput(element, colIndex, paramIndex) {
         reallyRemoveActiveTab();
     }
 }
+
 
 function reallyRemoveActiveTab() {
     // Rimuovi i dati della tab attiva

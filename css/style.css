@@ -337,15 +337,25 @@ input[type="radio"] {
   font-size: 1rem;
 }
 
-#confirmYes {
+#clearYes {
   background-color: #e63946;
   color: white;
 }
 
-#confirmNo {
-  background-color: #ccc;
+#tabYes {
+  background-color: #e63946;
+  color: white;
 }
 
+#clearNo {
+  background-color: #ccc;
+  color: #333;
+}
+
+#tabNo {
+  background-color: #ccc;
+  color: #333;
+}
 
 .section {
   background-color: #ffffff;
