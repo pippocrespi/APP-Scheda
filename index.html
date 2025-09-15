@@ -59,7 +59,7 @@
           <button id="updateAppBtn" style="
             margin-left: 10px;
             padding: 6px 12px;
-            background: #fff;
+            background: #004e98;
             color: #1e88e5;
             border: none;
             border-radius: 6px;
@@ -319,8 +319,7 @@
         <label>Saturimetria</label>
         <div class="input-stepper">
           <button type="button" id="btn_spo2_minus">-</button>
-          <input type="number" id="saturimetria" name="saturimetria" data-min="50" data-max="100" inputmode="numeric"
-            pattern="[0-9]*" data-label="Saturimetria" data-type="hard" required id="saturimetria">
+          <input type="number" id="saturimetria" name="saturimetria" data-min="70" data-max="100" inputmode="numeric" pattern="[0-9]*" data-label="Saturimetria" data-type="hard">
           <button type="button" id="btn_spo2_plus">+</button>
         </div>
         <p class="note">Valori normali >94%</p>
@@ -468,7 +467,7 @@
         <div class="important">
           <label>Esegui testa-piedi</label>
         <div class="checkbox-group">
-          <label><input type="checkbox" data-label="Esegui testa-piedi" id="testaPiedi" required> Fatto</label>
+          <label><input type="checkbox" data-label="Esegui testa-piedi" id="testaPiedi"> Fatto</label>
         </div>
         </div>
         <br>
@@ -480,7 +479,7 @@
         <label>Dolore (1-10)</label>
         <span id="doloreValue">NON DEFINITO</span>
         <div class="slider-container">
-          <input class="custom-slider" type="range" id="doloreRange" min="1" max="10" value="0" step="1" id="doloreRange">
+          <input type="range" id="doloreRange" min="1" max="10" value="0" step="1" id="doloreRange">
         </div>
         <br>
         <script>
@@ -595,7 +594,7 @@
     <div class="gruppo">
     <h2>Tabella Rivalutazione Paziente</h2> 
     <div style="text-align: center;">
-    <button style="border-radius: 0.4em;" onclick="addNewColumn()">+</button>
+    <button style="border-radius: 0.4em; font-size: 1.2rem;" onclick="addNewColumn()">Nuova Rivalutazione</button>
   </div>
     <ul id="tabs">
       <li class="tab active" data-index="1" onclick="showTab(1)">1</li>

@@ -136,7 +136,7 @@ function addNewColumn() {
   
     // **NON mostrare subito la nuova tab**
     // Commenta o rimuovi la riga seguente per non cambiare tab automaticamente
-    // showTab(newIndex);
+    showTab(newIndex);
   }
   
 // Inizializza la pagina mostrando la prima tab

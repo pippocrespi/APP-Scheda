@@ -218,43 +218,10 @@ input[type="radio"] {
   font-weight: bold;
 }
 
-.custom-slider {
-  -webkit-appearance: none;
-  height: 2px;
-  background: linear-gradient(to left, #ff0000, #ffff00, #00ff00); /* sfumatura totale */
-  outline: none;
-  font-size: 1.8rem;
-}
-
-/* thumb standard */
-.custom-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: black;
-  cursor: pointer;
-  margin-top: -5px; /* centra il thumb sul track */
-}
-
-/* Firefox */
-.custom-slider::-moz-range-track {
-  background: linear-gradient(to left, #ff0000, #ffff00, #00ff00);
-  height: 4px;
-  border-radius: 0.6em;
-}
-.custom-slider::-moz-range-thumb {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: black;
-  cursor: pointer;
-}
-
 /* Stile per la lista */
 #tabs {
   display: flex;             /* mette i <li> in orizzontale */
-  justify-content: center;   /* centra la lista nella pagina */
+   justify-content: flex-start;   /* centra la lista nella pagina */
   list-style: none;          /* toglie i pallini */
   padding: 0;
   margin: 20px 0;
