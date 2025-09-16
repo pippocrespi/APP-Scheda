@@ -10,38 +10,35 @@ async function fillPdfBrowser() {
 
   const pdfDoc = await PDFLib.PDFDocument.load(existingPdfBytes);
   const form = pdfDoc.getForm();
-  // inizia la prova che ho fatto io (pippo) per compilare la scheda
-  if (document.getElementById("data").checked) {
-    form.getCheckBox('data_incidente').check();
+  if (document.getElementById("data").value) {
+    form.getTextField('data').setText(document.getElementById("data").value.toString());
   }
-  if (document.getElementById("data").checked) {
-    form.getCheckBox('data').check();
+  if (document.getElementById("numero_scheda").value) {
+    form.getTextField('numero_scheda').setText(document.getElementById("numero_scheda").value.toString());
   }
-  if (document.getElementById("numero_scheda").checked) {
-    form.getCheckBox('numero_scheda').check();
+  if (document.getElementById("ora_incidente").value) {
+    form.getTextField('ora_incidente').setText(document.getElementById("ora_incidente").value.toString());
   }
-  if (document.getElementById("ora_incidente").checked) {
-    form.getCheckBox('ora_incidente').check();
+  if (document.getElementById("ora_attivazione").value) {    
+    form.getTextField('ora_attivazione').setText(document.getElementById("ora_attivazione").value.toString());
   }
-  if (document.getElementById("ora_attivazione").checked) {
-    form.getCheckBox('ora_attivazione').check();
+  if (document.getElementById("dinamica").value) {    
+    form.getTextField('dinamica').setText(document.getElementById("dinamica").value.toString());    
   }
-  if (document.getElementById("dinamica").checked) {
-    form.getCheckBox('dinamica').check();
+  // manca field
+  //if (document.getElementById("ora").value) {
+  //  form.getTextField('ora').setText(document.getElementById("ora").value.toString());
+  // }
+  if (document.getElementById("nome_cognome").value) {
+    form.getTextField('nome_cognome').setText(document.getElementById("nome_cognome").value.toString());
   }
-  if (document.getElementById("orario").checked) {
-    form.getCheckBox('orario').check();
+  if (document.getElementById("data_nascita").value) {
+    form.getTextField('nato_il').setText(document.getElementById("data_nascita").value.toString());
   }
-  if (document.getElementById("nome_cognome").checked) {
-    form.getCheckBox('nome_cognome').check();
+  if (document.getElementById("Comune_nascita").value) {
+    form.getTextField('nato_a').setText(document.getElementById("Comune_nascita").value.toString());
   }
-  if (document.getElementById("data_nascita").checked) {
-    form.getCheckBox('nato_il').check();
-  }
-  if (document.getElementById("Comune_nascita").checked) {
-    form.getCheckBox('nato_a').check();
-  }
-  // fine tentativo pippo
+
   if (document.getElementById("emorragia_x_Sì").checked) {
     form.getCheckBox('emorragia_x_Sì').check();
   }
