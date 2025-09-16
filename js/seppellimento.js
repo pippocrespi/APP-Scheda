@@ -1,7 +1,7 @@
 
-const inputValanga = document.getElementById("ora_valanga");
-const inputDisseppellimento = document.getElementById("ora_disseppellimento");
-const spanDurata = document.getElementById("durata_seppellimento");
+inputValanga = document.getElementById("ora_valanga");
+inputDisseppellimento = document.getElementById("ora_disseppellimento");
+spanDurata = document.getElementById("durata_seppellimento");
 
 function calcolaDurata() {
     const t1 = inputValanga.value;

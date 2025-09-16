@@ -1,6 +1,6 @@
-const inputValanga = document.getElementById("ora_valanga");
-const inputDisseppellimento = document.getElementById("ora_disseppellimento");
-const spanDurata = document.getElementById("durata_seppellimento");
+inputValanga = document.getElementById("ora_valanga");
+inputDisseppellimento = document.getElementById("ora_disseppellimento");
+spanDurata = document.getElementById("durata_seppellimento");
 const checkboxSegniNo = document.getElementById("valanga_segni_vitali_no");
 const extraChecks = document.getElementById("valanga_check_extra");
 

@@ -19,6 +19,17 @@ const urlsToCache = [
   '/APP-Scheda/js/incrementButton.js',
   '/APP-Scheda/js/localization.js',
   '/APP-Scheda/js/pdf.js',
+  "/APP-Scheda/js/accordion.js",
+  "/APP-Scheda/js/tableRivalutation.js",
+  "/APP-Scheda/js/ecgAvalanches.js",
+  "/APP-Scheda/js/colorTemp.js",
+  "/APP-Scheda/js/showParametriVitaliSi.js",
+  "/APP-Scheda/js/serviceWorker.js",
+  "/APP-Scheda/js/save&reciveFromExcel.js",
+  "/APP-Scheda/js/salva-dati-cache.js",
+  "/APP-Scheda/js/seppellimento.js",
+  
+
 
   // Libs 
   '/APP-Scheda/libs/jspdf.es.js',

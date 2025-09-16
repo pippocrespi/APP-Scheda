@@ -7,9 +7,15 @@ form.addEventListener("submit", function (e) {
 async function inviaDatiAlFoglio() {
     // Raccogli i dati dai campi
     const dati = new FormData();
-    dati.append("numero_scheda", document.getElementById('numero_scheda')?.value || '');
     dati.append("data", document.getElementById('data')?.value || '');
+    dati.append("numero_scheda", document.getElementById('numero_scheda')?.value || '');
+    dati.append("ora_incidente", document.getElementById('ora_incidente')?.value || '');
+    dati.append("ora_attivazione", document.getElementById('ora_attivazione')?.value || '');
+    dati.append("dinamica", document.getElementById('dinamica')?.value || '');
     dati.append("ora", document.getElementById('ora')?.value || '');
+    dati.append("nome_cognome", document.getElementById('nome_cognome')?.value || '');
+    dati.append("data_nascita", document.getElementById('data_nascita')?.value || '');
+    dati.append("Comune_nascita", document.getElementById('Comune_nascita')?.value || '');
     dati.append("emorragia_x", document.getElementById('emorragia_x_Sì')?.checked ? 'Sì' : (document.getElementById('emorragia_x_No')?.checked ? 'No' : ''));
     dati.append("x_presidi_Compressione", document.getElementById('x_presidi_Compressione')?.checked ? 'Sì' : '');
     dati.append("x_presidi_Medicazione", document.getElementById('x_presidi_Medicazione')?.checked ? 'Sì' : '');

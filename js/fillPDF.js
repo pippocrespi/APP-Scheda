@@ -10,8 +10,8 @@ async function fillPdfBrowser() {
 
   const pdfDoc = await PDFLib.PDFDocument.load(existingPdfBytes);
   const form = pdfDoc.getForm();
-// inizia la prova che ho fatto io (pippo) per compilare la scheda
- if (document.getElementById("data").checked) {
+  // inizia la prova che ho fatto io (pippo) per compilare la scheda
+  if (document.getElementById("data").checked) {
     form.getCheckBox('data_incidente').check();
   }
   if (document.getElementById("data").checked) {
@@ -41,7 +41,7 @@ async function fillPdfBrowser() {
   if (document.getElementById("Comune_nascita").checked) {
     form.getCheckBox('nato_a').check();
   }
-// fine tentativo pippo
+  // fine tentativo pippo
   if (document.getElementById("emorragia_x_Sì").checked) {
     form.getCheckBox('emorragia_x_Sì').check();
   }
@@ -295,4 +295,24 @@ async function fillPdfBrowser() {
 }
 
 document.querySelector('#btnCompilaPDF').addEventListener('click', fillPdfBrowser);
+
+
+
+//Script che nasconde il bottone compila direttamente scheda se utente è offline
+const button = document.getElementById("btnCompilaPDF");
+
+function updateButtonVisibility() {
+  if (navigator.onLine) {
+    button.classList.remove("hidden");
+  } else {
+    button.classList.add("hidden");
+  }
+}
+
+// Al caricamento
+window.addEventListener("load", updateButtonVisibility);
+
+// Quando cambia la connessione
+window.addEventListener("online", updateButtonVisibility);
+window.addEventListener("offline", updateButtonVisibility);
 
