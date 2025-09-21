@@ -25,6 +25,8 @@ function showTab(index) {
     renderTab(index);
 }
 
+// Vecchia funzione renderTab()
+/*
 function renderTab(colIndex) {
     const container = document.getElementById("tab-content");
     container.innerHTML = "";
@@ -82,6 +84,68 @@ function renderTab(colIndex) {
 
     container.appendChild(table);
 }
+*/
+
+// Nuova funzione renderTab()
+
+function renderTab(colIndex) {
+    const container = document.getElementById("tab-content");
+    container.innerHTML = "";
+
+    const table = document.createElement("table");
+
+    paramLabels.forEach((label, i) => {
+        const row = document.createElement("tr");
+
+        // prima colonna label fissa
+        const labelCell = document.createElement("td");
+        labelCell.textContent = label;
+        labelCell.classList.add("fixed-label");
+        row.appendChild(labelCell);
+
+        // seconda colonna input o select
+        const valueCell = document.createElement("td");
+
+        if (i === 0) {
+            // Orario manuale: input type="time"
+            const timeInput = document.createElement("input");
+            timeInput.type = "time";
+            timeInput.value = tabData[colIndex][0].value || "";
+            timeInput.onchange = (e) => handleInput(e.target, colIndex, 0);
+            valueCell.appendChild(timeInput);
+        } else if (label === "AVPU") {
+            const select = document.createElement("select");
+            select.innerHTML = `
+                <option value="">--</option>
+                <option value="A">A</option>
+                <option value="V">V</option>
+                <option value="P">P</option>
+                <option value="U">U</option>
+            `;
+            select.value = tabData[colIndex][i].value;
+            select.onchange = (e) => handleInput(e.target, colIndex, i);
+            valueCell.appendChild(select);
+        } else {
+            const input = document.createElement("input");
+            input.type = "number";
+            input.inputMode = "numeric";
+            input.value = tabData[colIndex][i].value;
+            input.onchange = (e) => handleInput(e.target, colIndex, i);
+            valueCell.appendChild(input);
+        }
+
+        row.appendChild(valueCell);
+        table.appendChild(row);
+
+        // Applica il colore se il valore è presente e non è l'orario
+        if (i !== 0 && tabData[colIndex][i].value !== "") {
+            applyColor(valueCell.firstChild, label, tabData[colIndex][i].value);
+        }
+    });
+
+    container.appendChild(table);
+}
+
 
 function applyColor(element, label, value) {
     const cell = element.closest("td");
@@ -144,6 +208,8 @@ window.onload = () => {
     showTab(1);
 };
 
+// Vecchia handleInput()
+/*
 function handleInput(element, colIndex, paramIndex) {
     let value = element.value || element.textContent || "";
 
@@ -162,10 +228,12 @@ function handleInput(element, colIndex, paramIndex) {
         }
 
         // Aggiorno il tab con "numero - orario"
+        
         const tab = document.querySelector(`#tabs .tab[data-index="${colIndex}"]`);
         if (tab) {
             tab.textContent = `${colIndex} - ${timeString}`;
         }
+
     }
 
     // Ora salvo il valore modificato
@@ -181,8 +249,26 @@ function handleInput(element, colIndex, paramIndex) {
     //      addNewColumn();
     //  }
 }
+*/
 
+// Nuova handleInput() Pippo
+function handleInput(element, colIndex, paramIndex) {
+    let value = element.value || element.textContent || "";
+
+    // Salva il valore modificato
+    tabData[colIndex][paramIndex].value = value;
+
+    // Applica colore solo se non è la riga "RIVALUTA (Ora)"
+    if (paramIndex !== 0) {
+        applyColor(element, paramLabels[paramIndex], value);
+    }
+}
+
+
+
+// Vecchia versione
 // Script pippo per rimuovere la tab attiva con un pulsante -
+/*
 function removeActiveTab() {
     if (columnCount === 1) return; // Non rimuovere l'unica tab rimasta
 
@@ -230,4 +316,64 @@ function reallyRemoveActiveTab() {
     }
 
     showTab(newActiveIndex);
+}
+*/
+
+function removeActiveTab() {
+    if (columnCount === 1) return; // Non rimuovere l'unica tab rimasta
+
+    const hasData = tabData[activeTabIndex].some((field, i) => i !== 0 && field.value.trim() !== "");
+
+    const remove = () => {
+        // Rimuovi i dati della tab attiva
+        delete tabData[activeTabIndex];
+
+        // Rimuovi l'elemento <li>
+        const tabList = document.getElementById("tabs");
+        const activeTab = tabList.querySelector(`.tab[data-index="${activeTabIndex}"]`);
+        if (activeTab) tabList.removeChild(activeTab);
+
+        // Riduci il contatore
+        columnCount--;
+
+        // Ricrea tabData e rinumera le tab
+        const newTabData = {};
+        let newIndex = 1;
+
+        tabList.querySelectorAll(".tab").forEach(tab => {
+            const oldIndex = parseInt(tab.dataset.index);
+            tab.dataset.index = newIndex;
+            tab.textContent = newIndex;
+            newTabData[newIndex] = tabData[oldIndex];
+            newIndex++;
+        });
+
+        // Aggiorna tabData con i nuovi indici
+        for (const key in tabData) delete tabData[key];
+        Object.assign(tabData, newTabData);
+
+        // Scegli la nuova tab attiva
+        let newActiveIndex = activeTabIndex;
+        if (!tabData[newActiveIndex]) {
+            newActiveIndex = newIndex - 1;
+        }
+
+        showTab(newActiveIndex);
+    };
+
+    if (hasData) {
+        // Mostra il modale
+        const modal = document.getElementById("confirmModal");
+        modal.style.display = "flex";
+
+        document.getElementById("tabYes").onclick = () => {
+            modal.style.display = "none";
+            remove();
+        };
+        document.getElementById("tabNo").onclick = () => {
+            modal.style.display = "none"; // chiudi senza fare nulla
+        };
+    } else {
+        remove(); // Rimuovi subito se nessun dato
+    }
 }

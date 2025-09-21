@@ -19,11 +19,11 @@ async function fillPdfBrowser() {
   if (document.getElementById("ora_incidente").value) {
     form.getTextField('ora_incidente').setText(document.getElementById("ora_incidente").value.toString());
   }
-  if (document.getElementById("ora_attivazione").value) {    
+  if (document.getElementById("ora_attivazione").value) {
     form.getTextField('ora_attivazione').setText(document.getElementById("ora_attivazione").value.toString());
   }
-  if (document.getElementById("dinamica").value) {    
-    form.getTextField('dinamica').setText(document.getElementById("dinamica").value.toString());    
+  if (document.getElementById("dinamica").value) {
+    form.getTextField('dinamica').setText(document.getElementById("dinamica").value.toString());
   }
   // manca field
   //if (document.getElementById("ora").value) {
@@ -285,7 +285,14 @@ async function fillPdfBrowser() {
   const blob = new Blob([pdfBytes], { type: 'application/pdf' });
   const link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
-  link.download = 'modulo_compilato.pdf';
+
+  // Vecchio nome del documento
+  // link.download = 'modulo_compilato.pdf';
+
+  // Nuovo nome del documento così associa il numero scheda
+  const numeroScheda = document.getElementById("numero_scheda").value || "sconosciuto";
+  link.download = `Scheda_${numeroScheda}.pdf`;
+
   link.click();
 
 
