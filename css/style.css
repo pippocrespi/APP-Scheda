@@ -171,6 +171,11 @@ input[type="date"] {
   box-shadow: var(--ombra-leggera);
 }
 
+input[type="time"] {
+  line-height: 1.2;
+  background-color: white;
+  box-shadow: var(--ombra-leggera);
+}
 
 input[type="checkbox"],
 input[type="radio"] {
@@ -615,3 +620,4 @@ select.rosso option {
   }
 
 }
+
