@@ -168,6 +168,7 @@ textarea {
 input[type="date"] {
   line-height: 1.2;
   background-color: white;
+  box-shadow: var(--ombra-leggera);
 }
 
 
@@ -612,4 +613,5 @@ select.rosso option {
     padding: 5px;
     /* Ridurre l'imbottitura per risparmiare spazio */
   }
+
 }
