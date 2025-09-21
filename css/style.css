@@ -5,6 +5,17 @@
   }
 }
 
+:root {
+  --radius-small: 6px;
+  --radius-medium: 12px;
+  --radius-large: 24px;
+  --blu-scuro: #004e98;
+  --rosso: #e63946;
+  --grigio-testo: #1f1f1f;
+  --grigio-chiarissimo: #f8f9fa;
+  --grigio-bordi: #c0c0c0;
+}
+
 .hidden {
   display: none;
 }
@@ -25,67 +36,75 @@ input[type="submit"] {
 }
 
 button {
-  background-color: #004e98;
+  background-color: var(--blu-scuro);
   color: white;
   border: none;
-  padding: 10px 20px;
-  font-size: 1.6rem;
-  border-radius: 0.8em;
+  padding: 15px 20px;
+  font-size: 1.2rem;
+  border-radius: var(--radius-medium);
   cursor: pointer;
   transition: background-color 0.3s ease;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
 }
 
 .button_negativo {
   background-color: #FFFFFF;
-  color: #004e98;
-  border-style: solid;
-  border-color: #004e98;
-  padding: 10px 20px;
-  font-size: 1.4rem;
-  border-radius: 0.7em;
+  color: var(--blu-scuro);
+  border: solid 2px var(--blu-scuro);
+  padding: 15px 20px;
+  font-size: 1.2rem;
+  border-radius: var(--radius-medium);
   cursor: pointer;
   transition: background-color 0.3s ease;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
 }
 
 .bottone-togli {
-  color: #e63946;
-  border-radius: 0.5em;
-  border: 2px solid #e63946;
+  color: var(--rosso);
+  border-radius: var(--radius-medium);
+  border: 2px solid var(--rosso);
   background-color: white;
   padding: 4px 18px 6px 18px;
   margin-top: 20px;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
+}
+
+* {
+  font-family: 'Lexend', sans-serif;
 }
 
 /* Corpo */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding: 0px;
   line-height: 1.6;
-  color: #333;
-  background: linear-gradient(to bottom right, #f4f9ff, #ffffff);
+  color: var(--grigio-testo);
+  background-color: var(--grigio-chiarissimo);
+  /* background: linear-gradient(to bottom right, #f4f9ff, #ffffff);*/
   /* Tema chiaro */
   transition: background 0.3s, color 0.3s;
 }
 
 h1 {
-  color: #1f2937;
+  color: var(--grigio-testo);
   text-align: center;
   margin-bottom: 30px;
 }
 
 h2 {
-  color: #1f2937;
+  color: var(--grigio-testo);
   font-weight: bold;
-  font-size: 1.8rem;
-  border-bottom: 2px solid #c0c0c0;
+  font-size: 1.4rem;
+  border-bottom: 2px solid var(--grigio-bordi);
   padding-bottom: 5px;
   margin-top: 20px;
 }
 
 .gruppo {
   padding: 30px;
-  border-radius: 1.2em;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border-radius: var(--radius-large);
+  border: 1px solid var(--grigio-bordi);
+  background-color: white;
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); */
 }
 
 .form-row {
@@ -95,7 +114,7 @@ h2 {
 }
 
 .form-row label {
-  max-width: 150px;
+  max-width: 180px;
   margin-right: 30px;
   font-weight: bold;
 }
@@ -126,7 +145,7 @@ h2 {
 
 label {
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   display: block;
 }
 
@@ -137,11 +156,12 @@ textarea {
   padding: 10px;
   height: 40px;
   font-size: 1rem;
-  border: 1px solid #c0c0c0;
-  border-radius: 0.6em;
+  border: 1px solid var(--grigio-bordi);
+  border-radius: var(--radius-small);
   margin-top: 5px;
-  background-color: #fff;
+  background-color: white;
   box-sizing: border-box;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
 }
 
 input[type="date"] {
@@ -175,9 +195,9 @@ input[type="radio"] {
   flex: 1;
   height: 40px !important;
   padding: 0 10px;
-  font-size: 1.2rem;
-  border: 2px solid black;
-  border-radius: 0.6em;
+  font-size: 1rem;
+  border: 2px solid var(--grigio-testo);
+  border-radius: var(--radius-medium);
   box-sizing: border-box;
   margin: 0;
 }
@@ -188,10 +208,10 @@ input[type="radio"] {
   padding: 0;
   font-size: 1.2rem;
   line-height: 1;
-  border-radius: 0.6em;
+  border-radius: var(--radius-medium);
   border: none;
-  background-color: #004e98;
-  color: #fff;
+  background-color: var(--blu-scuro);
+  color: white;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -203,7 +223,7 @@ input[type="radio"] {
   /* allinea radio, lettera e testo */
   align-items: center;
   padding: 8px 0;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--grigio-bordi);
   /* linea divisoria */
   gap: 8px;
   /* spazio tra radio e resto */
@@ -226,13 +246,13 @@ input[type="radio"] {
 }
 
 .important {
-  border-left: 6px solid #ff6700;
+  border-left: 6px solid var(--blu-scuro);
   /* bordo arancione a sinistra */
-  background-color: #ffdfc9;
+  background-color: rgba(0,78,152,0.1);
   /* sfondo tenue arancione */
   padding: 12px 15px;
   margin: 15px 0;
-  border-radius: 0.6em;
+  border-radius: var(--radius-medium);
 }
 
 .important label {
@@ -248,7 +268,7 @@ input[type="radio"] {
   list-style: none;
   /* toglie i pallini */
   padding: 0;
-  margin: 20px 0;
+  margin: 20px 0 0 0;
   overflow-x: auto;
   /* abilita lo scroll orizzontale */
   white-space: nowrap;
@@ -261,42 +281,41 @@ input[type="radio"] {
 }
 
 #tabs::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 3px;
+  background: var(--grigio-bordi);
 }
 
 /* Stile per ogni tab */
 #tabs .tab {
   flex: 0 0 auto;
   padding: 10px 20px;
-  margin: 0 5px;
+  margin: 0 5px 0 0;
   cursor: pointer;
-  border: 1px solid #ccc;
-  border-radius: 0.6em;
-  background-color: #f2f2f2;
+  border: 1px solid var(--grigio-bordi);
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-top-left-radius: var(--radius-small);
+  border-top-right-radius: var(--radius-small);
+  background-color: white;
   transition: 0.3s;
   font-size: 1.2rem;
   font-weight: bold;
 }
 
-/* Effetto hover */
-#tabs .tab:hover {
-  background-color: #ddd;
-}
-
 /* Tab attivo */
 #tabs .tab.active {
-  background-color: #4285f4;
+  background-color: var(--blu-scuro);
   color: white;
-  border-color: #4285f4;
+  border-color: var(--blu-scuro);
 }
 
 #tab-content {
-  border: 2px solid #4285f4;
+  border: 1px solid var(--blu-scuro);
   padding: 6px;
-  border-radius: 0.6em;
+  border-radius: var(--radius-medium);
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
   font-size: 1.2rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15); */
 }
 
 /*stile del banner che compare quando si vuole eliminare una tab che è stata già parzialmente compilata*/
@@ -316,7 +335,7 @@ input[type="radio"] {
 .modal-content {
   background: white;
   padding: 20px;
-  border-radius: 0.8em;
+  border-radius: var(--radius-medium);
   text-align: center;
   max-width: 300px;
   width: 80%;
@@ -338,37 +357,36 @@ input[type="radio"] {
 }
 
 #clearYes {
-  background-color: #e63946;
+  background-color: var(--rosso);
   color: white;
 }
 
 #tabYes {
-  background-color: #e63946;
+  background-color: var(--rosso);
   color: white;
 }
 
 #clearNo {
-  background-color: #ccc;
-  color: #333;
+  background-color: var(--grigio-bordi);
+  color: var(--grigio-testo);
 }
 
 #tabNo {
-  background-color: #ccc;
-  color: #333;
+  background-color: var(--grigio-bordi);
+  color: var(--grigio-testo);
 }
 
 .section {
-  background-color: #ffffff;
-  padding: 20px;
+  background-color: white;
+  padding: 10px;
   margin-bottom: 25px;
-  border-radius: 0.6em;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);*/
 }
 
 .note {
   font-style: italic;
-  font-size: 0.9rem;
-  color: #6b7280;
+  font-size: 1rem;
+  color: var(--grigio-testo);
   margin-top: 4px;
   margin-bottom: 20px;
 }
@@ -400,12 +418,12 @@ input[type="number"] {
 /* Accordion */
 .accordion {
   font-weight: bold;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   cursor: pointer;
   padding: 18px;
-  background-color: #004e98;
-  border-radius: 0.8em;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  background-color: var(--blu-scuro);
+  border-radius: var(--radius-large);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   margin-top: 22px;
   width: 100%;
   text-align: left;
@@ -431,10 +449,10 @@ input[type="number"] {
   background-color: white;
   max-height: 0;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: max-height 0.3s ease-out;
-  border-bottom-left-radius: 0.6em;
-  border-bottom-right-radius: 0.6em;
+  border-bottom-left-radius: var(--radius-large);
+  border-bottom-right-radius: var(--radius-large);
   /* Transizione animata */
 }
 
