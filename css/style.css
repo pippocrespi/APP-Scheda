@@ -14,7 +14,7 @@
   --grigio-testo: #1f1f1f;
   --grigio-chiarissimo: #f8f9fa;
   --grigio-bordi: #c0c0c0;
-  --ombra-leggera: 0 1px 6px rgba(0, 0, 0, 0.15);
+  --ombra-leggera: 0 1px 4px rgba(0, 0, 0, 0.18);
 }
 
 .hidden {
@@ -168,19 +168,18 @@ textarea {
 input[type="date"] {
   line-height: 1.2;
   background-color: white;
-  box-shadow: var(--ombra-leggera);
 }
 
 input[type="time"] {
   line-height: 1.2;
   background-color: white;
-  box-shadow: var(--ombra-leggera);
 }
 
 input[type="checkbox"],
 input[type="radio"] {
   width: auto;
   margin-right: 8px;
+  box-shadow: none;
   background-color: white;
 }
 
