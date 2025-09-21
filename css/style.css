@@ -14,6 +14,7 @@
   --grigio-testo: #1f1f1f;
   --grigio-chiarissimo: #f8f9fa;
   --grigio-bordi: #c0c0c0;
+  --ombra-leggera: 0 1px 6px rgba(0, 0, 0, 0.15);
 }
 
 .hidden {
@@ -44,11 +45,11 @@ button {
   border-radius: var(--radius-medium);
   cursor: pointer;
   transition: background-color 0.3s ease;
-  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--ombra-leggera);
 }
 
 .button_negativo {
-  background-color: #FFFFFF;
+  background-color: white;
   color: var(--blu-scuro);
   border: solid 2px var(--blu-scuro);
   padding: 15px 20px;
@@ -56,7 +57,7 @@ button {
   border-radius: var(--radius-medium);
   cursor: pointer;
   transition: background-color 0.3s ease;
-  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--ombra-leggera);
 }
 
 .bottone-togli {
@@ -66,7 +67,7 @@ button {
   background-color: white;
   padding: 4px 18px 6px 18px;
   margin-top: 20px;
-  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--ombra-leggera);
 }
 
 * {
@@ -161,11 +162,12 @@ textarea {
   margin-top: 5px;
   background-color: white;
   box-sizing: border-box;
-  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--ombra-leggera);
 }
 
 input[type="date"] {
   line-height: 1.2;
+  background-color: white;
 }
 
 
@@ -173,6 +175,7 @@ input[type="checkbox"],
 input[type="radio"] {
   width: auto;
   margin-right: 8px;
+  background-color: white;
 }
 
 .checkbox-group label,
@@ -186,6 +189,7 @@ input[type="radio"] {
 
 .input-stepper {
   display: flex;
+  background-color: white;
   gap: 5px;
   align-items: stretch;
   margin-top: 10px;
@@ -194,11 +198,13 @@ input[type="radio"] {
 .input-stepper input {
   flex: 1;
   height: 40px !important;
+  background-color: white;
   padding: 0 10px;
   font-size: 1rem;
-  border: 2px solid var(--grigio-testo);
+  border: 1px solid var(--grigio-testo);
   border-radius: var(--radius-medium);
   box-sizing: border-box;
+  box-shadow: var(--ombra-leggera);
   margin: 0;
 }
 
@@ -211,6 +217,7 @@ input[type="radio"] {
   border-radius: var(--radius-medium);
   border: none;
   background-color: var(--blu-scuro);
+  box-shadow: var(--ombra-leggera);
   color: white;
   cursor: pointer;
   display: flex;
@@ -339,7 +346,7 @@ input[type="radio"] {
   text-align: center;
   max-width: 300px;
   width: 80%;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--ombra-leggera);
 }
 
 .modal-buttons {
@@ -423,7 +430,7 @@ input[type="number"] {
   padding: 18px;
   background-color: var(--blu-scuro);
   border-radius: var(--radius-large);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--ombra-leggera);
   margin-top: 22px;
   width: 100%;
   text-align: left;
@@ -449,7 +456,7 @@ input[type="number"] {
   background-color: white;
   max-height: 0;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--ombra-leggera);
   transition: max-height 0.3s ease-out;
   border-bottom-left-radius: var(--radius-large);
   border-bottom-right-radius: var(--radius-large);
@@ -497,7 +504,7 @@ select.verde option,
 select.giallo option,
 select.arancione option,
 select.rosso option {
-  color: #333;
+  color: var(--grigio-testo);
   background-color: white;
   font-weight: initial;
 }
