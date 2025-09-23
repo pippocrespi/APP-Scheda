@@ -26,7 +26,7 @@ if ('serviceWorker' in navigator) {
           bottom: 20px;
           right: 20px;
           max-width: 300px;
-          background: #004e98;
+          background: white;
           color: #fff;
           padding: 14px 18px;
           border-radius: 12px;
