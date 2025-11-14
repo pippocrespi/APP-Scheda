@@ -260,7 +260,7 @@ input[type="radio"] {
 .important {
   border-left: 6px solid var(--blu-scuro);
   /* bordo arancione a sinistra */
-  background-color: rgba(0,78,152,0.1);
+  background-color: rgba(0, 78, 152, 0.1);
   /* sfondo tenue arancione */
   padding: 12px 15px;
   margin: 15px 0;
@@ -620,3 +620,63 @@ select.rosso option {
 
 }
 
+.tab-container {
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.tab-container input[type="radio"] {
+  display: none;
+}
+
+.tabs {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.tabs label {
+  padding: 8px 15px;
+  background: #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  user-select: none;
+}
+
+input#tab1:checked~.tabs label[for="tab1"],
+input#tab2:checked~.tabs label[for="tab2"],
+input#tab3:checked~.tabs label[for="tab3"],
+input#tab4:checked~.tabs label[for="tab4"] {
+  background: #4CAF50;
+  color: white;
+}
+
+.tab-content {
+  display: none;
+  padding: 10px;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+}
+
+#tab1:checked~#content1,
+#tab2:checked~#content2,
+#tab3:checked~#content3,
+#tab4:checked~#content4 {
+  display: block;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table td {
+  padding: 6px;
+  border-bottom: 1px solid #ccc;
+}
+
+.table td:first-child {
+  font-weight: bold;
+  width: 40%;
+}
