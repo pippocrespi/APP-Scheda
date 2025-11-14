@@ -1,3 +1,7 @@
+/* ======================================================= */
+/*                   STILI GENERALI                        */
+/* ======================================================= */
+
 /* Stili per la stampa */
 @media print {
   button {
@@ -5,6 +9,9 @@
   }
 }
 
+/* ======================================================= */
+/*                     VARIABILI                           */
+/* ======================================================= */
 :root {
   --radius-small: 6px;
   --radius-medium: 12px;
@@ -17,25 +24,25 @@
   --ombra-leggera: 0 1px 4px rgba(0, 0, 0, 0.18);
 }
 
+/* Classi utility */
 .hidden {
   display: none;
 }
 
+/* ======================================================= */
+/*                     PULSANTI                             */
+/* ======================================================= */
 button,
 input[type="button"],
 input[type="submit"] {
-  -webkit-user-select: none;
-  /* Safari/Chrome */
-  -moz-user-select: none;
-  /* Firefox */
-  -ms-user-select: none;
-  /* IE/Edge */
-  user-select: none;
-  /* standard */
-  touch-action: manipulation;
-  /* migliora il tap su mobile */
+  -webkit-user-select: none; /* Safari/Chrome */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE/Edge */
+  user-select: none; /* standard */
+  touch-action: manipulation; /* migliora il tap su mobile */
 }
 
+/* Pulsante principale */
 button {
   background-color: var(--blu-scuro);
   color: white;
@@ -48,6 +55,7 @@ button {
   box-shadow: var(--ombra-leggera);
 }
 
+/* Pulsante negativo */
 .button_negativo {
   background-color: white;
   color: var(--blu-scuro);
@@ -60,6 +68,7 @@ button {
   box-shadow: var(--ombra-leggera);
 }
 
+/* Pulsante rosso piccolo */
 .bottone-togli {
   color: var(--rosso);
   border-radius: var(--radius-medium);
@@ -70,18 +79,19 @@ button {
   box-shadow: var(--ombra-leggera);
 }
 
+/* ======================================================= */
+/*                     FONT E BODY                          */
+/* ======================================================= */
 * {
   font-family: 'Lexend', sans-serif;
+  box-sizing: border-box;
 }
 
-/* Corpo */
 body {
-  padding: 0px;
+  padding: 0;
   line-height: 1.6;
   color: var(--grigio-testo);
   background-color: var(--grigio-chiarissimo);
-  /* background: linear-gradient(to bottom right, #f4f9ff, #ffffff);*/
-  /* Tema chiaro */
   transition: background 0.3s, color 0.3s;
 }
 
@@ -100,14 +110,25 @@ h2 {
   margin-top: 20px;
 }
 
+/* ======================================================= */
+/*                     SEZIONI E GRUPPI                     */
+/* ======================================================= */
 .gruppo {
   padding: 30px;
   border-radius: var(--radius-large);
   border: 1px solid var(--grigio-bordi);
   background-color: white;
-  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); */
 }
 
+.section {
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 25px;
+}
+
+/* ======================================================= */
+/*                     FORM STILI                            */
+/* ======================================================= */
 .form-row {
   display: flex;
   align-items: center;
@@ -123,26 +144,20 @@ h2 {
 .form-row input {
   flex: 1;
   padding: 6px;
-  box-sizing: border-box;
 }
 
 .tutte-in-riga {
   display: flex;
-  /* mette le checkbox in riga */
   gap: 30px;
-  /* spazio tra checkbox */
   align-items: center;
 }
 
 .form-row.con-riga-di-chechbox {
   display: flex;
   flex-direction: column;
-  /* label sopra, checkbox sotto */
   align-items: flex-start;
-  /* allinea tutto a sinistra */
   margin: 10px 0;
 }
-
 
 label {
   font-weight: bold;
@@ -150,9 +165,7 @@ label {
   display: block;
 }
 
-input,
-select,
-textarea {
+input, select, textarea {
   width: 100%;
   padding: 10px;
   height: 40px;
@@ -161,15 +174,9 @@ textarea {
   border-radius: var(--radius-small);
   margin-top: 5px;
   background-color: white;
-  box-sizing: border-box;
-  /* box-shadow: var(--ombra-leggera); */
 }
 
-input[type="date"] {
-  line-height: 1.2;
-  background-color: white;
-}
-
+input[type="date"],
 input[type="time"] {
   line-height: 1.2;
   background-color: white;
@@ -179,8 +186,6 @@ input[type="checkbox"],
 input[type="radio"] {
   width: auto;
   margin-right: 8px;
-  box-shadow: none;
-  background-color: white;
 }
 
 .checkbox-group label,
@@ -192,6 +197,7 @@ input[type="radio"] {
   gap: 6px;
 }
 
+/* Stepper */
 .input-stepper {
   display: flex;
   background-color: white;
@@ -208,7 +214,6 @@ input[type="radio"] {
   font-size: 1rem;
   border: 1px solid var(--grigio-testo);
   border-radius: var(--radius-medium);
-  box-sizing: border-box;
   box-shadow: var(--ombra-leggera);
   margin: 0;
 }
@@ -216,9 +221,7 @@ input[type="radio"] {
 .input-stepper button {
   height: 40px;
   width: 40px;
-  padding: 0;
   font-size: 1.2rem;
-  line-height: 1;
   border-radius: var(--radius-medium);
   border: none;
   background-color: var(--blu-scuro);
@@ -230,38 +233,36 @@ input[type="radio"] {
   justify-content: center;
 }
 
+/* ======================================================= */
+/*                     SEPARA LINEE / LETTERE              */
+/* ======================================================= */
 .separa-linea label {
   display: flex;
-  /* allinea radio, lettera e testo */
   align-items: center;
   padding: 8px 0;
   border-bottom: 1px solid var(--grigio-bordi);
-  /* linea divisoria */
   gap: 8px;
-  /* spazio tra radio e resto */
 }
 
 .separa-linea label:last-child {
   border-bottom: none;
-  /* niente linea sull’ultimo */
 }
 
 .separa-linea b {
   margin-right: 10px;
-  /* spazio tra lettera e descrizione */
   display: inline-block;
   font-weight: bold;
   font-size: 1.8rem;
   min-width: 20px;
-  /* fissa spazio per allineare le lettere */
   text-align: center;
 }
 
+/* ======================================================= */
+/*                     IMPORTANT BOX                        */
+/* ======================================================= */
 .important {
   border-left: 6px solid var(--blu-scuro);
-  /* bordo arancione a sinistra */
   background-color: rgba(0, 78, 152, 0.1);
-  /* sfondo tenue arancione */
   padding: 12px 15px;
   margin: 15px 0;
   border-radius: var(--radius-medium);
@@ -271,74 +272,148 @@ input[type="radio"] {
   font-weight: bold;
 }
 
-/* Stile per la lista */
-#tabs {
+/* ======================================================= */
+/*                     TABBED PANE                           */
+/* ======================================================= */
+.tab-container {
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.tab-container input[type="radio"] {
+  display: none;
+}
+
+.tabs {
   display: flex;
-  /* mette i <li> in orizzontale */
-  justify-content: flex-start;
-  /* centra la lista nella pagina */
-  list-style: none;
-  /* toglie i pallini */
-  padding: 0;
-  margin: 20px 0 0 0;
-  overflow-x: auto;
-  /* abilita lo scroll orizzontale */
-  white-space: nowrap;
-  scrollbar-width: thin;
+  gap: 5px;
+  margin-bottom: 10px;
 }
 
-#tabs::-webkit-scrollbar {
-  height: auto;
-  /* altezza scrollbar (Chrome/Safari/Edge) */
-}
-
-#tabs::-webkit-scrollbar-thumb {
-  background: var(--grigio-bordi);
-}
-
-/* Stile per ogni tab */
-#tabs .tab {
-  flex: 0 0 auto;
-  padding: 10px 20px;
-  margin: 0 5px 0 0;
+.tabs label {
+  padding: 8px 15px;
+  background: #ddd;
+  border-radius: 5px;
   cursor: pointer;
-  border: 1px solid var(--grigio-bordi);
+  font-weight: bold;
+  user-select: none;
+}
+
+/* Tab selezionato */
+input#tab1:checked~.tabs label[for="tab1"],
+input#tab2:checked~.tabs label[for="tab2"],
+input#tab3:checked~.tabs label[for="tab3"],
+input#tab4:checked~.tabs label[for="tab4"] {
+  background: var(--blu-scuro);
+  color: white;
+}
+
+/* Contenuti tab nascosti di default */
+.tab-content {
+  display: none;
+  padding: 10px;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+}
+
+/* Mostra il contenuto del tab selezionato */
+#tab1:checked ~ .tabs ~ #content1,
+#tab2:checked ~ .tabs ~ #content2,
+#tab3:checked ~ .tabs ~ #content3,
+#tab4:checked ~ .tabs ~ #content4 {
+  display: block;
+}
+
+/* Tab selezionato evidenziato */
+input#tab1:checked ~ .tabs label[for="tab1"],
+input#tab2:checked ~ .tabs label[for="tab2"],
+input#tab3:checked ~ .tabs label[for="tab3"],
+input#tab4:checked ~ .tabs label[for="tab4"] {
+  background: var(--blu-scuro);
+  color: white;
+}
+
+/* ======================================================= */
+/*                     TABELLE                               */
+/* ======================================================= */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+/* Input numerici senza spin */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  appearance: none;
+  -moz-appearance: textfield;
+}
+
+/* ======================================================= */
+/*                     ACCORDION                             */
+/* ======================================================= */
+.accordion {
+  font-weight: bold;
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 18px;
+  background-color: var(--blu-scuro);
+  border-radius: var(--radius-large);
+  box-shadow: var(--ombra-leggera);
+  margin-top: 22px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+
+.active, .accordion:hover {
+  background-color: #3a6ea5;
+}
+
+.accordion.active {
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
-  border-top-left-radius: var(--radius-small);
-  border-top-right-radius: var(--radius-small);
+}
+
+.panel {
+  padding: 0 18px;
   background-color: white;
-  transition: 0.3s;
-  font-size: 1.2rem;
-  font-weight: bold;
+  max-height: 0;
+  overflow: hidden;
+  box-shadow: var(--ombra-leggera);
+  transition: max-height 0.3s ease-out;
+  border-bottom-left-radius: var(--radius-large);
+  border-bottom-right-radius: var(--radius-large);
 }
 
-/* Tab attivo */
-#tabs .tab.active {
-  background-color: var(--blu-scuro);
-  color: white;
-  border-color: var(--blu-scuro);
-}
+/* ======================================================= */
+/*                     COLORAZIONI CELLE                     */
+/* ======================================================= */
+td.verde input, td.verde select { font-weight: bold; background-color: #d4edda; border: 1px solid green; }
+td.giallo input, td.giallo select { font-weight: bold; background-color: #fff9cc; border: 1px solid goldenrod; }
+td.arancione input, td.arancione select { font-weight: bold; background-color: #ffe0b3; border: 1px solid orange; }
+td.rosso input, td.rosso select { font-weight: bold; background-color: #f8cccc; border: 1px solid red; }
 
-#tab-content {
-  border: 1px solid var(--blu-scuro);
-  padding: 6px;
-  border-radius: var(--radius-medium);
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
-  font-size: 1.2rem;
-  /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15); */
-}
-
-/*stile del banner che compare quando si vuole eliminare una tab che è stata già parzialmente compilata*/
+/* ======================================================= */
+/*                     MODAL PER CANCELLAZIONE             */
+/* ======================================================= */
 .modal {
   display: none;
   position: fixed;
   z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
   justify-content: center;
   align-items: center;
@@ -368,315 +443,28 @@ input[type="radio"] {
   font-size: 1rem;
 }
 
-#clearYes {
-  background-color: var(--rosso);
-  color: white;
-}
+#clearYes, #tabYes { background-color: var(--rosso); color: white; }
+#clearNo, #tabNo { background-color: var(--grigio-bordi); color: var(--grigio-testo); }
 
-#tabYes {
-  background-color: var(--rosso);
-  color: white;
-}
-
-#clearNo {
-  background-color: var(--grigio-bordi);
-  color: var(--grigio-testo);
-}
-
-#tabNo {
-  background-color: var(--grigio-bordi);
-  color: var(--grigio-testo);
-}
-
-.section {
-  background-color: white;
-  padding: 10px;
-  margin-bottom: 25px;
-  /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);*/
-}
-
-.note {
-  font-style: italic;
-  font-size: 1rem;
-  color: var(--grigio-testo);
-  margin-top: 4px;
-  margin-bottom: 20px;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-}
-
-th,
-td {
-  text-align: left;
-  padding: 8px;
-}
-
-/* Input numerici senza spin */
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-input[type="number"] {
-  appearance: none;
-  -moz-appearance: textfield;
-}
-
-/* Accordion */
-.accordion {
-  font-weight: bold;
-  font-size: 1.4rem;
-  cursor: pointer;
-  padding: 18px;
-  background-color: var(--blu-scuro);
-  border-radius: var(--radius-large);
-  box-shadow: var(--ombra-leggera);
-  margin-top: 22px;
-  width: 100%;
-  text-align: left;
-  border: none;
-  outline: none;
-  transition: 0.4s;
-}
-
-/* Aggiungi la classe active per il cambio colore quando viene premuto */
-.active,
-.accordion:hover {
-  background-color: #3a6ea5;
-}
-
-.accordion.active {
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
-}
-
-/* Gestione della transizione dell'altezza del pannello */
-.panel {
-  padding: 0 18px;
-  background-color: white;
-  max-height: 0;
-  overflow: hidden;
-  box-shadow: var(--ombra-leggera);
-  transition: max-height 0.3s ease-out;
-  border-bottom-left-radius: var(--radius-large);
-  border-bottom-right-radius: var(--radius-large);
-  /* Transizione animata */
-}
-
-/* Verde */
-td.verde input,
-td.verde select {
-  font-weight: bold;
-  background-color: #d4edda;
-  border: 1px solid green;
-}
-
-/* Giallo */
-td.giallo input,
-td.giallo select {
-  font-weight: bold;
-  background-color: #fff9cc;
-  border: 1px solid goldenrod;
-}
-
-/* Arancione */
-td.arancione input,
-td.arancione select {
-  font-weight: bold;
-  background-color: #ffe0b3;
-  border: 1px solid orange;
-}
-
-/* Rosso */
-td.rosso input,
-td.rosso select {
-  font-weight: bold;
-  background-color: #f8cccc;
-  border: 1px solid red;
-}
-
-/* RESET delle option per tutte le classi di colore */
-td.verde select option,
-td.giallo select option,
-td.arancione select option,
-td.rosso select option,
-select.verde option,
-select.giallo option,
-select.arancione option,
-select.rosso option {
-  color: var(--grigio-testo);
-  background-color: white;
-  font-weight: initial;
-}
-
-/* -------------------------------------------- */
-/* Media query per tema scuro */
+/* ======================================================= */
+/*                     DARK MODE                             */
+/* ======================================================= */
 @media (prefers-color-scheme: dark) {
-
-  /* Corpo per tema scuro */
-  body {
-    background: linear-gradient(to bottom right, #181818, #333333);
-    /* Tema scuro */
-    color: #f4f4f4;
+  body { background: linear-gradient(to bottom right, #181818, #333); color: #f4f4f4; }
+  h1, h2 { color: #f4f4f4; }
+  input, select, textarea { background-color: #444; color: #f4f4f4; border-color: #555; }
+  label { color: #f4f4f4; }
+  button { background-color: #4CAF50; color: white; }
+  .button_negativo { background-color: #444; color: #007BFF; border-color: #007BFF; }
+  .section, .gruppo { background-color: #333; border-color: #555; }
+  table { background-color: #444; color: #f4f4f4; }
+  th, td { border: 1px solid #555; }
+  .accordion { background-color: #444; color: #f4f4f4; }
+  .active, .accordion:hover { background-color: #666; }
+  .panel { background-color: #555; }
+   input {
+    background-color: #555;  /* leggermente chiaro */
+    color: #000;             /* testo nero */
+    border-color: #888;
   }
-
-  /* Titoli e testo */
-  h1,
-  h2 {
-    color: #f4f4f4;
-  }
-
-  /* Form e input */
-  input,
-  select,
-  textarea {
-    background-color: #444;
-    color: #f4f4f4;
-    border-color: #555;
-  }
-
-  label {
-    color: #f4f4f4;
-  }
-
-  /* Pulsanti */
-  button {
-    background-color: #4CAF50;
-    color: white;
-  }
-
-  .button_negativo {
-    background-color: #444;
-    color: #007BFF;
-    border-color: #007BFF;
-  }
-
-  .section {
-    background-color: #333;
-    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
-  }
-
-  /* Tabella */
-  table {
-    background-color: #444;
-    color: #f4f4f4;
-  }
-
-  th,
-  td {
-    border: 1px solid #555;
-  }
-
-  /* Accordion */
-  .accordion {
-    background-color: #444;
-    color: #f4f4f4;
-  }
-
-  .active,
-  .accordion:hover {
-    background-color: #666;
-  }
-
-  .panel {
-    background-color: #555;
-  }
-
-  /* Colorazioni per valori */
-  .verde {
-    background-color: #4b8f53;
-  }
-
-  .giallo {
-    background-color: #f4e26b;
-  }
-
-  .arancione {
-    background-color: #f2b400;
-  }
-
-  .rosso {
-    background-color: #d9534f;
-  }
-}
-
-/* Media query per schermi piccoli */
-@media (max-width: 768px) {
-
-  input[type="date"],
-  input[type="time"] {
-    width: fit-content;
-    /* Mantieni la larghezza auto su schermi piccoli */
-    font-size: 0.85rem;
-    /* Ridurre ulteriormente la dimensione del font */
-    padding: 5px;
-    /* Ridurre l'imbottitura per risparmiare spazio */
-  }
-
-}
-
-.tab-container {
-  width: 100%;
-  font-family: Arial, sans-serif;
-}
-
-.tab-container input[type="radio"] {
-  display: none;
-}
-
-.tabs {
-  display: flex;
-  gap: 5px;
-  margin-bottom: 10px;
-}
-
-.tabs label {
-  padding: 8px 15px;
-  background: #ddd;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  user-select: none;
-}
-
-input#tab1:checked~.tabs label[for="tab1"],
-input#tab2:checked~.tabs label[for="tab2"],
-input#tab3:checked~.tabs label[for="tab3"],
-input#tab4:checked~.tabs label[for="tab4"] {
-  background: #4CAF50;
-  color: white;
-}
-
-.tab-content {
-  display: none;
-  padding: 10px;
-  border: 1px solid #bbb;
-  border-radius: 5px;
-}
-
-#tab1:checked~#content1,
-#tab2:checked~#content2,
-#tab3:checked~#content3,
-#tab4:checked~#content4 {
-  display: block;
-}
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.table td {
-  padding: 6px;
-  border-bottom: 1px solid #ccc;
-}
-
-.table td:first-child {
-  font-weight: bold;
-  width: 40%;
 }

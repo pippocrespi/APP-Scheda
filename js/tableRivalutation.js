@@ -15,3 +15,10 @@ document.querySelectorAll(".tab-content").forEach(tab => {
         element.addEventListener("input", () => aggiornaOraRivaluta(tab));
     });
 });
+
+window.addEventListener('DOMContentLoaded', () => {
+    const firstTab = document.getElementById('tab1');
+    if (firstTab) {
+        firstTab.checked = true;
+    }
+});
